@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="model.Article">
+    <sql id="articleColumns">id,title,content,uri,date</sql>
+    <resultMap id="resultArticle" type="Article">
+        <id column="id" property="id"/>
+        <result column="title" property="title"/>
+        <result column="content" property="content"/>
+        <result column="date" property="date"/>
+        <result column="uri" property="uri"/>
+        <association property="category" select="selectCategory" javaType="Category" column="c_id"/>
+    </resultMap>
+    <select id="selectCategory" parameterType="int" resultType="Category">
+        select * from category where id = #{id}
+    </select>
+    <insert id="add" parameterType="Article" useGeneratedKeys="true" keyProperty="id">
+      insert into article(title,content,date,uri,c_id)
+      value (#{title},#{content},#{date},#{uri},#{category.id})
+    </insert>
+    
+    <select id="getArticleById" parameterType="int" resultMap="resultArticle">
+        select * from article
+        where id = #{id}
+    </select>
+
+    <select id="list" resultMap="resultArticle">
+        select * from article
+    </select>
+    
+    <delete id="delete" parameterType="int">
+        delete from article where id = #{id}
+    </delete>
+    
+    <update id="update" parameterType="Article">
+        update article set c_id = #{category.id},title = #{title},content = #{content},uri = #{uri}
+        where id = #{id}
+    </update>
+</mapper>

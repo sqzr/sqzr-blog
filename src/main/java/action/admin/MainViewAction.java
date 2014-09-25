@@ -1,0 +1,129 @@
+package action.admin;
+
+import com.opensymphony.xwork2.ActionSupport;
+import model.Article;
+import model.Category;
+import service.ArticleService;
+import service.CategoryService;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * Created by weiyang on 2014/9/13.
+ */
+public class MainViewAction extends ActionSupport {
+    private Map<String, Object> info = new HashMap<String, Object>();
+    private List<Article> articles;
+    private List<Category> categories;
+    private int id;
+    private ArticleService articleService;
+    private CategoryService categoryService;
+    private Article article;
+
+    public String index() throws Exception {
+        this.info.put("title", "控制台");
+        this.info.put("menu", "index");
+        return SUCCESS;
+    }
+
+    public String category() throws Exception {
+        this.info.put("title", "分类管理");
+        this.info.put("menu", "category");
+        this.categories = categoryService.list();
+        return SUCCESS;
+    }
+
+    public String article_add() throws Exception {
+        this.info.put("title", "添加文章");
+        this.info.put("menu", "article_add");
+        this.categories = categoryService.list();
+        return SUCCESS;
+    }
+
+    public String article_update() throws Exception {
+        this.info.put("menu", "article_update");
+        this.categories = categoryService.list();
+        this.article = articleService.getArticleById(id);
+        this.info.put("title", "更新:" + this.article.getTitle());
+        return SUCCESS;
+    }
+
+    public String article_list() throws Exception {
+        this.info.put("title", "文章列表");
+        this.info.put("menu", "article_list");
+        this.articles = articleService.list();
+        return SUCCESS;
+    }
+
+    public String article_delete() throws Exception {
+        articleService.deleteArticleById(id);
+        return "article_delete";
+    }
+
+    public String category_delete() throws Exception {
+        categoryService.delete(id);
+        return "category_delete";
+    }
+
+
+    // ---
+
+
+    public CategoryService getCategoryService() {
+        return categoryService;
+    }
+
+    public void setCategoryService(CategoryService categoryService) {
+        this.categoryService = categoryService;
+    }
+
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
+    }
+
+    public List<Article> getArticles() {
+        return articles;
+    }
+
+    public void setArticles(List<Article> articles) {
+        this.articles = articles;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public ArticleService getArticleService() {
+        return articleService;
+    }
+
+    public void setArticleService(ArticleService articleService) {
+        this.articleService = articleService;
+    }
+
+    public Article getArticle() {
+        return article;
+    }
+
+    public void setArticle(Article article) {
+        this.article = article;
+    }
+
+    public Map<String, Object> getInfo() {
+        return info;
+    }
+
+    public void setInfo(Map<String, Object> info) {
+        this.info = info;
+    }
+}

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="model.Log">
+    <insert id="addLog" parameterType="Log">
+        insert into log(type,ip,useragent,content,result,date) value (#{type},#{ip},#{useragent},#{content},#{result},#{date})
+    </insert>
+</mapper>

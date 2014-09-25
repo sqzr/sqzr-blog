@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/aop
+                           http://www.springframework.org/schema/aop/spring-aop.xsd
+                           http://www.springframework.org/schema/tx
+                           http://www.springframework.org/schema/tx/spring-tx.xsd
+                           http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- dao bean -->
+    <bean id="userDao" class="dao.impl.UserDaoImpl">
+        <property name="sqlSession" ref="sqlSession"/>
+    </bean>
+    <bean id="logDao" class="dao.impl.LogDaoImpl">
+        <property name="sqlSession" ref="sqlSession"/>
+    </bean>
+    <bean id="articleDao" class="dao.impl.ArticleDaoImpl">
+        <property name="sqlSession" ref="sqlSession"/>
+    </bean>
+    <bean id="categoryDao" class="dao.impl.CategoryDaoImpl">
+        <property name="sqlSession" ref="sqlSession"/>
+    </bean>
+
+
+    <!-- service bean -->
+    <bean id="userService" class="service.impl.UserServiceImpl">
+        <property name="userDao" ref="userDao"/>
+        <property name="logDao" ref="logDao"/>
+    </bean>
+    <bean id="articleService" class="service.impl.ArticleServiceImpl">
+        <property name="articleDao" ref="articleDao"/>
+        <property name="logDao" ref="logDao"/>
+    </bean>
+    <bean id="categoryService" class="service.impl.CategoryServiceImpl">
+        <property name="categoryDao" ref="categoryDao"/>
+        <property name="logDao" ref="logDao"/>
+    </bean>
+    <!-- sql session工厂 -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+    </bean>
+    <!-- sql session -->
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg index="0" ref="sqlSessionFactory"/>
+    </bean>
+
+    <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://127.0.0.1:3306/blog?useUnicode=true&amp;characterEncoding=UTF-8"/>
+        <property name="username" value="root"/>
+        <property name="password" value="KD2573d95A05280F"/>
+    </bean>
+
+    <!-- 事务管理 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <aop:config>
+        <aop:pointcut id="bussinessService" expression="execution(public * service..*.*(..))"/>
+        <aop:advisor pointcut-ref="bussinessService" advice-ref="transactionInterceptor"/>
+    </aop:config>
+    <tx:advice transaction-manager="transactionManager" id="transactionInterceptor">
+        <tx:attributes>
+            <tx:method name="*" propagation="REQUIRED"/>
+        </tx:attributes>
+    </tx:advice>
+
+</beans>

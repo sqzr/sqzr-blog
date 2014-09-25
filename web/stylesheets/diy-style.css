@@ -1,0 +1,47 @@
+.icon-cat{
+    background-image: url("/images/iconcat.png");
+    width: 30px;
+    height: 30px;
+    -webkit-border-radius:50px;
+}
+
+.titleFrom{
+    /*padding-bottom: 20px;*/
+    /*padding-right: 0px;*/
+    /*padding-left: 0px;*/
+}
+
+.titleFrom input[type="text"] {
+    height: 38px;
+    /*border-color: #307ecc;*/
+    /*background-color: rgba(48, 126, 204, 0.07);*/
+}
+.titleFrom input[type="text"]:focus {
+    height: 38px;
+    /*border-color: #307ecc;*/
+    background-color: #ffffff;
+}
+
+.titleFrom input[type="text"]:hover {
+    /*border-color: #307ecc;*/
+}
+
+.titleFrom label {
+    font-size: 20px;
+}
+
+.editor {
+    /*padding: 0px 10px;*/
+}
+
+.uriFrom {
+    /*margin-top: 10px;*/
+    height: 32px;
+
+}
+
+.categoryFrom {
+    border-color: #307ecc;
+    background-color: rgba(48, 126, 204, 0.07);
+    height: 32px;
+}
