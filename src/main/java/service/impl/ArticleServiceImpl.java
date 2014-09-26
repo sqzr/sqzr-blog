@@ -1,8 +1,10 @@
 package service.impl;
 
 import dao.ArticleDao;
+import dao.CategoryDao;
 import dao.LogDao;
 import factory.LogFactory;
+import model.Category;
 import webException.*;
 import model.Article;
 import service.ArticleService;
@@ -15,10 +17,14 @@ import java.util.List;
 public class ArticleServiceImpl implements ArticleService {
     private ArticleDao articleDao;
     private LogDao logDao;
+    private CategoryDao categoryDao;
+
     @Override
     public int add(Article article) {
         // 添加日志
         logDao.addLog(LogFactory.build("addArticle",article.getTitle(),"true"));
+        // 记录数加一
+        categoryDao.plusCount(article.getCategory().getId());
         return articleDao.add(article);
     }
 
@@ -41,18 +47,12 @@ public class ArticleServiceImpl implements ArticleService {
         return articleDao.list();
     }
 
-    /**
-     * 通过id删除文章
-     * @param id 文章id
-     * @return
-     * @throws ParameterIsEmptyException 没有传递参数
-     * @throws NotFoundException 删除后没有影响条数
-     */
     @Override
     public boolean deleteArticleById(int id) throws ParameterIsEmptyException, NotFoundException {
         if (id == 0) {
             throw new ParameterIsEmptyException("参数错误");
         }
+        categoryDao.minusCount(articleDao.getCategoryIdByArticleId(id));
         int result = articleDao.deleteArticleById(id);
         if (result == 0) {
             throw new NotFoundException();
@@ -61,13 +61,6 @@ public class ArticleServiceImpl implements ArticleService {
         return true;
     }
 
-    /**
-     * 修改文章
-     * @param article 包含需要修改的文章类
-     * @return
-     * @throws ParameterIsEmptyException 没有传递文章id
-     * @throws NotFoundException 修改后没有影响行数
-     */
     @Override
     public boolean update(Article article) throws ParameterIsEmptyException, NotFoundException {
         if (article.getId() == 0) {
@@ -81,8 +74,21 @@ public class ArticleServiceImpl implements ArticleService {
         return true;
     }
 
+    @Override
+    public List<Article> getArticleByCategoryId(int c_id) {
+        return articleDao.getArticleByCategoryId(c_id);
+    }
+
     // ---
 
+
+    public CategoryDao getCategoryDao() {
+        return categoryDao;
+    }
+
+    public void setCategoryDao(CategoryDao categoryDao) {
+        this.categoryDao = categoryDao;
+    }
 
     public LogDao getLogDao() {
         return logDao;

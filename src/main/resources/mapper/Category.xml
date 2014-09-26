@@ -7,6 +7,7 @@
         <id column="id" property="id"/>
         <result column="name" property="name"/>
         <result column="uri" property="uri"/>
+        <result column="count" property="count"/>
     </resultMap>
     <insert id="add" parameterType="Category" useGeneratedKeys="true" keyProperty="id">
       insert into category(name,uri,date)
@@ -25,4 +26,24 @@
         update category set name = #{name},uri = #{uri}
         where id = #{id}
     </update>
+
+    <update id="plusCount" parameterType="int">
+        update category set count = count + 1
+        where id = #{id}
+    </update>
+    
+    <update id="minusCount" parameterType="int">
+        update category set count = count - 1
+        where id = #{id}
+    </update>
+
+    <select id="getCategoryById" parameterType="int" resultType="Category">
+        select * from category
+        where id = #{id}
+    </select>
+    
+    <select id="getArticleCountByCategoryId" parameterType="int" resultType="int">
+        select count(*) from article
+        where c_id = #{id}
+    </select>
 </mapper>

@@ -33,6 +33,7 @@
     <bean id="articleService" class="service.impl.ArticleServiceImpl">
         <property name="articleDao" ref="articleDao"/>
         <property name="logDao" ref="logDao"/>
+        <property name="categoryDao" ref="categoryDao"/>
     </bean>
     <bean id="categoryService" class="service.impl.CategoryServiceImpl">
         <property name="categoryDao" ref="categoryDao"/>

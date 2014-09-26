@@ -29,6 +29,27 @@ public class CategoryDaoImpl implements CategoryDao {
     }
 
     @Override
+    public void plusCount(int id) {
+        sqlSession.update("model.Category.plusCount", id);
+    }
+
+    @Override
+    public void minusCount(int id) {
+        sqlSession.update("model.Category.minusCount", id);
+    }
+
+    @Override
+    public Category getCategoryById(int id) {
+        return sqlSession.selectOne("model.Category.getCategoryById", id);
+    }
+
+    @Override
+    public int getArticleCountByCategoryId(int id) {
+        return sqlSession.selectOne("model.Category.getArticleCountByCategoryId", id);
+    }
+
+
+    @Override
     public List<Category> list() {
         return sqlSession.selectList("model.Category.list");
     }

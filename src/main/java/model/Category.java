@@ -9,6 +9,7 @@ public class Category {
     private int id;
     private String name;
     private String uri;
+    private int count;
     private Date date;
 
     public Category() {
@@ -28,6 +29,14 @@ public class Category {
         this.id = id;
         this.uri = uri;
         this.name = name;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
     }
 
     public int getId() {

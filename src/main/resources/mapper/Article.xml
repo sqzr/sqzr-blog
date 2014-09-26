@@ -24,7 +24,17 @@
         select * from article
         where id = #{id}
     </select>
-
+    
+    <select id="getCategoryIdByArticleId" parameterType="int" resultType="int">
+        select c_id from article
+        where id = #{id}
+    </select>
+    
+    <select id="getArticleByCategoryId" parameterType="int" resultMap="resultArticle">
+        select * from article
+        where c_id = #{id}
+    </select>
+    
     <select id="list" resultMap="resultArticle">
         select * from article
     </select>

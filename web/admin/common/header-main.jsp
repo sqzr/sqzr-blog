@@ -11,7 +11,11 @@
 <body>
 <div class="navbar navbar-default" id="navbar" style="height: 10px;">
     <script type="text/javascript">
-        try{ace.settings.check('navbar' , 'fixed')}catch(e){}
+        try{
+            ace.settings.check('navbar' , 'fixed')
+            ace.settings.navbar_fixed(true);
+            ace.settings.sidebar_fixed(true);
+        }catch(e){}
     </script>
 
     <div class="navbar-container" id="navbar-container">

@@ -21,6 +21,7 @@ public class MainViewAction extends ActionSupport {
     private ArticleService articleService;
     private CategoryService categoryService;
     private Article article;
+    private Category category;
 
     public String index() throws Exception {
         this.info.put("title", "控制台");
@@ -32,6 +33,14 @@ public class MainViewAction extends ActionSupport {
         this.info.put("title", "分类管理");
         this.info.put("menu", "category");
         this.categories = categoryService.list();
+        return SUCCESS;
+    }
+
+    public String category_list() throws Exception {
+        this.category = categoryService.getCategoryById(this.id);
+        this.articles = articleService.getArticleByCategoryId(this.id);
+        this.info.put("menu", "category_list");
+        this.info.put("title", "分类:" + category.getName());
         return SUCCESS;
     }
 
@@ -68,8 +77,18 @@ public class MainViewAction extends ActionSupport {
     }
 
 
+
+
     // ---
 
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 
     public CategoryService getCategoryService() {
         return categoryService;

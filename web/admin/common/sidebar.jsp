@@ -32,6 +32,15 @@
                     <i class="icon-group"></i>
                 </a>
             </div>
+            <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+                <span class="btn btn-success"></span>
+
+                <span class="btn btn-info"></span>
+
+                <span class="btn btn-warning"></span>
+
+                <span class="btn btn-danger"></span>
+            </div>
         </div>
         <!-- #sidebar-shortcuts -->
 
@@ -72,5 +81,7 @@
             </li>
         </ul>
         <!-- /.nav-list -->
-
+        <div class="sidebar-collapse" id="sidebar-collapse">
+            <i class="icon-double-angle-left" data-icon1="icon-double-angle-left" data-icon2="icon-double-angle-right"></i>
+        </div>
     </div>

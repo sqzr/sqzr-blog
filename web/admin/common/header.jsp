@@ -31,4 +31,5 @@
     <script src="/javascripts/dropzone.min.js"></script>
     <script src="/javascripts/ace-elements.min.js"></script>
     <script src="/javascripts/ace.min.js"></script>
+    <script src="/javascripts/ace-extra.min.js"></script>
 </head>

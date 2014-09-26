@@ -86,6 +86,7 @@
                                                 <tr>
                                                     <th>名称</th>
                                                     <th>URI</th>
+                                                    <th>文章数</th>
                                                     <th></th>
                                                 </tr>
                                                 </thead>
@@ -96,7 +97,8 @@
                                                     <td class="category-name">
                                                         <s2:property value="name"/>
                                                     </td>
-                                                    <td class="category-uri"><s2:property value="uri"/> </td>
+                                                    <td class="category-uri"><s2:property value="uri"/></td>
+                                                    <td class="category-count"><a href="/admin/main_category_list.html?id=<s2:property value="id"/>"><s2:property value="count"/></a></td>
                                                     <td>
                                                         <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
                                                             <a href="javascript:void(0)"

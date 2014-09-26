@@ -17,4 +17,6 @@ public interface CategoryService {
     public boolean delete(int id) throws ParameterIsEmptyException, NotFoundException;
 
     public boolean update(Category category);
+
+    public Category getCategoryById(int id);
 }

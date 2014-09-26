@@ -4,6 +4,7 @@ import dao.ArticleDao;
 import model.Article;
 import org.apache.ibatis.session.SqlSession;
 
+import javax.xml.transform.Result;
 import java.util.List;
 
 /**
@@ -12,11 +13,6 @@ import java.util.List;
 public class ArticleDaoImpl implements ArticleDao {
     private SqlSession sqlSession;
 
-    /**
-     * 添加文章
-     * @param article
-     * @return 新增文章的id
-     */
     @Override
     public int add(Article article) {
         sqlSession.insert("model.Article.add", article);
@@ -33,11 +29,6 @@ public class ArticleDaoImpl implements ArticleDao {
         return sqlSession.selectList("model.Article.list");
     }
 
-    /**
-     * 删除文章
-     * @param id
-     * @return 受影响行数
-     */
     @Override
     public int deleteArticleById(int id) {
         return sqlSession.delete("model.Article.delete", id);
@@ -46,6 +37,16 @@ public class ArticleDaoImpl implements ArticleDao {
     @Override
     public int update(Article article) {
         return sqlSession.update("model.Article.update", article);
+    }
+
+    @Override
+    public int getCategoryIdByArticleId(int id) {
+        return sqlSession.selectOne("model.Article.getCategoryIdByArticleId", id);
+    }
+
+    @Override
+    public List<Article> getArticleByCategoryId(int c_id) {
+        return sqlSession.selectList("model.Article.getArticleByCategoryId", c_id);
     }
 
     // ---
