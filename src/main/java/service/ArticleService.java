@@ -32,7 +32,7 @@ public interface ArticleService {
      * @throws ParameterIsEmptyException 没有传递文章id
      * @throws NotFoundException 修改后没有影响行数
      */
-    public boolean update(Article article) throws ParameterIsEmptyException, NotFoundException;
+    public boolean update(Article article,int old_c_id) throws ParameterIsEmptyException, NotFoundException;
 
     /**
      * 获取指定分类下的所有文章

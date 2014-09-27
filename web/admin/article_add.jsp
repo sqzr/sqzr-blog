@@ -78,17 +78,33 @@
                         <div class="widget-box">
                             <div class="widget-header">
                                 <h4>属性</h4>
+                                <span class="widget-toolbar">
+														<a href="#" data-action="settings">
+                                                            <i class=""></i>
+                                                        </a>
+														<a href="#" data-action="reload">
+                                                            <i class="icon-refresh category-refresh"></i>
+                                                        </a>
+
+														<%--<a href="#" data-action="collapse">--%>
+                                                            <%--<i class="icon-chevron-up"></i>--%>
+                                                        <%--</a>--%>
+
+														<%--<a href="#" data-action="close">--%>
+                                                            <%--<i class="icon-remove"></i>--%>
+                                                        <%--</a>--%>
+								</span>
                             </div>
 
                             <div class="widget-body"><div class="widget-body-inner" style="display: block;">
                                 <div class="widget-main">
                                     <div>
                                         <label for="uri">URI:</label>
-                                        <input class="form-control" type="text" id="uri">
+                                        <input class="form-control black" type="text" id="uri">
                                     </div>
                                     <hr>
                                     <div>
-                                        <label for="c_id">分类:&nbsp;<a style="font-size: 8px;" href="/admin/main_category.html">管理分类</a></label>
+                                        <label for="c_id">分类:&nbsp;<a target="view_window" style="font-size: 8px;" href="/admin/main_category.html">管理分类</a></label>
                                         <br>
                                         <s2:if test="categories.size()==0">
                                         <select disabled class="width-80 chosen-select" id="c_id" data-placeholder="Choose a Country..." style="display: none;">
@@ -137,6 +153,23 @@
         $("#close-add-tips").click(function () {
             $("#add-tips").addClass("hidden");
         });
+        $(".category-refresh").click(
+                function(){
+                    $.ajax({
+                        type:"get",
+                        url:"/ajax/admin/main_category_list.html",
+                        success: function (data) {
+                            $(".chosen-select").html("");
+                            $(".chosen-select").append("<option value=\"\">&nbsp;</option>");
+                            for (var category in data.categories)
+                            {
+                                $(".chosen-select").append("<option value=\""+data.categories[category].id+"\">"+data.categories[category].name+"</option>");
+                            }
+                            $(".chosen-select").trigger("chosen:updated");
+                        }
+                    });
+                }
+        )
     });
     function add() { //函数 add();
         var params = {

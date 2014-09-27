@@ -45,6 +45,11 @@ public class CategoryAjaxAction extends ActionSupport {
         return "json";
     }
 
+    public String list() throws Exception {
+        this.jsonInfo.put("categories", categoryService.list());
+        return "json";
+    }
+
 
 
     // ---

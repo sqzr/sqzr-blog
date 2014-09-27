@@ -48,7 +48,6 @@ public class CategoryDaoImpl implements CategoryDao {
         return sqlSession.selectOne("model.Category.getArticleCountByCategoryId", id);
     }
 
-
     @Override
     public List<Category> list() {
         return sqlSession.selectList("model.Category.list");

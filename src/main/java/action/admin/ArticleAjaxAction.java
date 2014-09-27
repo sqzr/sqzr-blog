@@ -3,6 +3,8 @@ package action.admin;
 import com.opensymphony.xwork2.ActionSupport;
 import model.Article;
 import model.Category;
+import opensource.jpinyin.PinyinFormat;
+import opensource.jpinyin.PinyinHelper;
 import org.apache.commons.lang3.StringUtils;
 import service.ArticleService;
 
@@ -21,18 +23,25 @@ public class ArticleAjaxAction extends ActionSupport {
     private String content;
     private String uri;
     private int c_id;
+    private int oldcid;
+    private int newcid;
+
     /**
      * 添加文章
      * @return
      * @throws Exception
      */
     public String add() throws Exception {
-        this.id = articleService.add(new Article(title,new Category(c_id), content, uri));
-        if (this.id > 0){
+        if ("".equals(this.uri)) {
+            // uri 为空,自动生成拼音
+            this.uri = PinyinHelper.convertToPinyinString(this.title.replace(" ", ""),"-", PinyinFormat.WITHOUT_TONE);
+        }
+        this.id = articleService.add(new Article(this.title, new Category(this.c_id), this.content, this.uri));
+        if (this.id > 0) {
             jsonInfo.put("tips", "文章添加成功");
             jsonInfo.put("article_id", this.id);
             jsonInfo.put("status", true);
-        }else{
+        } else {
             jsonInfo.put("tips", "文章添加失败");
             jsonInfo.put("status", false);
         }
@@ -44,7 +53,7 @@ public class ArticleAjaxAction extends ActionSupport {
      * @return
      */
     public String update() throws Exception {
-        if (articleService.update(new Article(id,new Category(c_id),title,content,uri))) {
+        if (articleService.update(new Article(id,new Category(this.newcid),title,content,uri),this.oldcid)) {
             jsonInfo.put("tips", "修改成功");
             jsonInfo.put("status", true);
         } else {
@@ -57,6 +66,22 @@ public class ArticleAjaxAction extends ActionSupport {
 
     // ---
 
+
+    public int getNewcid() {
+        return newcid;
+    }
+
+    public void setNewcid(int newcid) {
+        this.newcid = newcid;
+    }
+
+    public int getOldcid() {
+        return oldcid;
+    }
+
+    public void setOldcid(int oldcid) {
+        this.oldcid = oldcid;
+    }
 
     public int getC_id() {
         return c_id;

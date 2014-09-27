@@ -1,8 +1,6 @@
 package dao;
 
-import com.sun.org.apache.xml.internal.security.algorithms.implementations.SignatureDSA;
 import model.Category;
-import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
 

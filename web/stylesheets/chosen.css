@@ -56,7 +56,7 @@
     line-height: 24px;
 }
 .chosen-container-single .chosen-default {
-    color: #999;
+    /*color: #999;*/
 }
 .chosen-container-single .chosen-single span {
     display: block;

@@ -62,9 +62,14 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public boolean update(Article article) throws ParameterIsEmptyException, NotFoundException {
+    public boolean update(Article article,int new_c_id) throws ParameterIsEmptyException, NotFoundException {
         if (article.getId() == 0) {
             throw new ParameterIsEmptyException("参数错误");
+        }
+        // 判断是否有更改过分类
+        if (article.getCategory().getId() != new_c_id) {
+            categoryDao.plusCount(article.getCategory().getId());
+            categoryDao.minusCount(new_c_id);
         }
         int result = articleDao.update(article);
         if (result == 0) {

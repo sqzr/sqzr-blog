@@ -88,11 +88,11 @@
                                 <div class="widget-main">
                                     <div>
                                         <label for="uri">URI:</label>
-                                        <input class="form-control" value="<s2:property value="article.uri"/>" type="text" id="uri">
+                                        <input class="form-control black" value="<s2:property value="article.uri"/>" type="text" id="uri">
                                     </div>
                                     <hr>
                                     <div>
-                                        <label for="c_id">分类:&nbsp;<a style="font-size: 8px;" href="/admin/main_category.html">管理分类</a></label>
+                                        <label for="c_id">分类:&nbsp;<a target="view_window" style="font-size: 8px;" href="/admin/main_category.html">管理分类</a></label>
                                         <br>
                                         <s2:if test="categories.size()==0">
                                             <select disabled class="width-80 chosen-select" id="c_id" data-placeholder="Choose a Country..." style="display: none;">
@@ -100,8 +100,9 @@
                                             </select>
                                         </s2:if>
                                         <s2:else>
+                                            <input type="hidden" value="<s2:property value='article.category.id'/>" id="oldcid">
                                             <select class="width-80 chosen-select" id="c_id" data-placeholder="" style="display: none;">
-                                                <option value="">&nbsp;</option>
+                                                <option value=""></option>
                                                 <s2:iterator value="categories">
                                                     <option value="<s2:property value="id"/>"><s2:property value="name"/></option>
                                                 </s2:iterator>
@@ -155,7 +156,8 @@
             "content": $("#content").val() ,
             "uri":$("#uri").val(),
             "id":$("#articleId").val(),
-            "c_id":$("#c_id").val()
+            "oldcid":$("#oldcid").val(),
+            "newcid":$("#c_id").val()
         };
         $.ajax({
             type: "post",
@@ -175,9 +177,9 @@
                 if (data.status == true) {
                     $("#update-tips").attr("class", "alert alert-block alert-success fade in");
                     $("#update-icon").attr("class", "icon-ok green");
+                    $("#oldcid").val($("#c_id").val())
                 }else{
                     $("#update-tips").attr("class", "alert alert-block alert-danger fade in");
-//                    $("#update-tips").addClass("alert-danger fade in");
                     $("#update-icon").attr("class", "icon-warning-sign red");
                 }
                 $('body,html').animate({scrollTop:0},1000);

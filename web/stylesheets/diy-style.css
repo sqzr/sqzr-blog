@@ -1,3 +1,7 @@
+.black {
+    color: #000!important;
+}
+
 .icon-cat{
     background-image: url("/images/iconcat.png");
     width: 30px;
@@ -13,13 +17,15 @@
 
 .titleFrom input[type="text"] {
     height: 38px;
+    font-size: 1.17em;
+    font-weight: bold;
     /*border-color: #307ecc;*/
     /*background-color: rgba(48, 126, 204, 0.07);*/
 }
 .titleFrom input[type="text"]:focus {
-    height: 38px;
+    /*height: 38px;*/
     /*border-color: #307ecc;*/
-    background-color: #ffffff;
+    /*background-color: #ffffff;*/
 }
 
 .titleFrom input[type="text"]:hover {
@@ -45,3 +51,11 @@
     background-color: rgba(48, 126, 204, 0.07);
     height: 32px;
 }
+
+.md-editor textarea {
+    font-size: .92857em;
+    color: #000 !important;
+    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+    line-height: 1.5;
+}
+
