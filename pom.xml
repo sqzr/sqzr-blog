@@ -85,6 +85,16 @@
             <artifactId>jpinyin</artifactId>
             <version>1.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.ocpsoft.prettytime</groupId>
+            <artifactId>prettytime</artifactId>
+            <version>3.2.5.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>javax.servlet.jsp</artifactId>
+            <version>2.0.0</version>
+        </dependency>
     </dependencies>
 
 </project>

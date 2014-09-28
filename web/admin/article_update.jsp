@@ -82,6 +82,22 @@
                         <div class="widget-box">
                             <div class="widget-header">
                                 <h4>属性</h4>
+                                 <span class="widget-toolbar">
+														<a href="#" data-action="settings">
+                                                            <i class=""></i>
+                                                        </a>
+														<a href="#" data-action="reload">
+                                                            <i class="icon-refresh category-refresh"></i>
+                                                        </a>
+
+														<%--<a href="#" data-action="collapse">--%>
+                                                            <%--<i class="icon-chevron-up"></i>--%>
+                                                        <%--</a>--%>
+
+														<%--<a href="#" data-action="close">--%>
+                                                            <%--<i class="icon-remove"></i>--%>
+                                                        <%--</a>--%>
+								</span>
                             </div>
 
                             <div class="widget-body"><div class="widget-body-inner" style="display: block;">
@@ -100,7 +116,9 @@
                                             </select>
                                         </s2:if>
                                         <s2:else>
-                                            <input type="hidden" value="<s2:property value='article.category.id'/>" id="oldcid">
+                                            <input type="hidden" value="<s2:property value='article.category.id'/>" id="oldcid"/>
+                                            <input type="hidden" value="<s2:property value="article.category.id"/>" id="currentid"/>
+                                            <input type="hidden" value="<s2:property value="article.category.name"/>" id="currentname"/>
                                             <select class="width-80 chosen-select" id="c_id" data-placeholder="" style="display: none;">
                                                 <option value=""></option>
                                                 <s2:iterator value="categories">
@@ -149,6 +167,26 @@
         $("#close-update-tips").click(function () {
             $("#update-tips").addClass("hidden");
         });
+        $(".category-refresh").click(
+                function(){
+                    $.ajax({
+                        type:"get",
+                        url:"/ajax/admin/main_category_list.html",
+                        success: function (data) {
+                            $(".chosen-select").html("");
+                            for (var category in data.categories)
+                            {
+                                $(".chosen-select").append("<option value=\""+data.categories[category].id+"\">"+data.categories[category].name+"</option>");
+                            }
+                            $(".chosen-select").trigger("chosen:updated");
+                            var currentid = $("#oldcid").val();
+                            var currentname = $("#currentname").val();
+                            $("#c_id option[value='"+currentid+"']").attr("selected", true);
+                            $(".chosen-single span").text(""+currentname+"");
+                        }
+                    });
+                }
+        )
     });
     function update() {
         var params = {
@@ -177,7 +215,9 @@
                 if (data.status == true) {
                     $("#update-tips").attr("class", "alert alert-block alert-success fade in");
                     $("#update-icon").attr("class", "icon-ok green");
-                    $("#oldcid").val($("#c_id").val())
+                    $("#oldcid").val($("#c_id").val());
+                    $("#currentname").val($(".chosen-single span").text());
+
                 }else{
                     $("#update-tips").attr("class", "alert alert-block alert-danger fade in");
                     $("#update-icon").attr("class", "icon-warning-sign red");

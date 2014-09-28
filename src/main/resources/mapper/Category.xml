@@ -15,7 +15,7 @@
     </insert>
     
     <select id="list" resultMap="resultListCategory">
-        select * from category
+        select * from category order by date desc;
     </select>
 
     <delete id="delete" parameterType="int">

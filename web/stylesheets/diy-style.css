@@ -59,3 +59,10 @@
     line-height: 1.5;
 }
 
+.status {
+    margin-left: 5px;
+    color: #999;
+    font-size: .5em;
+    font-style: normal;
+}
+

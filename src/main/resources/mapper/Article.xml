@@ -16,8 +16,8 @@
         select * from category where id = #{id}
     </select>
     <insert id="add" parameterType="Article" useGeneratedKeys="true" keyProperty="id">
-      insert into article(title,content,date,uri,c_id)
-      value (#{title},#{content},#{date},#{uri},#{category.id})
+      insert into article(type,title,content,date,uri,c_id)
+      value (#{type},#{title},#{content},#{date},#{uri},#{category.id})
     </insert>
     
     <select id="getArticleById" parameterType="int" resultMap="resultArticle">
@@ -32,11 +32,11 @@
     
     <select id="getArticleByCategoryId" parameterType="int" resultMap="resultArticle">
         select * from article
-        where c_id = #{id}
+        where c_id = #{id} order by date desc;
     </select>
     
     <select id="list" resultMap="resultArticle">
-        select * from article
+        select * from article order by date desc;
     </select>
     
     <delete id="delete" parameterType="int">

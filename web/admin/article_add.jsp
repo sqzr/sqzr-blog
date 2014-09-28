@@ -123,9 +123,11 @@
                                     <hr>
                                     <div class="clearfix">
                                         <div style="text-align: right;">
+                                            <button id="btn-draft" class="btn" type="button">
+                                                保存草稿
+                                            </button>
                                             <button id="btn-save" class="btn btn-info" type="button">
-                                                <i class="icon-ok bigger-110"></i>
-                                                Save
+                                                发布文章
                                             </button>
                                         </div>
                                     </div>
@@ -148,7 +150,24 @@
     $(".chosen-select").chosen({width: "100%"});
     $(document).ready(function () {
         $("#btn-save").click(function () {
-            add();
+            var params = {
+                "type":"post",
+                "title": $("#title").val(),
+                "content": $("#content").val(),
+                "uri":$("#uri").val(),
+                "c_id":$("#c_id").val()
+            };
+            add(params);
+        });
+        $("#btn-draft").click(function () {
+            var params = {
+                "type":"post_draft",
+                "title": $("#title").val(),
+                "content": $("#content").val(),
+                "uri":$("#uri").val(),
+                "c_id":$("#c_id").val()
+            };
+            add(params);
         });
         $("#close-add-tips").click(function () {
             $("#add-tips").addClass("hidden");
@@ -171,35 +190,30 @@
                 }
         )
     });
-    function add() { //函数 add();
-        var params = {
-            "title": $("#title").val(),
-            "content": $("#content").val(),
-            "uri":$("#uri").val(),
-            "c_id":$("#c_id").val()
-        };
+    function add(params) { //函数 add();
         $.ajax({
             type: "post",
             url: "/ajax/admin/main_article_add.html",
             dataType: 'json',
             data: JSON.stringify(params),
-            beforeSend: function () {
-                $("#btn-save").attr('disabled', "true");
-            },
-            complete: function () {
-                $("#btn-save").removeAttr("disabled");
-            },
             contentType: 'application/json',
             success: function (data) {
                 $("#add-tips").removeClass("hidden");
                 $("#add-tips-text").html(data.tips);
                 if (data.status == true) {
-                    //添加成功
+                    //成功
+                    if(params['type'] == "post") {
+                        // 发表文章 跳到文章列表
+                        window.location.href="/admin/main_article_list.html";
+                    }else if(params['type'] == "post_draft") {
+                        // 保存草稿 跳到编辑文章
+                        window.location.href="/admin/main_article_update.html?id="+data.article_id;
+                    }
                     $("#add-tips").attr("class", "alert alert-block alert-success fade in");
                     $("#add-icon").attr("class", "icon-ok green");
-                    $("#add-tips-text").append("&nbsp;&nbsp;<a href='/admin/main_article_update.html?id="+data.article_id+"'>点击编辑</a>");
+                    $("#add-tips-text").html("&nbsp;&nbsp;<a href='/admin/main_article_update.html?id="+data.article_id+"'>点击编辑</a>");
                 } else {
-                    //添加失败
+                    //失败
                     $("#add-tips").attr("class", "alert alert-block alert-danger fade in");
                     $("#add-icon").attr("class", "icon-remove red");
                 }

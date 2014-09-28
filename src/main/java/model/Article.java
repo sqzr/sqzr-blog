@@ -8,6 +8,7 @@ import java.util.Date;
 public class Article {
     private int id;
     private Category category;
+    private String type;
     private String title;
     private String content;
     private String uri;
@@ -16,7 +17,8 @@ public class Article {
     public Article() {
     }
 
-    public Article(String title,Category category, String content, String uri) {
+    public Article(String type, String title, Category category, String content, String uri) {
+        this.type = type;
         this.date = new Date();
         this.category = category;
         this.title = title;
@@ -38,6 +40,13 @@ public class Article {
         this.content = content;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public Category getCategory() {
         return category;

@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="/myTag" prefix="pre" %>
 <%@ include file="common/header-main.jsp" %>
 <div class="main-container" id="main-container">
     <script type="text/javascript">
@@ -74,26 +75,23 @@
                                                class="table table-striped table-bordered table-hover">
                                             <thead>
                                             <tr>
-                                                <th>ID</th>
                                                 <th>标题</th>
                                                 <th>分类</th>
                                                 <th>
                                                     <i class="icon-time bigger-110 hidden-480"></i>
-                                                    发表时间
+                                                    日期
                                                 </th>
                                                 <th></th>
                                             </tr>
                                             </thead>
 
                                             <tbody>
-                                            <s2:iterator value="articles">
+                                            <s2:iterator value="articles" id="article">
                                                 <tr class="selected">
-                                                    <td>
-                                                        <s2:property value="id"/>
-                                                    </td>
-                                                    <td><s2:property value="title"/></td>
-                                                    <td><s2:property value="category.name"/></td>
-                                                    <td><s2:date name="date" format="yyyy-MM-dd HH:mm"/></td>
+                                                    <td><s2:property value="title"/><s2:if test="type == 'post_draft'"><em class="status">草稿</em></s2:if></td>
+                                                    <td><a href="/admin/main_category_list.html?id=<s2:property value="category.id"/>"><s2:property value="category.name"/></a></td>
+                                                    <td><pre:myTag><s2:date name="date" format="yyyy-MM-dd HH:mm:ss"/> </pre:myTag></td>
+                                                    <%--<td><s2:date name="date" format="yyyy-MM-dd HH:mm"/></td>--%>
                                                     <td>
                                                         <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
                                                             <a href="/admin/main_article_update.html?id=<s2:property value="id"/>"

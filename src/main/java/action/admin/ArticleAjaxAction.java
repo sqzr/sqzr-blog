@@ -22,6 +22,7 @@ public class ArticleAjaxAction extends ActionSupport {
     private String title;
     private String content;
     private String uri;
+    private String type;
     private int c_id;
     private int oldcid;
     private int newcid;
@@ -36,7 +37,7 @@ public class ArticleAjaxAction extends ActionSupport {
             // uri 为空,自动生成拼音
             this.uri = PinyinHelper.convertToPinyinString(this.title.replace(" ", ""),"-", PinyinFormat.WITHOUT_TONE);
         }
-        this.id = articleService.add(new Article(this.title, new Category(this.c_id), this.content, this.uri));
+        this.id = articleService.add(new Article(this.type,this.title, new Category(this.c_id), this.content, this.uri));
         if (this.id > 0) {
             jsonInfo.put("tips", "文章添加成功");
             jsonInfo.put("article_id", this.id);
@@ -66,6 +67,14 @@ public class ArticleAjaxAction extends ActionSupport {
 
     // ---
 
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public int getNewcid() {
         return newcid;
@@ -132,7 +141,6 @@ public class ArticleAjaxAction extends ActionSupport {
     }
 
     public Map<String, Object> getJsonInfo() {
-
         return jsonInfo;
     }
 
