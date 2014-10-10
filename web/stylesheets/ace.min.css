@@ -338,6 +338,9 @@ blockquote,blockquote.pull-right {
 .red {
     color:#dd5a43!important
 }
+.ls{
+    color:#41C7EC!important;
+}
 .light-red {
     color:#f77!important
 }
@@ -5298,7 +5301,7 @@ input[type=checkbox].ace.ace-switch.ace-switch-7:checked+.lbl::after {
     padding-top:18px
 }
 .nav-tabs.padding-16 {
-    padding-left:16px
+    /*padding-left:16px*/
 }
 .tabs-right>.nav-tabs.padding-16,.tabs-left>.nav-tabs.padding-16 {
     padding-left:0;
@@ -12683,4 +12686,8 @@ th[aria-selected=true] .ui-jqgrid-sortable {
     .ace-settings-container,body.breadcrumbs-fixed .ace-settings-container {
         top:65px
     }
+}
+
+.height-33 {
+    height: 33px!important;
 }

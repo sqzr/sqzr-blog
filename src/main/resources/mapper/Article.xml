@@ -15,6 +15,7 @@
     <select id="selectCategory" parameterType="int" resultType="Category">
         select * from category where id = #{id}
     </select>
+
     <insert id="add" parameterType="Article" useGeneratedKeys="true" keyProperty="id">
       insert into article(type,title,content,date,uri,c_id)
       value (#{type},#{title},#{content},#{date},#{uri},#{category.id})
@@ -23,6 +24,11 @@
     <select id="getArticleById" parameterType="int" resultMap="resultArticle">
         select * from article
         where id = #{id}
+    </select>
+
+    <select id="getArticleByUri" parameterType="String" resultMap="resultArticle">
+        select * from article
+        where uri = #{uri}
     </select>
     
     <select id="getCategoryIdByArticleId" parameterType="int" resultType="int">
@@ -44,7 +50,14 @@
     </delete>
     
     <update id="update" parameterType="Article">
-        update article set c_id = #{category.id},title = #{title},content = #{content},uri = #{uri}
+        update article
+        <set>
+            <if test="category.id != null">c_id = #{category.id},</if>
+            <if test="title != null">title = #{title},</if>
+            <if test="content != null">content = #{content},</if>
+            <if test="uri != null">uri = #{uri},</if>
+            <if test="type != null">type = #{type}</if>
+        </set>
         where id = #{id}
     </update>
 </mapper>

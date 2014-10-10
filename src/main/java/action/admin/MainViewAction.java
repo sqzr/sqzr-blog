@@ -5,6 +5,7 @@ import model.Article;
 import model.Category;
 import service.ArticleService;
 import service.CategoryService;
+import service.OptionService;
 
 import java.util.HashMap;
 import java.util.List;
@@ -15,11 +16,13 @@ import java.util.Map;
  */
 public class MainViewAction extends ActionSupport {
     private Map<String, Object> info = new HashMap<String, Object>();
+    private Map<String, Object> options = new HashMap<String, Object>();
     private List<Article> articles;
     private List<Category> categories;
     private int id;
     private ArticleService articleService;
     private CategoryService categoryService;
+    private OptionService optionService;
     private Article article;
     private Category category;
 
@@ -65,6 +68,12 @@ public class MainViewAction extends ActionSupport {
         this.articles = articleService.list();
         return SUCCESS;
     }
+    public String settings() throws Exception {
+        this.info.put("title", "设置");
+        this.info.put("menu", "settings");
+        this.options = optionService.getAllOption();
+        return SUCCESS;
+    }
 
     public String article_delete() throws Exception {
         articleService.deleteArticleById(id);
@@ -79,8 +88,25 @@ public class MainViewAction extends ActionSupport {
 
 
 
+
     // ---
 
+
+    public Map<String, Object> getOptions() {
+        return options;
+    }
+
+    public void setOptions(Map<String, Object> options) {
+        this.options = options;
+    }
+
+    public OptionService getOptionService() {
+        return optionService;
+    }
+
+    public void setOptionService(OptionService optionService) {
+        this.optionService = optionService;
+    }
 
     public Category getCategory() {
         return category;

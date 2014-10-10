@@ -18,8 +18,6 @@
     <link rel="stylesheet" href="/stylesheets/font-awesome.min.css" />
     <link rel="stylesheet" href="/stylesheets/ace.min.css" />
     <link rel="stylesheet" href="/stylesheets/ace-rtl.min.css" />
-    <link rel="stylesheet" href="/stylesheets/messenger-theme-air.css" />
-    <link rel="stylesheet" href="/stylesheets/messenger.css" />
     <link rel="stylesheet" href="/stylesheets/diy-style.css" />
     <link rel="stylesheet" href="/stylesheets/dropzone.css" />
 

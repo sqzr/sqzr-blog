@@ -130,9 +130,13 @@
                                     <hr>
                                     <div class="clearfix">
                                         <div style="text-align: right;">
+                                            <s2:if test="article.type == 'post_draft'">
+                                            <button id="btn-post" class="btn" type="button">
+                                                发表文章
+                                            </button>
+                                            </s2:if>
                                             <button id="btn-update" class="btn btn-info" type="button">
-                                                <i class="icon-ok bigger-110"></i>
-                                                Update
+                                                更新文章
                                             </button>
                                         </div>
                                     </div>
@@ -163,6 +167,9 @@
     $(document).ready(function () {
         $("#btn-update").click(function () {
             update();
+        });
+        $("#btn-post").click(function(){
+           post();
         });
         $("#close-update-tips").click(function () {
             $("#update-tips").addClass("hidden");
@@ -212,6 +219,45 @@
             success: function (data) {
                 $("#update-tips").removeClass("hidden");
                 $("#update-tips-text").html(data.tips);
+                if (data.status == true) {
+                    $("#update-tips").attr("class", "alert alert-block alert-success fade in");
+                    $("#update-icon").attr("class", "icon-ok green");
+                    $("#oldcid").val($("#c_id").val());
+                    $("#currentname").val($(".chosen-single span").text());
+
+                }else{
+                    $("#update-tips").attr("class", "alert alert-block alert-danger fade in");
+                    $("#update-icon").attr("class", "icon-warning-sign red");
+                }
+                $('body,html').animate({scrollTop:0},1000);
+            }
+        });
+    }
+    function post() {
+        var params = {
+            "title": $("#title").val(),
+            "content": $("#content").val() ,
+            "uri":$("#uri").val(),
+            "id":$("#articleId").val(),
+            "oldcid":$("#oldcid").val(),
+            "newcid":$("#c_id").val(),
+            "type":"post"
+        };
+        $.ajax({
+            type: "post",
+            url: "/ajax/admin/main_article_update.html",
+            dataType: 'json',
+            data: JSON.stringify(params),
+            beforeSend: function () {
+                $("#btn-post").attr('disabled', "true");
+            },
+            complete: function () {
+                $("#btn-post").removeAttr("disabled");
+            },
+            contentType: 'application/json',
+            success: function (data) {
+                $("#update-tips").removeClass("hidden");
+                $("#update-tips-text").html(data.tips+ "&nbsp;<a href=\"/admin/main_article_list.html\">返回列表</a>");
                 if (data.status == true) {
                     $("#update-tips").attr("class", "alert alert-block alert-success fade in");
                     $("#update-icon").attr("class", "icon-ok green");

@@ -2,6 +2,7 @@ package service.impl;
 
 import dao.LogDao;
 import dao.UserDao;
+import factory.LogFactory;
 import model.Log;
 import model.User;
 import service.UserService;
@@ -19,7 +20,7 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao;
     private LogDao logDao;
     @Override
-        public User login(String username, String password) {
+    public User login(String username, String password) {
         User user = userDao.login(username, password);
         // 日志对象
         Log log = new Log();
@@ -41,6 +42,25 @@ public class UserServiceImpl implements UserService {
         }
         logDao.addLog(log);
         return user;
+    }
+
+    @Override
+    public boolean updatePassword(String newPassword, String oldPassword, int id) {
+        Log log = LogFactory.build("updatePassword", "newPassword:" + newPassword + "---" + oldPassword);
+        if (!userDao.getPassword(id).equals(oldPassword)) {
+            log.setResult("false");
+            logDao.addLog(log);
+            return false;
+        }
+        User user = new User(id, newPassword);
+        if (userDao.updatePassword(user) == 0) {
+            log.setResult("false");
+            logDao.addLog(log);
+            return false;
+        }
+        log.setResult("true");
+        logDao.addLog(log);
+        return true;
     }
 
     // ---

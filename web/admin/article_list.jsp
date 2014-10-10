@@ -139,7 +139,7 @@
                                                 </tr>
                                             </s2:iterator>
                                             </tbody>
-                                            <div class="modal hidd">
+                                            <%--<div class="modal hidd">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
@@ -161,7 +161,7 @@
                                                     <!-- /.modal-content -->
                                                 </div>
                                                 <!-- /.modal-dialog -->
-                                            </div>
+                                            </div>--%>
                                             <!-- /.modal -->
                                         </table>
                                     </s2:else>

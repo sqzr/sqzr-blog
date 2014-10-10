@@ -38,6 +38,16 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    public int updatePassword(User user) {
+        return sqlSession.update("model.User.updatePassword", user);
+    }
+
+    @Override
+    public String getPassword(int id) {
+        return sqlSession.selectOne("model.User.getPassword",id);
+    }
+
+    @Override
     public User getUserById(int id) {
         return null;
     }

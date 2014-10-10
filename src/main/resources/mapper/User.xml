@@ -21,4 +21,12 @@
         update user set lastloginip = #{lastloginip} ,lastloginuseragent = #{lastloginuseragent}
         where id = ${id}
     </update>
+    
+    <update id="updatePassword" parameterType="User">
+        update user set password = #{password} where id = #{id}
+    </update>
+
+    <select id="getPassword" parameterType="int" resultType="String">
+        select password from user where id = #{id}
+    </select>
 </mapper>

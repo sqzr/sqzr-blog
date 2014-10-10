@@ -85,6 +85,11 @@ public class ArticleServiceImpl implements ArticleService {
         return articleDao.getArticleByCategoryId(c_id);
     }
 
+    @Override
+    public Article getArticleByUri(String uri) {
+        return articleDao.getArticleByUri(uri);
+    }
+
     // ---
 
 

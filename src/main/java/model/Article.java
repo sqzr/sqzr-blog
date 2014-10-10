@@ -26,13 +26,16 @@ public class Article {
         this.uri = uri;
     }
 
-    public Article(int id, Category category, String title, String content, String uri) {
+    public Article(int id,String type,Category category, String title, String content, String uri) {
         this.id = id;
+        this.type = type;
         this.category = category;
         this.title = title;
         this.content = content;
         this.uri = uri;
     }
+
+
 
     public Article(String uri, String title, String content) {
         this.uri = uri;

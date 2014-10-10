@@ -23,6 +23,9 @@
     <bean id="categoryDao" class="dao.impl.CategoryDaoImpl">
         <property name="sqlSession" ref="sqlSession"/>
     </bean>
+    <bean id="optionDao" class="dao.impl.OptionDaoImpl">
+        <property name="sqlSession" ref="sqlSession"/>
+    </bean>
 
 
     <!-- service bean -->
@@ -39,6 +42,11 @@
         <property name="categoryDao" ref="categoryDao"/>
         <property name="logDao" ref="logDao"/>
     </bean>
+    <bean id="optionService" class="service.impl.OptionServiceImpl">
+        <property name="optionDao" ref="optionDao"/>
+    </bean>
+
+
     <!-- sql session工厂 -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>

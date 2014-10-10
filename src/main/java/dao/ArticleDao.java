@@ -23,6 +23,12 @@ public interface ArticleDao {
     public Article getArticleById(int id);
 
     /**
+     * 通过uri获取文章
+     * @param uri
+     * @return
+     */
+    public Article getArticleByUri(String uri);
+    /**
      * 获取所有文章
      * @return
      */

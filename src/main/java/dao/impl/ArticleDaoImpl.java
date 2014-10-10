@@ -25,6 +25,11 @@ public class ArticleDaoImpl implements ArticleDao {
     }
 
     @Override
+    public Article getArticleByUri(String uri) {
+        return sqlSession.selectOne("model.Article.getArticleByUri", uri);
+    }
+
+    @Override
     public List<Article> list() {
         return sqlSession.selectList("model.Article.list");
     }

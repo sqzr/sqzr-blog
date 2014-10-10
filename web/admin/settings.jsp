@@ -1,0 +1,352 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: weiyang
+  Date: 2014/10/7
+  Time: 13:06
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ include file="common/header-main.jsp" %>
+<link rel="stylesheet" href="/stylesheets/chosen.css">
+<div class="main-container" id="main-container">
+<script type="text/javascript">
+    try {
+        ace.settings.check('main-container', 'fixed')
+    } catch (e) {
+    }
+</script>
+<div class="main-container-inner">
+<%@ include file="common/sidebar.jsp" %>
+<div class="main-content">
+<div class="breadcrumbs" id="breadcrumbs">
+    <script type="text/javascript">
+        try {
+            ace.settings.check('breadcrumbs', 'fixed')
+        } catch (e) {
+        }
+    </script>
+    <ul class="breadcrumb">
+        <li>
+            <i class="icon-home home-icon"></i>
+            <a href="/admin/main_index.html">首页</a>
+        </li>
+        <li class="active">设置</li>
+    </ul>
+    <!-- .breadcrumb -->
+</div>
+<div class="page-content">
+<div class="page-header">
+    <h1>
+        设置
+        <small>
+            <i class="icon-double-angle-right"></i>
+            常规设置
+        </small>
+    </h1>
+</div>
+<!-- .page-header -->
+<form class="form-horizontal">
+<div class="tabbable">
+<ul class="nav nav-tabs height-33">
+    <li class="active" id="infoTab">
+        <a data-toggle="tab" href="#edit-basic">
+            <i class="green icon-edit bigger-125"></i>
+            基本信息
+        </a>
+    </li>
+
+    <li class="" id="settingsTab">
+        <a data-toggle="tab" href="#edit-settings">
+            <i class="purple icon-cog bigger-125"></i>
+            设置
+        </a>
+    </li>
+
+    <li class="" id="passwordTab">
+        <a data-toggle="tab" href="#edit-password">
+            <i class="blue icon-key bigger-125"></i>
+            密码
+        </a>
+    </li>
+</ul>
+
+<div class="tab-content profile-edit-tab-content">
+    <div id="edit-basic" class="tab-pane active">
+        <h4 class="header blue bolder smaller">一般</h4>
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-4">
+                <div class="ace-file-input ace-file-multiple"><input type="file"><label class="file-label"
+                                                                                        data-title="Change avatar"
+                                                                                        style="padding-top: 40px;padding-bottom: 57px;">><span
+                        class="file-name" data-title="No File ..."><i class="icon-picture"></i></span></label><a
+                        class="remove" href="#"><i class="icon-remove"></i></a></div>
+            </div>
+
+            <div class="vspace-xs"></div>
+
+            <div class="col-xs-12 col-sm-5">
+                <div class="form-group">
+                    <label class="col-sm-4 control-label no-padding-right" for="form-field-title">网站名称</label>
+
+                    <div class="col-sm-8">
+                        <input class="col-xs-12 col-sm-12" type="text" id="form-field-title"
+                               value="<s2:property value="options.title.value"/>">
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label no-padding-right" for="form-field-subtitle">附标题</label>
+
+                    <div class="col-sm-8">
+                        <input class="col-xs-12 col-sm-12" type="text" id="form-field-subtitle"
+                               value="<s2:property value="options.subtitle.value"/>">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label no-padding-right" for="form-field-description">个人说明</label>
+
+                    <div class="col-sm-8">
+                        <input class="col-xs-12 col-sm-12" type="text" id="form-field-description"
+                               value="<s2:property value="options.description.value"/>">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label no-padding-right" for="form-field-htmlkeyword">网站关键词</label>
+
+                    <div class="col-sm-8">
+                        <input class="col-xs-12 col-sm-12" type="text" id="form-field-htmlkeyword"
+                               value="<s2:property value="options.htmlkeyword.value"/>">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label no-padding-right" for="form-field-htmldescription">网站描述</label>
+
+                    <div class="col-sm-8">
+                        <textarea class="col-xs-12 col-sm-12" id="form-field-htmldescription"><s2:property
+                                value="options.htmldescription.value"/></textarea>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <h4 class="header blue bolder smaller">社交链接</h4>
+
+        <div class="form-group">
+            <label class="col-sm-1 control-label no-padding-right" for="form-field-facebook">Facebook</label>
+
+            <div class="col-sm-9">
+																	<span class="input-icon  col-xs-12 col-sm-5">
+																		<input type="text" class="col-xs-12 col-sm-12"
+                                                                               value="<s2:property value="options.facebook.value"/>"
+                                                                               id="form-field-facebook"
+                                                                               style="margin-left: -12px;">
+																		<i class="icon-facebook blue"></i>
+																	</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-1 control-label no-padding-right" for="form-field-twitter">Twitter</label>
+
+            <div class="col-sm-9">
+																	<span class="input-icon col-xs-12 col-sm-5">
+																		<input type="text" class="col-xs-12 col-sm-12"
+                                                                               value="<s2:property value="options.twitter.value"/>"
+                                                                               id="form-field-twitter"
+                                                                               style="margin-left: -12px;">
+																		<i class="icon-twitter light-blue"></i>
+																	</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-1 control-label no-padding-right" for="form-field-googleplus">Google+</label>
+
+            <div class="col-sm-9">
+																	<span class="input-icon col-xs-12 col-sm-5">
+																		<input class="col-xs-12 col-sm-12" type="text"
+                                                                               value="<s2:property value="options.googleplus.value"/>"
+                                                                               id="form-field-googleplus"
+                                                                               style="margin-left: -12px;">
+																		<i class="icon-google-plus red"></i>
+																	</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-1 control-label no-padding-right" for="form-field-weibo">weibo</label>
+
+            <div class="col-sm-9">
+																	<span class="input-icon col-xs-12 col-sm-5">
+																		<input class="col-xs-12 col-sm-12" type="text"
+                                                                               value="<s2:property value="options.weibo.value"/>"
+                                                                               id="form-field-weibo"
+                                                                               style="margin-left: -12px;">
+																		<i class="icon-weibo red"></i>
+																	</span>
+            </div>
+        </div>
+        <%--<div class="form-group">
+            <label class="col-sm-1 control-label no-padding-right" for="form-field-weibo">t-weibo</label>
+
+            <div class="col-sm-9">
+                                                                        <span class="input-icon col-xs-12 col-sm-5">
+                                                                            <input class="col-xs-12 col-sm-12" type="text" value="<s2:property value="options.tqq.value"/>"
+                                                                                   id="form-field-tqq" style="margin-left: -12px;">
+                                                                            <i class="icon-tencent-weibo ls"></i>
+                                                                        </span>
+            </div>
+        </div>--%>
+        <div class="form-group">
+            <label class="col-sm-1 control-label no-padding-right" for="form-field-github">github</label>
+
+            <div class="col-sm-9">
+																	<span class="input-icon col-xs-12 col-sm-5">
+																		<input class="col-xs-12 col-sm-12" type="text"
+                                                                               value="<s2:property value="options.tqq.value"/>"
+                                                                               id="form-field-github"
+                                                                               style="margin-left: -12px;">
+																		<i class="icon-github black"></i>
+																	</span>
+            </div>
+        </div>
+    </div>
+    <div id="edit-settings" class="tab-pane">
+        <div class="space-10"></div>
+
+        <div>
+            <label class="inline">
+                <input type="checkbox" name="form-field-checkbox" class="ace">
+                <span class="lbl"> Make my profile public</span>
+            </label>
+        </div>
+
+        <div class="space-8"></div>
+
+        <div>
+            <label class="inline">
+                <input type="checkbox" name="form-field-checkbox" class="ace">
+                <span class="lbl"> Email me new updates</span>
+            </label>
+        </div>
+
+        <div class="space-8"></div>
+
+        <div>
+            <label class="inline">
+                <input type="checkbox" name="form-field-checkbox" class="ace">
+                <span class="lbl"> Keep a history of my conversations</span>
+            </label>
+
+            <label class="inline">
+                <span class="space-2 block"></span>
+
+                for
+                <input type="text" class="input-mini" maxlength="3">
+                days
+            </label>
+        </div>
+    </div>
+    <div id="edit-password" class="tab-pane">
+        <div class="space-10"></div>
+        <div class="form-group" style="height: 29px;">
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-oldPassword">当前密码</label>
+            <div class="col-sm-9">
+                <input type="password" id="form-field-oldPassword">
+            </div>
+        </div>
+        <div class="space-4"></div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-newPassword">新密码</label>
+            <div class="col-sm-9">
+                <input type="password" id="form-field-newPassword">
+            </div>
+        </div>
+        <div class="space-4"></div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-reqNewPassword">确认密码</label>
+            <div class="col-sm-9">
+                <input type="password" id="form-field-reqNewPassword">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="clearfix form-actions">
+    <div style="float: right;">
+        <button id="settings-save" class="btn btn-info" type="button">
+            <i class="icon-ok bigger-110"></i>
+            保存
+        </button>
+    </div>
+</div>
+
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+<%--<script src="/javascripts/jquery-ui-1.10.3.custom.min.js"></script>--%>
+<%--<script src="/javascripts/jquery.ui.touch-punch.min.js"></script>--%>
+<%--<script src="/javascripts/jquery.easy-pie-chart.min.js"></script>--%>
+<%--<script src="/javascripts/jquery.gritter.min.js"></script>--%>
+<script type="text/javascript">
+    function myAlert(alertMessage, type) {
+        $._messengerDefaults = {
+            extraClasses: 'messenger-fixed messenger-on-bottom messenger-on-right',
+            theme: 'air'
+        }
+        $.globalMessenger().post({message: alertMessage, type: type, showCloseButton: true});
+    }
+
+
+    $('#settings-save').click(function () {
+        var tab = $(".tabbable .active").attr("id");
+        if(tab == "infoTab"){
+            var params = {
+                "type":"infoTab",
+                "title":$("#form-field-title").val(),
+                "subtitle":$("#form-field-subtitle").val(),
+                "description":$("#form-field-description").val(),
+                "htmlkeyword":$("#form-field-htmlkeyword").val(),
+                "htmldescription":$("#form-field-htmldescription").val(),
+                "facebook":$("#form-field-facebook").val(),
+                "twitter":$("#form-field-twitter").val(),
+                "googleplus":$("#form-field-googleplus").val(),
+                "weibo":$("#form-field-weibo").val(),
+                "github":$("#form-field-github").val()
+            }
+        }
+        if(tab == "passwordTab"){
+            var params = {
+                "type":"passwordTab",
+                "oldPassword":$("#form-field-oldPassword").val(),
+                "newPassword":$("#form-field-newPassword").val(),
+                "reqNewPassword":$("#form-field-reqNewPassword").val()
+            }
+        }
+
+        $.ajax({
+            type: "post",
+            url : "/ajax/admin/main_settings_update.html",
+            dataType:'json',
+            data: JSON.stringify(params),
+            beforeSend: function () {
+                $("#settings-save").attr('disabled',"true");
+            },
+            complete: function () {
+                $("#settings-save").removeAttr("disabled");
+            },
+            contentType: 'application/json',
+            success: function(data){
+               if(data.status == "true"){
+                   myAlert(data.info, "info");
+               }else if(data.status == "false") {
+                   myAlert(data.info, "error");
+               }
+            }
+        });
+    });
+
+</script>
+</body>
+</html>

@@ -75,6 +75,13 @@
                 <param name="root">jsonInfo</param>
             </result>
         </action>
+        <action name="main_settings_*" class="action.admin.SettingsAjaxAction" method="{1}">
+            <interceptor-ref name="json"/>
+            <interceptor-ref name="PermissionStack"/>
+            <result name="json" type="json">
+                <param name="root">jsonInfo</param>
+            </result>
+        </action>
     </package>
 
     <!-- 后台界面 -->
@@ -99,6 +106,17 @@
             <result name="category_delete" type="redirect">
                 /admin/main_category.html
             </result>
+        </action>
+    </package>
+
+    <!-- 前台界面 -->
+    <package name="index" namespace="/" extends="struts-default">
+        <default-action-ref name="index"/>
+        <action name="index" class="action.show.IndexAction" method="index">
+            <result name="success">/show/index.jsp</result>
+        </action>
+        <action name="blog" class="action.show.IndexAction" method="blog">
+            <result name="success">/show/blog.jsp</result>
         </action>
     </package>
 </struts>

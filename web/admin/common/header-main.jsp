@@ -22,7 +22,7 @@
         <div class="navbar-header pull-left">
             <a href="/admin/main_index.html" class="navbar-brand">
                 <small>
-                    ( ˘ ³˘) 后台管理哒
+                    ( ˘ ³˘) 后台管理
                 </small>
             </a><!-- /.brand -->
         </div><!-- /.navbar-header -->

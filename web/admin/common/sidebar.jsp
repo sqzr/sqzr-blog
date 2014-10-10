@@ -79,6 +79,12 @@
                     <span class="menu-text"> 分类管理 </span>
                 </a>
             </li>
+            <li class="<s2:if test="info['menu'].contains('settings')">active open</s2:if>">
+                <a href="/admin/main_settings.html">
+                    <i class="icon-cog"></i>
+                    <span class="menu-text"> 设置 </span>
+                </a>
+            </li>
         </ul>
         <!-- /.nav-list -->
         <div class="sidebar-collapse" id="sidebar-collapse">

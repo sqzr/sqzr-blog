@@ -12,6 +12,14 @@ public class User {
     private String lastloginip;
     private String lastloginuseragent;
 
+    public User() {
+    }
+
+    public User(int id, String password) {
+        this.id = id;
+        this.password = password;
+    }
+
     public String getAvatar() {
         return avatar;
     }

@@ -10,6 +10,7 @@
         <typeAlias type="model.Log" alias="Log"/>
         <typeAlias type="model.Article" alias="Article"/>
         <typeAlias type="model.Category" alias="Category"/>
+        <typeAlias type="model.Option" alias="Option"/>
     </typeAliases>
     <environments default="development">
         <environment id="development">
@@ -27,5 +28,6 @@
         <mapper resource="mapper/Log.xml"/>
         <mapper resource="mapper/Article.xml"/>
         <mapper resource="mapper/Category.xml"/>
+        <mapper resource="mapper/Option.xml"/>
     </mappers>
 </configuration>

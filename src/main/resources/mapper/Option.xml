@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="model.Option">
+    <resultMap id="resultOption" type="Option">
+        <result column="name" property="name"/>
+        <result column="value" property="value"/>
+    </resultMap>
+    <update id="update" parameterType="Option">
+      update options set value = #{value} where name = #{name}
+    </update>
+    
+    <select id="getAllOption" resultType="java.util.HashMap">
+        select * from options
+    </select>
+</mapper>

@@ -40,4 +40,11 @@ public interface ArticleService {
      * @return
      */
     public List<Article> getArticleByCategoryId(int c_id);
+
+    /**
+     * 通过uri获取文章
+     * @param uri
+     * @return
+     */
+    public Article getArticleByUri(String uri);
 }

@@ -54,8 +54,12 @@ public class ArticleAjaxAction extends ActionSupport {
      * @return
      */
     public String update() throws Exception {
-        if (articleService.update(new Article(id,new Category(this.newcid),title,content,uri),this.oldcid)) {
-            jsonInfo.put("tips", "修改成功");
+        if (articleService.update(new Article(id,type,new Category(this.newcid), title, content, uri), this.oldcid)) {
+            if (type != null) {
+                jsonInfo.put("tips", "发表成功");
+            }else{
+                jsonInfo.put("tips", "修改成功");
+            }
             jsonInfo.put("status", true);
         } else {
             jsonInfo.put("tips", "修改失败");
