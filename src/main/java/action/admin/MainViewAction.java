@@ -75,11 +75,6 @@ public class MainViewAction extends ActionSupport {
         return SUCCESS;
     }
 
-    public String article_delete() throws Exception {
-        articleService.deleteArticleById(id);
-        return "article_delete";
-    }
-
     public String category_delete() throws Exception {
         categoryService.delete(id);
         return "category_delete";

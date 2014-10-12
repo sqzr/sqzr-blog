@@ -16,9 +16,19 @@ public interface CategoryDao {
 
     public int update(Category category);
 
-    public void plusCount(int id);
+    /**
+     * 增加分类文章数
+     * @param id 分类id
+     * @param num 添加数量
+     */
+    public void plusCount(int id,int num);
 
-    public void minusCount(int id);
+    /**
+     * 减少分类文章数
+     * @param id 分类id
+     * @param num 添加数量
+     */
+    public void minusCount(int id,int num);
 
     /**
      * 通过id获取分类
@@ -33,4 +43,24 @@ public interface CategoryDao {
      * @return
      */
     public int getArticleCountByCategoryId(int id);
+
+    /**
+     * 设置默认分类
+     * @param id
+     * @return
+     */
+    public boolean setDefaultCategory(int id);
+
+    /**
+     * 获取默认分类
+     * @return
+     */
+    public Category getDefault();
+
+    /**
+     * 通过uri获取分类
+     * @param uri
+     * @return
+     */
+    public Category getCategoryByUri(String uri);
 }

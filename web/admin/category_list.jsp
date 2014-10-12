@@ -36,7 +36,7 @@
             <div class="page-content">
                 <div class="page-header">
                     <h1>
-                        分类
+                        <a href="/admin/main_article_list.html">分类</a>
                         <small>
                             <i class="icon-double-angle-right"></i>
                             名称:<s2:property value="category.name"/>
@@ -81,7 +81,6 @@
                                                class="table table-striped table-bordered table-hover">
                                             <thead>
                                             <tr>
-                                                <th>ID</th>
                                                 <th>标题</th>
                                                 <th>分类</th>
                                                 <th>
@@ -95,10 +94,7 @@
                                             <tbody>
                                             <s2:iterator value="articles">
                                                 <tr class="selected">
-                                                    <td>
-                                                        <s2:property value="id"/>
-                                                    </td>
-                                                    <td><s2:property value="title"/></td>
+                                                    <td><s2:property value="title"/><s2:if test="type == 'post_draft'">&nbsp;<span class="label label-sm label-inverse arrowed-in">草稿</span></s2:if></td></td>
                                                     <td><s2:property value="category.name"/></td>
                                                     <td><s2:date name="date" format="yyyy-MM-dd HH:mm"/></td>
                                                     <td>
@@ -188,7 +184,7 @@
     </div>
     <script src="/javascripts/bootbox.min.js"></script>
     <script type="text/javascript">
-        function deleteCategoryConfirm(id) {
+        function deleteConfirm(id) {
             bootbox.dialog({
                 message:"确定要删除么?",
                 title:"提示",
@@ -201,16 +197,27 @@
                         label: "删除",
                         className: "btn-primary",
                         callback: function() {
-                            window.location.href='/admin/main_category_delete.html?id=' + id;
+                            var params = {
+                                "id":id
+                            };
+                            $.ajax({
+                                type: "post",
+                                url: "/ajax/admin/main_article_delete.html",
+                                dataType: 'json',
+                                data: JSON.stringify(params),
+                                contentType: 'application/json',
+                                success: function (data) {
+                                    if (data.status == true) {
+                                        location.reload(true);
+                                    } else if(data.status == false) {
+                                        myAlert(data.tips, "error");
+                                    }
+                                }
+                            });
                         }
                     }
                 }
             });
         }
-        $(document).ready(function () {
-            $("#close-add-tips").click(function () {
-                $("#add-tips").addClass("hidden");
-            });
-        });
     </script>
 </div>

@@ -46,15 +46,6 @@
                         </small>
                     </h1>
                 </div>
-
-                <div class="alert alert-block hidden" id="update-tips">
-                    <button type="button" class="close" id="close-update-tips">
-                        <i class="icon-remove"></i>
-                    </button>
-                    <i class="icon-ok green" id="update-icon"></i>
-                    <font id="update-tips-text">
-                    </font>
-                </div>
                 <div class="form-group" style="height: 50px;">
                     <div class="row" style="height: 40px;">
                         <div class="col-xs-12 titleFrom">
@@ -157,22 +148,25 @@
 <script src="/javascripts/chosen.jquery.min.js"></script>
 </div>
 <script type="text/javascript">
+    function myAlert(alertMessage, type) {
+        $._messengerDefaults = {
+            extraClasses: 'messenger-fixed messenger-on-bottom messenger-on-right',
+            theme: 'air'
+        }
+        $.globalMessenger().post({message: alertMessage, type: type, showCloseButton: true});
+    }
     $(".chosen-select").chosen({
         width: "100%",
         no_results_text: "没有找到!"
     });
     $("#c_id option[value='<s2:property value="article.category.id"/>']").attr("selected", true);
     $(".chosen-single span").text("<s2:property value="article.category.name"/>");
-    <!--$(".chosen-results option[text='<s2:property value="article.category.name"/>']")-->
     $(document).ready(function () {
         $("#btn-update").click(function () {
             update();
         });
         $("#btn-post").click(function(){
            post();
-        });
-        $("#close-update-tips").click(function () {
-            $("#update-tips").addClass("hidden");
         });
         $(".category-refresh").click(
                 function(){
@@ -217,17 +211,12 @@
             },
             contentType: 'application/json',
             success: function (data) {
-                $("#update-tips").removeClass("hidden");
-                $("#update-tips-text").html(data.tips);
                 if (data.status == true) {
-                    $("#update-tips").attr("class", "alert alert-block alert-success fade in");
-                    $("#update-icon").attr("class", "icon-ok green");
+                    myAlert(data.tips,"info");
                     $("#oldcid").val($("#c_id").val());
                     $("#currentname").val($(".chosen-single span").text());
-
-                }else{
-                    $("#update-tips").attr("class", "alert alert-block alert-danger fade in");
-                    $("#update-icon").attr("class", "icon-warning-sign red");
+                }else if(data.status == false){
+                    myAlert(data.tips, "error");
                 }
                 $('body,html').animate({scrollTop:0},1000);
             }
@@ -256,17 +245,12 @@
             },
             contentType: 'application/json',
             success: function (data) {
-                $("#update-tips").removeClass("hidden");
-                $("#update-tips-text").html(data.tips+ "&nbsp;<a href=\"/admin/main_article_list.html\">返回列表</a>");
                 if (data.status == true) {
-                    $("#update-tips").attr("class", "alert alert-block alert-success fade in");
-                    $("#update-icon").attr("class", "icon-ok green");
+                    myAlert(data.tips,"info");
                     $("#oldcid").val($("#c_id").val());
                     $("#currentname").val($(".chosen-single span").text());
-
-                }else{
-                    $("#update-tips").attr("class", "alert alert-block alert-danger fade in");
-                    $("#update-icon").attr("class", "icon-warning-sign red");
+                }else if(data.status == false){
+                    myAlert(data.tips, "error");
                 }
                 $('body,html').animate({scrollTop:0},1000);
             }

@@ -1,19 +1,34 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: weiyang
+  Date: 2014/10/12
+  Time: 11:19
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="s2" uri="/struts-tags" %>
-<%@ taglib prefix="div" uri="/divtag" %>
 <s2:include value="common/header.jsp"/>
 <div class="container">
     <s2:include value="common/sipder.jsp"/>
     <div class="mid-col">
         <div class="mid-col-container">
             <div id="content" class="inner">
-                <article class="post" itemscope="" itemtype="https://schema.org/BlogPosting">
-                    <h1 class="title" itemprop="name"><s2:property value="article.title"/></h1>
-
-                    <div class="entry-content" itemprop="articleBody">
-                        <div:markdown><s2:property value="article.content" escape="false"/></div:markdown>
-                    </div>
-                </article>
+                <section class="archives">
+                    <s2:iterator value="articles">
+                        <article itemprop="blogPost" itemscope="" itemtype="https://schema.org/BlogPosting">
+                            <div class="meta">
+                            <span class="date"><time datetime="<s2:date name="date" format="yyyy-MM-dd HH:mm:ss"/>" itemprop="datePublished"><s2:date name="date" format="yyyy-MM-dd"/>
+                            </time></span>
+                                <br>
+		<span class="tags">
+	<a class="category" href="/blog/category/<s2:property value="category.uri"/>.txt"><s2:property value="category.name"/></a>
+</span>
+                            </div>
+                            <h1 class="title" itemprop="name"><a href="/blog/<s2:property value="uri"/>.txt"><s2:property value="title"/></a>
+                            </h1>
+                        </article>
+                    </s2:iterator>
+                </section>
             </div>
         </div>
         <footer id="footer" class="inner"><p>
@@ -28,8 +43,6 @@
             })(jQuery);
         </script>
         <!-- Delete or comment this line to disable Fancybox -->
-
-
         <script type="text/javascript">
             var _gaq = _gaq || [];
             _gaq.push(['_setAccount', 'UA-50395475-1']);
@@ -44,11 +57,7 @@
                 s.parentNode.insertBefore(ga, s);
             })();
         </script>
-
-
     </div>
 </div>
-
-
 </body>
 </html>

@@ -111,12 +111,8 @@
 
     <!-- 前台界面 -->
     <package name="index" namespace="/" extends="struts-default">
-        <default-action-ref name="index"/>
-        <action name="index" class="action.show.IndexAction" method="index">
-            <result name="success">/show/index.jsp</result>
-        </action>
-        <action name="blog" class="action.show.IndexAction" method="blog">
-            <result name="success">/show/blog.jsp</result>
+        <action name="*" class="action.show.IndexAction" method="{1}">
+            <result name="success">/show/{1}.jsp</result>
         </action>
     </package>
 </struts>

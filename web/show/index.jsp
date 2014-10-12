@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="s2" uri="/struts-tags" %>
+<%@ taglib prefix="div" uri="/divtag" %>
 <s2:include value="common/header.jsp"/>
 <div class="container">
     <s2:include value="common/sipder.jsp"/>
@@ -7,28 +8,28 @@
         <div class="mid-col-container">
             <div id="content" class="inner">
                 <div itemscope="" itemtype="http://schema.org/Blog">
-                    <s2:iterator value="articles">
-                    <article class="post" itemprop="blogPost" itemscope="" itemtype="http://schema.org/BlogPosting">
-                        <div class="meta">
-                            <div class="date">
-                                <time datetime="<s2:date name="date" format="yyyy-MM-dd HH:mm:ss"/>" data-updated="true" itemprop="datePublished">
-                                    <s2:date name="date" format="yyyy-MM-dd HH:mm"/>
-                                </time>
+                    <s2:iterator value="articlePage">
+                        <article class="post" itemprop="blogPost" itemscope="" itemtype="http://schema.org/BlogPosting">
+                            <div class="meta">
+                                <div class="date">
+                                    <time datetime="<s2:date name="date" format="yyyy-MM-dd HH:mm:ss"/>" data-updated="true" itemprop="datePublished">
+                                        <s2:date name="date" format="yyyy-MM-dd HH:mm"/>
+                                    </time>
+                                </div>
+                                <div class="tags">
+                                    <a class="category" href="/category/<s2:property value="category.uri"/>.txt"><s2:property value="category.name"/></a>
+                                </div>
                             </div>
-                            <div class="tags">
-                               <a class="category" href="/blog/categories/xia-che/"><s2:property value="category.name"/></a>
+                            <h1 class="title" itemprop="name"><a
+                                    href="/blog/<s2:property value="uri"/>.txt"
+                                    itemprop="url"><s2:property value="title"/></a></h1>
+                            <div class="entry-content" itemprop="articleBody">
+                                <div:markdown><div:htmlmoresplit><s2:property value="content" escape="false"/></div:htmlmoresplit></div:markdown>
+                                <a href="/blog/<s2:property value="uri"/>.txt"
+                                   class="more-link">Read on →</a>
                             </div>
-                        </div>
-                        <h1 class="title" itemprop="name"><a
-                                href="/blog/<s2:property value="uri"/>"
-                                itemprop="url"><s2:property value="title"/></a></h1>
-                        <div class="entry-content" itemprop="articleBody">
-                            <s2:property value="content"/>
-                            <a href="/blog/2014/03/17/wo-ye-tan-tan-hu-lian-wang-yin-si-er-bu-shi-mei-ban-fa-hei-zhi-shi-ni-mei-you-bei-hei-de-jie-zhi/"
-                               class="more-link">Read on →</a>
-                        </div>
 
-                    </article>
+                        </article>
                     </s2:iterator>
                 </div>
                 <nav id="pagenavi">

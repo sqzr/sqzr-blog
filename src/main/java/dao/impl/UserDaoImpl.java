@@ -13,12 +13,6 @@ import java.util.Map;
 public class UserDaoImpl implements UserDao {
     private SqlSession sqlSession;
 
-    /**
-     * 登陆
-     * @param username
-     * @param password
-     * @return
-     */
     @Override
     public User login(String username, String password) {
         Map<String, String> info = new HashMap<String, String>();
@@ -28,10 +22,6 @@ public class UserDaoImpl implements UserDao {
         return user;
     }
 
-    /**
-     * 更新登陆环境
-     * @param environment
-     */
     @Override
     public void updateLoginInfo(Map<String, Object> environment) {
         sqlSession.update("model.User.updateLoginInfo", environment);
@@ -45,6 +35,16 @@ public class UserDaoImpl implements UserDao {
     @Override
     public String getPassword(int id) {
         return sqlSession.selectOne("model.User.getPassword",id);
+    }
+
+    @Override
+    public User getUserByKeeplogin(String keeplogin) {
+        return sqlSession.selectOne("model.User.getUserByKeeplogin", keeplogin);
+    }
+
+    @Override
+    public int updateKeeplogin(User user) {
+        return sqlSession.update("model.User.updateKeeplogin", user);
     }
 
     @Override

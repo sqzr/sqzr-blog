@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="/myTag" prefix="pre" %>
+<%@ taglib prefix="div" uri="/divtag" %>
 <%@ include file="common/header-main.jsp" %>
 <div class="main-container" id="main-container">
     <script type="text/javascript">
@@ -84,13 +84,12 @@
                                                 <th></th>
                                             </tr>
                                             </thead>
-
                                             <tbody>
                                             <s2:iterator value="articles" id="article">
                                                 <tr class="selected">
-                                                    <td><s2:property value="title"/><s2:if test="type == 'post_draft'"><em class="status">草稿</em></s2:if></td>
+                                                    <td><s2:property value="title"/><s2:if test="type == 'post_draft'">&nbsp;<span class="label label-sm label-inverse arrowed-in">草稿</span></s2:if></td>
                                                     <td><a href="/admin/main_category_list.html?id=<s2:property value="category.id"/>"><s2:property value="category.name"/></a></td>
-                                                    <td><pre:myTag><s2:date name="date" format="yyyy-MM-dd HH:mm:ss"/> </pre:myTag></td>
+                                                    <td><div:dateformat><s2:date name="date" format="yyyy-MM-dd HH:mm:ss"/></div:dateformat></td>
                                                     <%--<td><s2:date name="date" format="yyyy-MM-dd HH:mm"/></td>--%>
                                                     <td>
                                                         <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
@@ -139,30 +138,6 @@
                                                 </tr>
                                             </s2:iterator>
                                             </tbody>
-                                            <%--<div class="modal hidd">
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <button type="button" class="close" data-dismiss="modal">
-                                                                <span aria-hidden="true">&times;</span><span
-                                                                    class="sr-only">Close</span></button>
-                                                            <h4 class="modal-title">删除确认</h4>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <p>您确认要删除此条吗？</p>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-default"
-                                                                    data-dismiss="modal">取消
-                                                            </button>
-                                                            <a href="#" id="btn-delete-confirm" class="btn btn-primary">确定</a>
-                                                        </div>
-                                                    </div>
-                                                    <!-- /.modal-content -->
-                                                </div>
-                                                <!-- /.modal-dialog -->
-                                            </div>--%>
-                                            <!-- /.modal -->
                                         </table>
                                     </s2:else>
                                 </div>
@@ -193,7 +168,23 @@
                     label: "删除",
                     className: "btn-primary",
                     callback: function() {
-                        window.location.href='/admin/main_article_delete.html?id=' + id;
+                        var params = {
+                            "id":id
+                        };
+                        $.ajax({
+                            type: "post",
+                            url: "/ajax/admin/main_article_delete.html",
+                            dataType: 'json',
+                            data: JSON.stringify(params),
+                            contentType: 'application/json',
+                            success: function (data) {
+                                if (data.status == true) {
+                                    location.reload(true);
+                                } else if(data.status == false) {
+                                    myAlert(data.tips, "error");
+                                }
+                            }
+                        });
                     }
                 }
             }

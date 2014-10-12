@@ -27,13 +27,13 @@
         where id = #{id}
     </update>
 
-    <update id="plusCount" parameterType="int">
-        update category set count = count + 1
+    <update id="plusCount" parameterType="map">
+        update category set count = count + #{num}
         where id = #{id}
     </update>
     
-    <update id="minusCount" parameterType="int">
-        update category set count = count - 1
+    <update id="minusCount" parameterType="map">
+        update category set count = count - #{num}
         where id = #{id}
     </update>
 
@@ -45,5 +45,25 @@
     <select id="getArticleCountByCategoryId" parameterType="int" resultType="int">
         select count(*) from article
         where c_id = #{id}
+    </select>
+    
+    <update id="clearDefault">
+        update category set type = NULL
+        where type = "default"
+    </update>
+
+    <update id="setDefault" parameterType="int">
+        update category set type = "default"
+        where id = #{id}
+    </update>
+
+    <select id="getDefault" resultType="Category">
+        select * from category
+        where type = "default"
+    </select>
+
+    <select id="getCategoryByUri" parameterType="String" resultType="Category">
+        select * from category
+        where uri = #{uri}
     </select>
 </mapper>

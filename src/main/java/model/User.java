@@ -7,6 +7,7 @@ public class User {
     private int id;
     private String username;
     private String password;
+    private String keeplogin;
     private int g_id;
     private String avatar;
     private String lastloginip;
@@ -18,6 +19,14 @@ public class User {
     public User(int id, String password) {
         this.id = id;
         this.password = password;
+    }
+
+    public String getKeeplogin() {
+        return keeplogin;
+    }
+
+    public void setKeeplogin(String keeplogin) {
+        this.keeplogin = keeplogin;
     }
 
     public String getAvatar() {

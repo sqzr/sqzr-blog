@@ -8,6 +8,7 @@ import java.util.Date;
 public class Category {
     private int id;
     private String name;
+    private String type;
     private String uri;
     private int count;
     private Date date;
@@ -29,6 +30,14 @@ public class Category {
         this.id = id;
         this.uri = uri;
         this.name = name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public int getCount() {

@@ -61,4 +61,25 @@ public interface ArticleDao {
      * @return
      */
     public List<Article> getArticleByCategoryId(int c_id);
+
+    /**
+     * 获取uri存在数量
+     * @param uri
+     * @return
+     */
+    public int getCountByUri(String uri);
+
+    /**
+     * 移动文章到默认分类
+     * @param c_id
+     * @return int 受影响的文章数
+     */
+    public int moveArticleToDefaultCategory(int c_id);
+
+    /**
+     * 获取分类里的文章数
+     * @param c_id
+     * @return int 文章数
+     */
+    public int getArticleCountByCategory(int c_id);
 }

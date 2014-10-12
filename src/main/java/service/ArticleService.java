@@ -1,5 +1,7 @@
 package service;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageInfo;
 import webException.NotFoundException;
 import webException.ParameterIsEmptyException;
 import model.Article;
@@ -10,29 +12,41 @@ import java.util.List;
  * Created by weiyang on 2014/9/14.
  */
 public interface ArticleService {
+    /**
+     * 添加文章
+     * @param article
+     * @return int -1 标题为空
+     * @return int -2 分类未选
+     * @return int -3 uri重复
+     */
     public int add(Article article);
 
     public Article getArticleById(int id) throws ParameterIsEmptyException, NotFoundException;
 
     public List<Article> list();
 
+    public Page<Article> list(int pageNum,int pageSize);
+
     /**
-     * 通过id删除文章
+     * 删除文章
      * @param id 文章id
-     * @return
-     * @throws ParameterIsEmptyException 没有传递参数
-     * @throws NotFoundException 删除后没有影响条数
+     * @return -1 参数错误
+     * @return -2 没有受影响行数
+     * @return 受影响行数
      */
-    public boolean deleteArticleById(int id) throws ParameterIsEmptyException, NotFoundException;
+    public int delete(int id);
 
     /**
      * 修改文章
      * @param article 包含需要修改的文章类
-     * @return
+     * @return int 1 修改成功
+     * @return int -1 标题为空
+     * @return int -2 没有选择分类
+     * @return int -3 uri重复
      * @throws ParameterIsEmptyException 没有传递文章id
      * @throws NotFoundException 修改后没有影响行数
      */
-    public boolean update(Article article,int old_c_id) throws ParameterIsEmptyException, NotFoundException;
+    public int update(Article article,int old_c_id) throws ParameterIsEmptyException, NotFoundException;
 
     /**
      * 获取指定分类下的所有文章
@@ -47,4 +61,11 @@ public interface ArticleService {
      * @return
      */
     public Article getArticleByUri(String uri);
+
+    /**
+     * 获取指定分类下的所有文章
+     * @param uri cateogry uri
+     * @return
+     */
+    public List<Article> getArticleListByCategoryUri(String uri);
 }

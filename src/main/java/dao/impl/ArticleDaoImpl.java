@@ -54,6 +54,21 @@ public class ArticleDaoImpl implements ArticleDao {
         return sqlSession.selectList("model.Article.getArticleByCategoryId", c_id);
     }
 
+    @Override
+    public int getCountByUri(String uri) {
+        return sqlSession.selectOne("model.Article.getCountByUri", uri);
+    }
+
+    @Override
+    public int moveArticleToDefaultCategory(int c_id) {
+        return sqlSession.update("model.Article.moveArticleToDefaultCategory", c_id);
+    }
+
+    @Override
+    public int getArticleCountByCategory(int c_id) {
+        return sqlSession.selectOne("model.Article.getArticleCountByCategory",c_id);
+    }
+
     // ---
 
 

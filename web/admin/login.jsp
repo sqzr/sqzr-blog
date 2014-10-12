@@ -49,8 +49,8 @@
 
                                             <div class="clearfix">
                                                 <label class="inline">
-                                                    <input type="checkbox" class="ace"/>
-                                                    <span class="lbl"> Remember Me</span>
+                                                    <input type="checkbox" class="ace" id="keepMeLoggedInd"/>
+                                                    <span>Remember Me</span>
                                                 </label>
 
                                                 <button id="login" type="button"
@@ -87,22 +87,15 @@
 <!-- /.main-container -->
 <script type="text/javascript">
     $(document).ready(function () {
-        $("#login").mousedown(function () {
+        $("#login").click(function () {
             login();
         });
     });
-    function myAlert(alertMessage, type) {
-        $._messengerDefaults = {
-            extraClasses: 'messenger-fixed messenger-on-bottom',
-            theme: 'air'
-        }
-        $.globalMessenger().post({message: alertMessage, type: type, showCloseButton: true});
-    }
     function login() { //函数 login();
         var params = {
             username: $("#username").val(),
             password: $("#password").val(),
-            keepMeLoggedInd: $("#keepMeLoggedInd").attr("checked")
+            keepMeLoggedInd: $("#keepMeLoggedInd").prop("checked")
         };
         $.ajax({
             type: "post",

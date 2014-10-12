@@ -3392,7 +3392,7 @@ button.btn:active {
     background-color:#d15b47!important
 }
 .label-inverse,.badge-inverse {
-    background-color:#333!important
+    background-color:#abbac3!important
 }
 .label-warning,.badge-warning {
     background-color:#f89406!important
@@ -3526,7 +3526,7 @@ button.btn:active {
     border-right-color:#333
 }
 .label-inverse.arrowed-in:before {
-    border-color:#333
+    border-color:#abbac3
 }
 .label-inverse.arrowed-right:after {
     border-left-color:#333
@@ -4341,10 +4341,24 @@ input.input-sm {
     font-size:12px
 }
 input[type=checkbox].ace,input[type=radio].ace {
-    opacity:0;
+    /*opacity:0;*/
+    font-weight:normal;
+    font-size:12px;
+    color:#32a3ce;
+    background-color:#fafafa;
+    border:1px solid #c8c8c8;
+    box-shadow:0 1px 2px rgba(0,0,0,0.05);
+    border-radius:0;
+    display:inline-block;
+    text-align:center;
+    vertical-align:bottom;
+    height:16px;
+    line-height:14px;
+    min-width:16px;
+    margin-right:1px
     position:absolute;
     z-index:12;
-    width:18px;
+    width:10px;
     height:18px;
     cursor:pointer
 }

@@ -1,5 +1,6 @@
 package service.impl;
 
+import dao.ArticleDao;
 import dao.CategoryDao;
 import dao.LogDao;
 import dao.impl.LogDaoImpl;
@@ -17,6 +18,7 @@ import java.util.List;
 public class CategoryServiceImpl implements CategoryService {
     private CategoryDao categoryDao;
     private LogDao logDao;
+    private ArticleDao articleDao;
 
     @Override
     public int add(Category category) {
@@ -35,15 +37,20 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public boolean delete(int id) throws ParameterIsEmptyException, NotFoundException {
+    public int delete(int id){
         if (id == 0) {
-            throw new ParameterIsEmptyException("参数为空");
-        }int result = categoryDao.delete(id);
-
-        if (result == 0) {
-            throw new NotFoundException();
+            return -1;
         }
-        return true;
+        int articleCount = articleDao.getArticleCountByCategory(id);
+        if (articleCount > 0) {
+            int addArticleCount = articleDao.moveArticleToDefaultCategory(id);
+            categoryDao.plusCount(categoryDao.getDefault().getId(),addArticleCount);
+        }
+        int result = categoryDao.delete(id);
+        if (result == 0) {
+            return -2;
+        }
+        return result;
     }
 
     @Override
@@ -63,8 +70,23 @@ public class CategoryServiceImpl implements CategoryService {
         return categoryDao.getCategoryById(id);
     }
 
+    @Override
+    public boolean setDefaultCategory(int id) {
+        return categoryDao.setDefaultCategory(id);
+    }
+
+
+
     // ---
 
+
+    public ArticleDao getArticleDao() {
+        return articleDao;
+    }
+
+    public void setArticleDao(ArticleDao articleDao) {
+        this.articleDao = articleDao;
+    }
 
     public CategoryDao getCategoryDao() {
         return categoryDao;

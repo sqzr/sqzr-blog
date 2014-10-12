@@ -4,7 +4,9 @@ import dao.CategoryDao;
 import model.Category;
 import org.apache.ibatis.session.SqlSession;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by weiyang on 2014/9/18.
@@ -29,13 +31,19 @@ public class CategoryDaoImpl implements CategoryDao {
     }
 
     @Override
-    public void plusCount(int id) {
-        sqlSession.update("model.Category.plusCount", id);
+    public void plusCount(int id,int num) {
+        Map<String, Integer> temp = new HashMap<String, Integer>();
+        temp.put("id", id);
+        temp.put("num", num);
+        sqlSession.update("model.Category.plusCount", temp);
     }
 
     @Override
-    public void minusCount(int id) {
-        sqlSession.update("model.Category.minusCount", id);
+    public void minusCount(int id,int num) {
+        Map<String, Integer> temp = new HashMap<String, Integer>();
+        temp.put("id", id);
+        temp.put("num", num);
+        sqlSession.update("model.Category.minusCount", temp);
     }
 
     @Override
@@ -46,6 +54,27 @@ public class CategoryDaoImpl implements CategoryDao {
     @Override
     public int getArticleCountByCategoryId(int id) {
         return sqlSession.selectOne("model.Category.getArticleCountByCategoryId", id);
+    }
+
+    @Override
+    public boolean setDefaultCategory(int id) {
+        sqlSession.update("model.Category.clearDefault");
+        if (sqlSession.update("model.Category.setDefault", id) > 0) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+    @Override
+    public Category getDefault() {
+        return sqlSession.selectOne("model.Category.getDefault");
+    }
+
+    @Override
+    public Category getCategoryByUri(String uri) {
+        return sqlSession.selectOne("model.Category.getCategoryByUri", uri);
     }
 
     @Override

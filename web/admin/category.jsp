@@ -95,7 +95,7 @@
                                                 <s2:iterator value="categories">
                                                 <tr class="category-<s2:property value="id"/>">
                                                     <td class="category-name">
-                                                        <s2:property value="name"/>
+                                                            <s2:property value="name"/><s2:if test="type == 'default'">&nbsp;<span class="label label-sm label-inverse arrowed-in default">默认</span></s2:if>
                                                     </td>
                                                     <td class="category-uri"><s2:property value="uri"/></td>
                                                     <td class="category-count"><a href="/admin/main_category_list.html?id=<s2:property value="id"/>"><s2:property value="count"/></a></td>
@@ -105,7 +105,10 @@
                                                                onclick="update(<s2:property value="id"/>)" class="btn btn-xs btn-info">
                                                                 <i class="icon-edit bigger-120"></i>
                                                             </a>
-
+                                                            <a href="javascript:void(0)"
+                                                               onclick="setDefault(<s2:property value="id"/>)" class="btn btn-xs btn-warning">
+                                                                <i class="icon-flag bigger-120"></i>
+                                                            </a>
                                                             <a href="javascript:void(0)"
                                                                onclick="deleteCategoryConfirm(<s2:property value="id"/>)" class="btn btn-xs btn-danger">
                                                                 <i class="icon-trash bigger-120"></i>
@@ -124,13 +127,22 @@
                                                                         <a href="javascript:void(0)"
                                                                            onclick="update(<s2:property value="id"/>)" class="tooltip-info"
                                                                            data-rel="tooltip"
-                                                                           title="" data-original-title="View">
+                                                                           title="" data-original-title="edit">
 																				<span class="blue">
-																					<i class="icon-zoom-in bigger-120"></i>
+																					<i class="icon-edit bigger-120"></i>
 																				</span>
                                                                         </a>
                                                                     </li>
-
+                                                                    <li>
+                                                                        <a href="javascript:void(0)"
+                                                                           onclick="setDefault(<s2:property value="id"/>)" class="tooltip-error"
+                                                                           data-rel="tooltip"
+                                                                           title="" data-original-title="Delete">
+																				<span class="red">
+																					<i class="icon-flag bigger-120"></i>
+																				</span>
+                                                                        </a>
+                                                                    </li>
                                                                     <li>
                                                                         <a href="javascript:void(0)"
                                                                            onclick="deleteCategoryConfirm(<s2:property value="id"/>)" class="tooltip-error"
@@ -232,7 +244,7 @@
     <script type="text/javascript">
         function deleteCategoryConfirm(id) {
             bootbox.dialog({
-                message:"确定要删除么?",
+                message:"确定要删除么?(如果分类下有文章,则自动移动到默认分类)",
                 title:"提示",
                 buttons:{
                     no : {
@@ -243,18 +255,50 @@
                         label: "删除",
                         className: "btn-primary",
                         callback: function() {
-                            window.location.href='/admin/main_category_delete.html?id=' + id;
+                            var params = {
+                                "id":id
+                            };
+                            $.ajax({
+                                type: "post",
+                                url: "/ajax/admin/main_category_delete.html",
+                                dataType: 'json',
+                                data: JSON.stringify(params),
+                                contentType: 'application/json',
+                                success: function (data) {
+                                    if (data.status == true) {
+                                        location.reload(true);
+                                    } else if(data.status == false) {
+                                        myAlert(data.tips, "error");
+                                    }
+                                }
+                            });
                         }
                     }
                 }
             });
         }
-
-        $(document).ready(function () {
-            $("#close-add-tips").click(function () {
-                $("#add-tips").addClass("hidden");
+        function setDefault(id){
+            var params = {
+                "id": id
+            };
+            $.ajax({
+                type: "post",
+                url: "/ajax/admin/main_category_setdefault.html",
+                dataType: 'json',
+                data: JSON.stringify(params),
+                contentType: 'application/json',
+                success: function (data) {
+                    if (data.status == true) {
+                        myAlert(data.tips,"info");
+                        $(".default").html("");
+                        $(".category-"+id+" .category-name").append("<span class=\"label label-sm label-inverse arrowed-in default\">默认</span>");
+                    } else if (data.status == false) {
+                        myAlert(data.tips,"error");
+                    }
+                    $('body,html').animate({scrollTop:0},1000);
+                }
             });
-        });
+        }
 
         function work_add(){
             var params = {
@@ -274,18 +318,12 @@
                 },
                 contentType: 'application/json',
                 success: function (data) {
-                    $("#add-tips").removeClass("hidden");
                     if (data.status == true) {
                         //添加成功
-                        $("#add-tips").addClass("alert-success");
-                        $("#add-tips-text").text("");
-                        $("#add-tips-text").append(data.tips+"&nbsp;&nbsp;<a href='#' onclick='window.location.reload()'>点击刷新</a>");
-
+                        myAlert(data.tips,"info");
                     } else if (data.status == false) {
                         //添加失败
-                        $("#add-tips").addClass("alert-error");
-                        $("#add-tips-text").text("");
-                        $("#add-tips-text").append(data.tips);
+                        myAlert(data.tips,"error");
                     }
                     $('body,html').animate({scrollTop:0},1000);
                 }
@@ -350,7 +388,5 @@
             $("#button-text").text("添加");
             $("#category-button").attr("onclick","work_add()");
         }
-
-   
     </script>
 </div>

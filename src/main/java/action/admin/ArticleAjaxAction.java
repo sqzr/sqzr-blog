@@ -33,18 +33,26 @@ public class ArticleAjaxAction extends ActionSupport {
      * @throws Exception
      */
     public String add() throws Exception {
-        if ("".equals(this.uri)) {
-            // uri 为空,自动生成拼音
-            this.uri = PinyinHelper.convertToPinyinString(this.title.replace(" ", ""),"-", PinyinFormat.WITHOUT_TONE);
-        }
-        this.id = articleService.add(new Article(this.type,this.title, new Category(this.c_id), this.content, this.uri));
-        if (this.id > 0) {
-            jsonInfo.put("tips", "文章添加成功");
-            jsonInfo.put("article_id", this.id);
-            jsonInfo.put("status", true);
-        } else {
-            jsonInfo.put("tips", "文章添加失败");
-            jsonInfo.put("status", false);
+        int result = articleService.add(new Article(this.type, this.title, new Category(this.c_id), this.content, this.uri));
+        boolean temp = (result > 0) ? true : false;
+        this.jsonInfo.put("status", temp);
+        switch (result) {
+            case 0:
+                this.jsonInfo.put("tips", "添加文章失败");
+                break;
+            case -1:
+                this.jsonInfo.put("tips", "标题不能为空");
+                break;
+            case -2:
+                this.jsonInfo.put("tips", "分类未选择");
+                break;
+            case -3:
+                this.jsonInfo.put("tips", "uri重复");
+                break;
+            default:
+                this.jsonInfo.put("tips", "添加文章成功");
+                this.jsonInfo.put("article_id", result);
+                break;
         }
         return "json";
     }
@@ -54,21 +62,44 @@ public class ArticleAjaxAction extends ActionSupport {
      * @return
      */
     public String update() throws Exception {
-        if (articleService.update(new Article(id,type,new Category(this.newcid), title, content, uri), this.oldcid)) {
-            if (type != null) {
-                jsonInfo.put("tips", "发表成功");
-            }else{
-                jsonInfo.put("tips", "修改成功");
-            }
-            jsonInfo.put("status", true);
-        } else {
-            jsonInfo.put("tips", "修改失败");
-            jsonInfo.put("status", false);
+        int result = articleService.update(new Article(id, type, new Category(this.newcid), title, content, uri), this.oldcid);
+        boolean temp = (result > 0) ? true : false;
+        this.jsonInfo.put("status", temp);
+        switch (result) {
+            case 0:
+                this.jsonInfo.put("tips", "修改文章失败");
+                break;
+            case -1:
+                this.jsonInfo.put("tips", "标题不能为空");
+                break;
+            case -2:
+                this.jsonInfo.put("tips", "分类未选择");
+                break;
+            case -3:
+                this.jsonInfo.put("tips", "uri重复");
+                break;
+            default:
+                this.jsonInfo.put("tips", "修改文章成功");
+                this.jsonInfo.put("article_id", result);
+                break;
         }
         return "json";
     }
 
-
+    public String delete() throws Exception {
+        int result = articleService.delete(this.id);
+        boolean temp = (result > 0) ? true : false;
+        this.jsonInfo.put("status", temp);
+        switch (result) {
+            case -1:
+                this.jsonInfo.put("tips", "参数错误");
+                break;
+            case -2:
+                this.jsonInfo.put("tips", "删除失败");
+                break;
+        }
+        return "json";
+    }
     // ---
 
 

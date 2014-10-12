@@ -41,6 +41,7 @@
     <bean id="categoryService" class="service.impl.CategoryServiceImpl">
         <property name="categoryDao" ref="categoryDao"/>
         <property name="logDao" ref="logDao"/>
+        <property name="articleDao" ref="articleDao"/>
     </bean>
     <bean id="optionService" class="service.impl.OptionServiceImpl">
         <property name="optionDao" ref="optionDao"/>

@@ -1,8 +1,11 @@
 package action.show;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageInfo;
 import com.opensymphony.xwork2.ActionSupport;
 import model.Article;
 import model.Option;
+import org.markdown4j.Markdown4jProcessor;
 import service.ArticleService;
 import service.OptionService;
 
@@ -17,24 +20,45 @@ public class IndexAction extends ActionSupport {
     private ArticleService articleService;
     private OptionService optionService;
     private List<Article> articles;
+    private Page<Article> articlePage;
     private Article article;
     private Map<String, Object> options = new HashMap<String, Object>();
     private String uri;
 
     public String index() throws Exception {
-        this.articles = articleService.list();
+        this.articlePage = articleService.list(1,4);
         this.options = optionService.getAllOption();
         return "success";
     }
 
     public String blog() throws Exception {
-        this.article = articleService.getArticleByUri(uri);
+        this.article = articleService.getArticleByUri(this.uri);
+        this.options = optionService.getAllOption();
+        return "success";
+    }
+
+    public String category() throws Exception {
+        this.articles = articleService.getArticleListByCategoryUri(this.uri);
+        this.options = optionService.getAllOption();
+        return "success";
+    }
+
+    public String archives() throws Exception {
+        this.articles = articleService.list();
         this.options = optionService.getAllOption();
         return "success";
     }
 
     // ---
 
+
+    public Page<Article> getArticlePage() {
+        return articlePage;
+    }
+
+    public void setArticlePage(Page<Article> articlePage) {
+        this.articlePage = articlePage;
+    }
 
     public String getUri() {
         return uri;

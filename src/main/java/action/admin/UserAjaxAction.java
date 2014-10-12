@@ -9,9 +9,11 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.struts2.ServletActionContext;
 import service.UserService;
 import util.Conversion;
+import util.CookieUtil;
 import util.EnvironmentInfo;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.InputStream;
@@ -25,13 +27,16 @@ public class UserAjaxAction extends ActionSupport {
     private UserService userService;
     private HttpSession session;
     private HttpServletRequest request;
+    private HttpServletResponse response;
     private String username;
     private String password;
+    private boolean keepMeLoggedInd;
     private Map<String, Object> jsonInfo = new HashMap<String, Object>();
 
     public UserAjaxAction() {
         this.request = ServletActionContext.getRequest();
         this.session = request.getSession();
+        this.response = ServletActionContext.getResponse();
     }
 
     /**
@@ -49,6 +54,10 @@ public class UserAjaxAction extends ActionSupport {
             jsonInfo.put("status", false);
             jsonInfo.put("tips","用户名或密码错误");
         } else {
+            if (this.keepMeLoggedInd == true) {
+                String keeplogin = userService.updateKeeplogin(user.getId());
+                CookieUtil.setCookie(this.response,"keeplogin",keeplogin,Integer.MAX_VALUE);
+            }
             jsonInfo.put("status", true);
             jsonInfo.put("tips", "登陆成功,跳转中");
         }
@@ -57,6 +66,15 @@ public class UserAjaxAction extends ActionSupport {
     }
 
     // ---
+
+
+    public boolean isKeepMeLoggedInd() {
+        return keepMeLoggedInd;
+    }
+
+    public void setKeepMeLoggedInd(boolean keepMeLoggedInd) {
+        this.keepMeLoggedInd = keepMeLoggedInd;
+    }
 
     public Map<String, Object> getJsonInfo() {
         return jsonInfo;

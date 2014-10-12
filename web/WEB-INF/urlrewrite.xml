@@ -4,10 +4,18 @@
 <urlrewrite>
     <rule>
        <from>/$</from>
-       <to type="redirect">%{context-path}/index.html</to>
+       <to type="forward">%{context-path}/index.html</to>
     </rule>
     <rule>
-        <from>/blog/(.*)</from>
+        <from>/blog/archives$</from>
+        <to type="forward">/archives.html</to>
+    </rule>
+    <rule>
+        <from>/blog/(.*).txt$</from>
         <to type="forward">/blog.html?uri=$1</to>
+    </rule>
+    <rule>
+        <from>/category/(.*).txt$</from>
+        <to type="forward">/category.html?uri=$1</to>
     </rule>
 </urlrewrite>

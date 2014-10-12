@@ -45,10 +45,38 @@ public class CategoryAjaxAction extends ActionSupport {
         return "json";
     }
 
+    public String delete() throws Exception {
+        int result = categoryService.delete(this.id);
+        boolean temp = (result > 0) ? true : false;
+        this.jsonInfo.put("status", temp);
+        switch (result) {
+            case -1:
+                this.jsonInfo.put("tips", "参数错误");
+                break;
+            case -2:
+                this.jsonInfo.put("tips", "删除失败");
+                break;
+        }
+        return "json";
+    }
+
     public String list() throws Exception {
         this.jsonInfo.put("categories", categoryService.list());
         return "json";
     }
+
+    public String setdefault() throws Exception {
+        if (categoryService.setDefaultCategory(this.id)) {
+            this.jsonInfo.put("status", true);
+            this.jsonInfo.put("tips", "设置默认分类成功");
+        } else {
+            this.jsonInfo.put("status", false);
+            this.jsonInfo.put("tips", "设置默认分类失败");
+        }
+        return "json";
+    }
+
+
 
 
 

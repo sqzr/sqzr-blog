@@ -12,6 +12,15 @@
         <typeAlias type="model.Category" alias="Category"/>
         <typeAlias type="model.Option" alias="Option"/>
     </typeAliases>
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageHelper">
+            <property name="dialect" value="mysql"/>
+            <!--<property name="pageSizeZero" value="true"/>-->
+            <property name="offsetAsPageNum" value="true"/>
+            <property name="rowBoundsWithCount" value="true"/>
+            <property name="reasonable" value="true"/>
+        </plugin>
+    </plugins>
     <environments default="development">
         <environment id="development">
             <transactionManager type="JDBC"/>

@@ -23,4 +23,18 @@ public interface UserDao {
      * 获取用户密码
      */
     public String getPassword(int id);
+
+    /**
+     * 通过keeplogin获取user
+     * @param keeplogin
+     * @return
+     */
+    public User getUserByKeeplogin(String keeplogin);
+
+    /**
+     * 更新keeplogin
+     * @param user
+     * @return
+     */
+    public int updateKeeplogin(User user);
 }

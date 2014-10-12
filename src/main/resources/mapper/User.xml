@@ -29,4 +29,13 @@
     <select id="getPassword" parameterType="int" resultType="String">
         select password from user where id = #{id}
     </select>
+    
+    <select id="getUserByKeeplogin" parameterType="String" resultType="User">
+        select * from user where keeplogin = #{keeplogin}
+    </select>
+
+    <update id="updateKeeplogin" parameterType="User">
+        update user set keeplogin = #{keeplogin}
+        where id = #{id}
+    </update>
 </mapper>

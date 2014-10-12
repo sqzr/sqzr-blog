@@ -38,11 +38,11 @@
     
     <select id="getArticleByCategoryId" parameterType="int" resultMap="resultArticle">
         select * from article
-        where c_id = #{id} order by date desc;
+        where c_id = #{id} order by date desc
     </select>
     
     <select id="list" resultMap="resultArticle">
-        select * from article order by date desc;
+        select * from article order by date desc
     </select>
     
     <delete id="delete" parameterType="int">
@@ -60,4 +60,18 @@
         </set>
         where id = #{id}
     </update>
+    
+    <select id="getCountByUri" parameterType="String" resultType="int">
+        select count(*) from article where uri = #{uri}
+    </select>
+
+    <update id="moveArticleToDefaultCategory" parameterType="int">
+        update article set c_id = (select id from category where type = "default" limit 0,1)
+        where c_id = #{c_id}
+    </update>
+
+    <select id="getArticleCountByCategory" parameterType="int" resultType="int">
+        select count(*) from article
+        where c_id = #{c_id}
+    </select>
 </mapper>

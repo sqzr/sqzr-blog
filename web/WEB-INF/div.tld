@@ -2,12 +2,24 @@
 <taglib>
     <tlib-version>1.0</tlib-version>
     <jsp-version>1.1</jsp-version>
-    <short-name>myTag</short-name>
-    <uri>/myTag</uri>
+    <short-name>divtag</short-name>
+    <uri>/divtag</uri>
 
     <tag>
-        <name>myTag</name>
+        <name>dateformat</name>
         <tag-class>tag.DateFormatTag</tag-class>
+        <body-content>scriptless</body-content>
+    </tag>
+    
+    <tag>
+        <name>htmlmoresplit</name>
+        <tag-class>tag.HtmlMoreSplitTag</tag-class>
+        <body-content>scriptless</body-content>
+    </tag>
+
+    <tag>
+        <name>markdown</name>
+        <tag-class>tag.MarkdownTag</tag-class>
         <body-content>scriptless</body-content>
     </tag>
 </taglib>

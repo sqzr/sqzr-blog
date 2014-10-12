@@ -44,14 +44,6 @@
                         </small>
                     </h1>
                 </div>
-                <div class="alert alert-block hidden" id="add-tips">
-                    <button type="button" class="close" id="close-add-tips">
-                        <i class="icon-remove"></i>
-                    </button>
-                    <i class="icon-ok green" id="add-icon"></i>
-                    <font id="add-tips-text">
-                    </font>
-                </div>
                 <div class="form-group" style="height: 50px;">
                     <div class="row" style="height: 40px;">
                     <div class="col-xs-12 titleFrom">
@@ -113,7 +105,7 @@
                                         </s2:if>
                                         <s2:else>
                                         <select class="width-80 chosen-select" id="c_id" data-placeholder="Choose a Country..." style="display: none;">
-                                            <option value="">&nbsp;</option>
+                                            <option value="0">&nbsp;</option>
                                             <s2:iterator value="categories">
                                                 <option value="<s2:property value="id"/>"><s2:property value="name"/></option>
                                             </s2:iterator>
@@ -169,9 +161,6 @@
             };
             add(params);
         });
-        $("#close-add-tips").click(function () {
-            $("#add-tips").addClass("hidden");
-        });
         $(".category-refresh").click(
                 function(){
                     $.ajax({
@@ -198,24 +187,19 @@
             data: JSON.stringify(params),
             contentType: 'application/json',
             success: function (data) {
-                $("#add-tips").removeClass("hidden");
-                $("#add-tips-text").html(data.tips);
                 if (data.status == true) {
                     //成功
                     if(params['type'] == "post") {
                         // 发表文章 跳到文章列表
-                        window.location.href="/admin/main_article_list.html";
+                        myAlert(data.tips + "&nbsp;<a href='/admin/main_article_update.html?id="+data.article_id+"'>点击编辑</a>", "info");
                     }else if(params['type'] == "post_draft") {
                         // 保存草稿 跳到编辑文章
-                        window.location.href="/admin/main_article_update.html?id="+data.article_id;
+                        myAlert("添加草稿成功,自动跳转中..", "info");
+                        window.setTimeout(function(){location.href='/admin/main_article_update.html?id='+data.article_id},2000);
+//                        window.location.href="/admin/main_article_update.html?id="+data.article_id;
                     }
-                    $("#add-tips").attr("class", "alert alert-block alert-success fade in");
-                    $("#add-icon").attr("class", "icon-ok green");
-                    $("#add-tips-text").html("&nbsp;&nbsp;<a href='/admin/main_article_update.html?id="+data.article_id+"'>点击编辑</a>");
-                } else {
-                    //失败
-                    $("#add-tips").attr("class", "alert alert-block alert-danger fade in");
-                    $("#add-icon").attr("class", "icon-remove red");
+                } else if(data.status == false) {
+                    myAlert(data.tips, "error");
                 }
                 $('body,html').animate({scrollTop:0},1000);
             }
