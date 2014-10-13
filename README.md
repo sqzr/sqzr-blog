@@ -1,38 +1,15 @@
 #sqzr-Blog
 
-## 开发进度
-2014-09-25 完成简单的文章增删改 分类增删改 后台ui [a9554b6b3527bbff8df6df41c1720072305c8ed9](https://coding.net/u/sqzr/p/sqzrBlog/git/commit/a9554b6b3527bbff8df6df41c1720072305c8ed9)
+## 简介
+基于struts2 + mybatis + spring 开发的博客程序,后台UI采用ace Bootstrap模板,目前只是简单实现了基本的文章分类的增删改以及博客基础信息的修改
 
-## 项目结构
-```
-src
-├─main
-│  ├─java
-│  │  ├─action
-│  │  │  └─admin
-│  │  ├─dao
-│  │  │  └─impl
-│  │  ├─factory
-│  │  ├─Interceptors
-│  │  ├─model
-│  │  ├─service
-│  │  │  └─impl
-│  │  ├─util
-│  │  └─webException
-│  └─resources
-│      └─mapper
-└─test
-    └─java
+## 开发目的
+一直没有项目经验,[自己博客](http://sqzr.cc) 一直采用octpress静态生成,想添加一点功能又不懂ruby.自学完java基础后,就开始动手构建一个这样的博客程序
 
-web
-├─admin
-│  └─common
-├─error
-├─font
-├─images
-│  └─avatar
-├─javascripts
-├─stylesheets
-└─WEB-INF
-```
+## 程序截图
+
+![前台](http://dn-sqzr.qbox.me/coding_1.png)
+
+![后台](http://dn-sqzr.qbox.me/coding_2.png)
+
 
