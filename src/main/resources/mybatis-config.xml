@@ -13,7 +13,7 @@
         <typeAlias type="model.Option" alias="Option"/>
     </typeAliases>
     <plugins>
-        <plugin interceptor="com.github.pagehelper.PageHelper">
+        <plugin interceptor="other.PageHelper">
             <property name="dialect" value="mysql"/>
             <!--<property name="pageSizeZero" value="true"/>-->
             <property name="offsetAsPageNum" value="true"/>

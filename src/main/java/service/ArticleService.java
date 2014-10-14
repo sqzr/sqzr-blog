@@ -1,7 +1,6 @@
 package service;
 
-import com.github.pagehelper.Page;
-import com.github.pagehelper.PageInfo;
+import other.Page;
 import webException.NotFoundException;
 import webException.ParameterIsEmptyException;
 import model.Article;

@@ -4,7 +4,11 @@
 <urlrewrite>
     <rule>
        <from>/$</from>
-       <to type="forward">%{context-path}/index.html</to>
+       <to type="forward">/index.html?page=1</to>
+    </rule>
+    <rule>
+        <from>/page/([0-9]+).txt$</from>
+        <to type="forward">/index.html?page=$1</to>
     </rule>
     <rule>
         <from>/blog/archives$</from>

@@ -33,10 +33,19 @@
                     </s2:iterator>
                 </div>
                 <nav id="pagenavi">
-
-
-                    <a href="/blog/page/2/" class="next">Next</a>
-
+                    <s2:set name="nextPage" value="articlePage.pageNum + 1"/>
+                    <s2:set name="previousPage" value="articlePage.pageNum - 1"/>
+                    <s2:if test="articlePage.pageNum > 1">
+                        <s2:if test="articlePage.pageNum == 2">
+                            <a href="/" class="prev">Prev</a>
+                        </s2:if>
+                        <s2:else>
+                            <a href="/page/<s2:property value="#previousPage"/>.txt" class="prev">Prev</a>
+                        </s2:else>
+                    </s2:if>
+                    <s2:if test="articlePage.endRow < articlePage.total">
+                    <a href="/page/<s2:property value="#nextPage"/>.txt" class="next">Next</a>
+                    </s2:if>
                     <div class="center"><a href="/blog/archives">Blog Archives</a></div>
                 </nav>
             </div>
@@ -55,8 +64,6 @@
             })(jQuery);
         </script>
         <!-- Delete or comment this line to disable Fancybox -->
-
-
         <script type="text/javascript">
             var _gaq = _gaq || [];
             _gaq.push(['_setAccount', 'UA-50395475-1']);
@@ -74,5 +81,6 @@
 
     </div>
 </div>
+
 </body>
 </html>

@@ -1,7 +1,6 @@
 package action.show;
 
-import com.github.pagehelper.Page;
-import com.github.pagehelper.PageInfo;
+import other.Page;
 import com.opensymphony.xwork2.ActionSupport;
 import model.Article;
 import model.Option;
@@ -24,9 +23,13 @@ public class IndexAction extends ActionSupport {
     private Article article;
     private Map<String, Object> options = new HashMap<String, Object>();
     private String uri;
+    private int page;
 
     public String index() throws Exception {
-        this.articlePage = articleService.list(1,4);
+        /**
+         * 默认一页显示五文章
+         */
+        this.articlePage = articleService.list(this.page,5);
         this.options = optionService.getAllOption();
         return "success";
     }
@@ -51,6 +54,14 @@ public class IndexAction extends ActionSupport {
 
     // ---
 
+
+    public int getPage() {
+        return page;
+    }
+
+    public void setPage(int page) {
+        this.page = page;
+    }
 
     public Page<Article> getArticlePage() {
         return articlePage;

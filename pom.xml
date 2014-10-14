@@ -110,11 +110,11 @@
             <artifactId>markdown4j</artifactId>
             <version>2.2-cj-1.0</version>
         </dependency>
-        <dependency>
-            <groupId>com.github.pagehelper</groupId>
-            <artifactId>pagehelper</artifactId>
-            <version>3.2.3</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.github.pagehelper</groupId>-->
+            <!--<artifactId>pagehelper</artifactId>-->
+            <!--<version>3.2.3</version>-->
+        <!--</dependency>-->
         <!--可选依赖，如果使用就会处理order by，如果不使用就不会处理order by-->
         <dependency>
             <groupId>com.foundationdb</groupId>

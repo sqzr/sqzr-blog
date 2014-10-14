@@ -1,16 +1,13 @@
 package service.impl;
 
-import com.github.pagehelper.Page;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
+import other.Page;
+import other.PageHelper;
 import dao.ArticleDao;
 import dao.CategoryDao;
 import dao.LogDao;
 import factory.LogFactory;
-import model.Category;
 import opensource.jpinyin.PinyinFormat;
 import opensource.jpinyin.PinyinHelper;
-import org.ocpsoft.prettytime.PrettyTime;
 import webException.*;
 import model.Article;
 import service.ArticleService;
@@ -83,7 +80,6 @@ public class ArticleServiceImpl implements ArticleService {
     public Page<Article> list(int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
         Page<Article> page = (Page<Article>) articleDao.list();
-        System.out.println(page.toString());
         return page;
     }
 
