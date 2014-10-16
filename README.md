@@ -8,8 +8,8 @@
 
 ## 程序截图
 
-![前台](http://dn-sqzr.qbox.me/coding_1.png)
+![前台](http://dn-sqzr.qbox.me/coding_1_1.png)
 
-![后台](http://dn-sqzr.qbox.me/coding_2.png)
+![后台](http://dn-sqzr.qbox.me/coding_2_1.png)
 
 

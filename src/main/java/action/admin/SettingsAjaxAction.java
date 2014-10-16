@@ -42,6 +42,8 @@ public class SettingsAjaxAction extends ActionSupport {
     private String oldPassword;
     private String newPassword;
     private String reqNewPassword;
+    // --- 设置
+    private String pagenumber;
 
     public SettingsAjaxAction() {
         this.request = ServletActionContext.getRequest();
@@ -84,12 +86,29 @@ public class SettingsAjaxAction extends ActionSupport {
                 this.jsonInfo.put("status", false);
                 this.jsonInfo.put("info", "密码修改失败,旧密码错误");
             }
+            return "json";
+        }
+
+        if ("settingsTab".equals(type)) {
+            options.add(new Option("pagenumber", pagenumber));
+            optionService.updateAll(options);
+            this.jsonInfo.put("status", true);
+            this.jsonInfo.put("info", "更新成功");
+            return "json";
         }
         return "json";
     }
 
     // ---
 
+
+    public String getPagenumber() {
+        return pagenumber;
+    }
+
+    public void setPagenumber(String pagenumber) {
+        this.pagenumber = pagenumber;
+    }
 
     public String getOldPassword() {
         return oldPassword;

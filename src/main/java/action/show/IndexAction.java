@@ -26,11 +26,9 @@ public class IndexAction extends ActionSupport {
     private int page;
 
     public String index() throws Exception {
-        /**
-         * 默认一页显示五文章
-         */
-        this.articlePage = articleService.list(this.page,5);
         this.options = optionService.getAllOption();
+        Map<String, String> numberMap = (HashMap<String,String>) this.options.get("pagenumber");
+        this.articlePage = articleService.list(this.page, Integer.parseInt(numberMap.get("value")));
         return "success";
     }
 

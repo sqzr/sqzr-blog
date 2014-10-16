@@ -21,7 +21,7 @@
                             </time></span>
                                 <br>
 		<span class="tags">
-	<a class="category" href="/blog/category/<s2:property value="category.uri"/>.txt"><s2:property value="category.name"/></a>
+	<a class="category" href="/category/<s2:property value="category.uri"/>.txt"><s2:property value="category.name"/></a>
 </span>
                             </div>
                             <h1 class="title" itemprop="name"><a href="/blog/<s2:property value="uri"/>.txt"><s2:property value="title"/></a>

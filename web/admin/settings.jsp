@@ -184,17 +184,6 @@
 																	</span>
             </div>
         </div>
-        <%--<div class="form-group">
-            <label class="col-sm-1 control-label no-padding-right" for="form-field-weibo">t-weibo</label>
-
-            <div class="col-sm-9">
-                                                                        <span class="input-icon col-xs-12 col-sm-5">
-                                                                            <input class="col-xs-12 col-sm-12" type="text" value="<s2:property value="options.tqq.value"/>"
-                                                                                   id="form-field-tqq" style="margin-left: -12px;">
-                                                                            <i class="icon-tencent-weibo ls"></i>
-                                                                        </span>
-            </div>
-        </div>--%>
         <div class="form-group">
             <label class="col-sm-1 control-label no-padding-right" for="form-field-github">github</label>
 
@@ -212,36 +201,31 @@
     <div id="edit-settings" class="tab-pane">
         <div class="space-10"></div>
 
+        <%--<div>--%>
+            <%--<label class="inline">--%>
+                <%--<input type="checkbox" name="form-field-checkbox" class="ace">--%>
+                <%--<span class="lbl"> Make my profile public</span>--%>
+            <%--</label>--%>
+        <%--</div>--%>
+
+        <%--<div class="space-8"></div>--%>
+
+        <%--<div>--%>
+            <%--<label class="inline">--%>
+                <%--<input type="checkbox" name="form-field-checkbox" class="ace">--%>
+                <%--<span class="lbl"> Email me new updates</span>--%>
+            <%--</label>--%>
+        <%--</div>--%>
+
+        <%--<div class="space-8"></div>--%>
+
         <div>
             <label class="inline">
-                <input type="checkbox" name="form-field-checkbox" class="ace">
-                <span class="lbl"> Make my profile public</span>
+                <span class="lbl"> 每页文章数量:</span>
             </label>
-        </div>
-
-        <div class="space-8"></div>
-
-        <div>
-            <label class="inline">
-                <input type="checkbox" name="form-field-checkbox" class="ace">
-                <span class="lbl"> Email me new updates</span>
-            </label>
-        </div>
-
-        <div class="space-8"></div>
-
-        <div>
-            <label class="inline">
-                <input type="checkbox" name="form-field-checkbox" class="ace">
-                <span class="lbl"> Keep a history of my conversations</span>
-            </label>
-
             <label class="inline">
                 <span class="space-2 block"></span>
-
-                for
-                <input type="text" class="input-mini" maxlength="3">
-                days
+                <input type="text" class="input-mini" id="form-field-pagenumber" maxlength="2" value="<s2:property value="options.pagenumber.value"/>">
             </label>
         </div>
     </div>
@@ -285,20 +269,7 @@
 </div>
 </div>
 </div>
-<%--<script src="/javascripts/jquery-ui-1.10.3.custom.min.js"></script>--%>
-<%--<script src="/javascripts/jquery.ui.touch-punch.min.js"></script>--%>
-<%--<script src="/javascripts/jquery.easy-pie-chart.min.js"></script>--%>
-<%--<script src="/javascripts/jquery.gritter.min.js"></script>--%>
 <script type="text/javascript">
-    function myAlert(alertMessage, type) {
-        $._messengerDefaults = {
-            extraClasses: 'messenger-fixed messenger-on-bottom messenger-on-right',
-            theme: 'air'
-        }
-        $.globalMessenger().post({message: alertMessage, type: type, showCloseButton: true});
-    }
-
-
     $('#settings-save').click(function () {
         var tab = $(".tabbable .active").attr("id");
         if(tab == "infoTab"){
@@ -314,7 +285,7 @@
                 "googleplus":$("#form-field-googleplus").val(),
                 "weibo":$("#form-field-weibo").val(),
                 "github":$("#form-field-github").val()
-            }
+            };
         }
         if(tab == "passwordTab"){
             var params = {
@@ -322,9 +293,14 @@
                 "oldPassword":$("#form-field-oldPassword").val(),
                 "newPassword":$("#form-field-newPassword").val(),
                 "reqNewPassword":$("#form-field-reqNewPassword").val()
-            }
+            };
         }
-
+        if(tab == "settingsTab"){
+            var params = {
+                "type" : "settingsTab",
+                "pagenumber" : $("#form-field-pagenumber").val()
+            };
+        }
         $.ajax({
             type: "post",
             url : "/ajax/admin/main_settings_update.html",
