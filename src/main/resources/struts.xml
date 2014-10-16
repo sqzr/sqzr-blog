@@ -33,15 +33,16 @@
             <result name="404error_view" type="redirect">/error/view/404.html</result>
         </global-results>
         <global-exception-mappings>
-            <exception-mapping exception="webException.ParameterIsEmptyException" result="500error_view"></exception-mapping>
-            <exception-mapping exception="webException.NotFoundException" result="404error_view"></exception-mapping>
+            <!--<exception-mapping exception="java.lang.NoSuchMethodException" result="500error_view"/>-->
+            <exception-mapping exception="webException.ParameterIsEmptyException" result="500error_view"/>
+            <exception-mapping exception="webException.NotFoundException" result="404error_view"/>
         </global-exception-mappings>
     </package>
 
     <!-- 错误提示 直接显示 -->
     <package name="errorView" namespace="/error/view" extends="struts-default">
-        <action name="500"><result name="success">/admin/common/500.jsp</result></action>
-        <action name="404"><result name="success">/admin/common/404.jsp</result></action>
+        <action name="500"><result name="success">/admin/common/sqzr_500.jsp</result></action>
+        <action name="404"><result name="success">/admin/common/sqzr_404.jsp</result></action>
     </package>
 
     <!-- 错误提示 json输出 -->
@@ -89,7 +90,7 @@
         <action name="user_*" class="action.admin.UserViewAction" method="{1}">
             <interceptor-ref name="defaultStack"/>
             <result name="success">
-                /admin/{1}.jsp
+                /admin/sqzr_{1}.jsp
             </result>
             <result type="redirect" name="logout">
                 /admin/user_login.html
@@ -98,7 +99,7 @@
 
         <action name="main_*" class="action.admin.MainViewAction" method="{1}">
             <result name="success">
-                /admin/{1}.jsp
+                /admin/sqzr_{1}.jsp
             </result>
             <result name="article_delete" type="redirect">
                 /admin/main_article_list.html
@@ -112,7 +113,7 @@
     <!-- 前台界面 -->
     <package name="index" namespace="/" extends="struts-default">
         <action name="*" class="action.show.IndexAction" method="{1}">
-            <result name="success">/show/{1}.jsp</result>
+            <result name="success">/show/sqzr_{1}.jsp</result>
         </action>
     </package>
 </struts>

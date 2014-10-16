@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="s2" uri="/struts-tags" %>
-<%@ include file="header.jsp" %>
+<%@ include file="sqzr_header.jsp" %>
 <body>
 <div class="navbar navbar-default" id="navbar" style="height: 10px;">
     <script type="text/javascript">

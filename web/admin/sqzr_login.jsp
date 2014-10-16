@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="common/header.jsp" %>
+<%@include file="common/sqzr_header.jsp" %>
 <body class="login-layout">
 <div class="main-container">
     <div class="main-content">
@@ -125,4 +125,4 @@
     }
 </script>
 <!-- external javascript -->
-<%@include file="common/footer.jsp" %>
+<%@include file="common/sqzr_footer.jsp" %>

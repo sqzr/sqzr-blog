@@ -1,12 +1,6 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: weiyang
-  Date: 2014/9/18
-  Time: 11:33
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ include file="common/header-main.jsp" %>
+<%@ taglib prefix="div" uri="/divtag" %>
+<%@ include file="common/sqzr_header-main.jsp" %>
 <div class="main-container" id="main-container">
     <script type="text/javascript">
         try {
@@ -15,7 +9,7 @@
         }
     </script>
     <div class="main-container-inner">
-        <%@ include file="common/sidebar.jsp" %>
+        <%@ include file="common/sqzr_sidebar.jsp" %>
         <div class="main-content">
             <div class="breadcrumbs" id="breadcrumbs">
                 <script type="text/javascript">
@@ -29,17 +23,17 @@
                         <i class="icon-home home-icon"></i>
                         <a href="/admin/main_index.html">首页</a>
                     </li>
-                    <li class="active">分类</li>
+                    <li class="active">文章列表</li>
                 </ul>
                 <!-- .breadcrumb -->
             </div>
             <div class="page-content">
                 <div class="page-header">
                     <h1>
-                        <a href="/admin/main_article_list.html">分类</a>
+                        文章
                         <small>
                             <i class="icon-double-angle-right"></i>
-                            名称:<s2:property value="category.name"/>
+                            列表
                         </small>
                     </h1>
                 </div>
@@ -56,7 +50,7 @@
                                                 <h1 class="grey lighter smaller">
 											<span class="blue bigger-125">
 												<i class="icon-sitemap"></i>
-												此分类还没有文章
+												你还没有文章呢
 											</span>
                                                 </h1>
                                                 <hr>
@@ -85,18 +79,18 @@
                                                 <th>分类</th>
                                                 <th>
                                                     <i class="icon-time bigger-110 hidden-480"></i>
-                                                    发表时间
+                                                    日期
                                                 </th>
                                                 <th></th>
                                             </tr>
                                             </thead>
-
                                             <tbody>
-                                            <s2:iterator value="articles">
+                                            <s2:iterator value="articles" id="article">
                                                 <tr class="selected">
-                                                    <td><s2:property value="title"/><s2:if test="type == 'post_draft'">&nbsp;<span class="label label-sm label-inverse arrowed-in">草稿</span></s2:if></td></td>
-                                                    <td><s2:property value="category.name"/></td>
-                                                    <td><s2:date name="date" format="yyyy-MM-dd HH:mm"/></td>
+                                                    <td><s2:property value="title"/><s2:if test="type == 'post_draft'">&nbsp;<span class="label label-sm label-inverse arrowed-in">草稿</span></s2:if></td>
+                                                    <td><a href="/admin/main_category_list.html?id=<s2:property value="category.id"/>"><s2:property value="category.name"/></a></td>
+                                                    <td><div:dateformat><s2:date name="date" format="yyyy-MM-dd HH:mm:ss"/></div:dateformat></td>
+                                                    <%--<td><s2:date name="date" format="yyyy-MM-dd HH:mm"/></td>--%>
                                                     <td>
                                                         <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
                                                             <a href="/admin/main_article_update.html?id=<s2:property value="id"/>"
@@ -144,30 +138,6 @@
                                                 </tr>
                                             </s2:iterator>
                                             </tbody>
-                                            <div class="modal hidd">
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <button type="button" class="close" data-dismiss="modal">
-                                                                <span aria-hidden="true">&times;</span><span
-                                                                    class="sr-only">Close</span></button>
-                                                            <h4 class="modal-title">删除确认</h4>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <p>您确认要删除此条吗？</p>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-default"
-                                                                    data-dismiss="modal">取消
-                                                            </button>
-                                                            <a href="#" id="btn-delete-confirm" class="btn btn-primary">确定</a>
-                                                        </div>
-                                                    </div>
-                                                    <!-- /.modal-content -->
-                                                </div>
-                                                <!-- /.modal-dialog -->
-                                            </div>
-                                            <!-- /.modal -->
                                         </table>
                                     </s2:else>
                                 </div>
@@ -182,42 +152,42 @@
             </div>
         </div>
     </div>
-    <script src="/javascripts/bootbox.min.js"></script>
-    <script type="text/javascript">
-        function deleteConfirm(id) {
-            bootbox.dialog({
-                message:"确定要删除么?",
-                title:"提示",
-                buttons:{
-                    no : {
-                        label: "离开",
-                        className: "btn-default"
-                    },
-                    ok : {
-                        label: "删除",
-                        className: "btn-primary",
-                        callback: function() {
-                            var params = {
-                                "id":id
-                            };
-                            $.ajax({
-                                type: "post",
-                                url: "/ajax/admin/main_article_delete.html",
-                                dataType: 'json',
-                                data: JSON.stringify(params),
-                                contentType: 'application/json',
-                                success: function (data) {
-                                    if (data.status == true) {
-                                        location.reload(true);
-                                    } else if(data.status == false) {
-                                        myAlert(data.tips, "error");
-                                    }
+</div>
+<script src="/javascripts/bootbox.min.js"></script>
+<script type="text/javascript">
+    function deleteConfirm(id) {
+        bootbox.dialog({
+            message:"确定要删除么?",
+            title:"提示",
+            buttons:{
+                no : {
+                    label: "离开",
+                    className: "btn-default"
+                },
+                ok : {
+                    label: "删除",
+                    className: "btn-primary",
+                    callback: function() {
+                        var params = {
+                            "id":id
+                        };
+                        $.ajax({
+                            type: "post",
+                            url: "/ajax/admin/main_article_delete.html",
+                            dataType: 'json',
+                            data: JSON.stringify(params),
+                            contentType: 'application/json',
+                            success: function (data) {
+                                if (data.status == true) {
+                                    location.reload(true);
+                                } else if(data.status == false) {
+                                    myAlert(data.tips, "error");
                                 }
-                            });
-                        }
+                            }
+                        });
                     }
                 }
-            });
-        }
-    </script>
-</div>
+            }
+        });
+    }
+</script>

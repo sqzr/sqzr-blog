@@ -1,9 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="s2" uri="/struts-tags" %>
 <%@ taglib prefix="div" uri="/divtag" %>
-<s2:include value="common/header.jsp"/>
+<s2:include value="common/sqzr_header.jsp"/>
 <div class="container">
-    <s2:include value="common/sipder.jsp"/>
+    <s2:include value="common/sqzr_sipder.jsp"/>
     <div class="mid-col">
         <div class="mid-col-container">
             <div id="content" class="inner">

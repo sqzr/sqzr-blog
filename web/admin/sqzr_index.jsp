@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ include file="common/header-main.jsp" %>
+<%@ include file="common/sqzr_header-main.jsp" %>
 <div class="main-container" id="main-container">
 <script type="text/javascript">
     try {
@@ -15,7 +15,7 @@
     }
 </script>
 <div class="main-container-inner">
-    <%@ include file="common/sidebar.jsp" %>
+    <%@ include file="common/sqzr_sidebar.jsp" %>
     <div class="main-content">
         <div class="breadcrumbs" id="breadcrumbs">
             <script type="text/javascript">
