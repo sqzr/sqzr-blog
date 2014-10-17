@@ -82,4 +82,11 @@ public interface ArticleDao {
      * @return int 文章数
      */
     public int getArticleCountByCategory(int c_id);
+
+    /**
+     * 批量删除
+     * @param batch
+     * @return 受影响行数
+     */
+    public int batchDelete(List<Integer> batch);
 }

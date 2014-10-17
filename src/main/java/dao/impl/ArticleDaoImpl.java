@@ -69,6 +69,11 @@ public class ArticleDaoImpl implements ArticleDao {
         return sqlSession.selectOne("model.Article.getArticleCountByCategory",c_id);
     }
 
+    @Override
+    public int batchDelete(List<Integer> batch) {
+        return sqlSession.delete("model.Article.batchDelete", batch);
+    }
+
     // ---
 
 

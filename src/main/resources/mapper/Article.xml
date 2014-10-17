@@ -74,4 +74,11 @@
         select count(*) from article
         where c_id = #{c_id}
     </select>
+    
+    <delete id="batchDelete" parameterType="list">
+      delete from article where id in
+      <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+          #{item}
+      </foreach>
+    </delete>
 </mapper>

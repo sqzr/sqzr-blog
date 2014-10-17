@@ -37,7 +37,7 @@
             <div class="page-content">
                 <div class="page-header">
                     <h1>
-                        文章
+                        <a href="/admin/main_article_list.html">文章</a>
                         <small>
                             <i class="icon-double-angle-right"></i>
                             添加文章

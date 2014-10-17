@@ -320,12 +320,11 @@
                 success: function (data) {
                     if (data.status == true) {
                         //添加成功
-                        myAlert(data.tips,"info");
+                        location.reload(true);
                     } else if (data.status == false) {
                         //添加失败
                         myAlert(data.tips,"error");
                     }
-                    $('body,html').animate({scrollTop:0},1000);
                 }
             });
         }

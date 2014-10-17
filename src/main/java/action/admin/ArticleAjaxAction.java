@@ -10,6 +10,7 @@ import service.ArticleService;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -26,6 +27,7 @@ public class ArticleAjaxAction extends ActionSupport {
     private int c_id;
     private int oldcid;
     private int newcid;
+    private List<Integer> batch;
 
     /**
      * 添加文章
@@ -100,8 +102,31 @@ public class ArticleAjaxAction extends ActionSupport {
         }
         return "json";
     }
+
+    public String delete_batch() throws Exception {
+        int result = articleService.batchDelete(batch);
+        boolean temp = (result > 0) ? true : false;
+        this.jsonInfo.put("status", temp);
+        switch (result) {
+            case -1:
+                this.jsonInfo.put("tips", "没有文章被删除");
+                break;
+            case -2:
+                this.jsonInfo.put("tips", "没有文章被删除");
+                break;
+        }
+        return "json";
+    }
     // ---
 
+
+    public List<Integer> getBatch() {
+        return batch;
+    }
+
+    public void setBatch(List<Integer> batch) {
+        this.batch = batch;
+    }
 
     public String getType() {
         return type;

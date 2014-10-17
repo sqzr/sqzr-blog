@@ -30,10 +30,6 @@
         </init-param>
     </filter>
     <filter-mapping>
-        <filter-name>JspAccessFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
-    <filter-mapping>
         <filter-name>UrlRewriteFilter</filter-name>
         <url-pattern>/*</url-pattern>
         <dispatcher>REQUEST</dispatcher>
@@ -41,9 +37,14 @@
         <dispatcher>INCLUDE</dispatcher>
     </filter-mapping>
     <filter-mapping>
+        <filter-name>JspAccessFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
         <filter-name>struts2</filter-name>
         <url-pattern>/*</url-pattern>
         <dispatcher>REQUEST</dispatcher>
         <dispatcher>FORWARD</dispatcher>
+        <dispatcher>INCLUDE</dispatcher>
     </filter-mapping>
 </web-app>

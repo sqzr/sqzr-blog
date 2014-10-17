@@ -97,6 +97,21 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    public int batchDelete(List<Integer> batch) {
+        if (batch.size() == 0) {
+            return -1;
+        }
+        for (int temp : batch) {
+            categoryDao.minusCount(articleDao.getCategoryIdByArticleId(temp),1);
+        }
+        int result = articleDao.batchDelete(batch);
+        if (result == 0) {
+            return -2;
+        }
+        return 1;
+    }
+
+    @Override
     public int update(Article article,int new_c_id) throws ParameterIsEmptyException, NotFoundException {
         if (article.getId() == 0) {
             throw new ParameterIsEmptyException("参数错误");
@@ -153,6 +168,8 @@ public class ArticleServiceImpl implements ArticleService {
     public List<Article> getArticleListByCategoryUri(String uri) {
         return articleDao.getArticleByCategoryId(categoryDao.getCategoryByUri(uri).getId());
     }
+
+
 
     // ---
 

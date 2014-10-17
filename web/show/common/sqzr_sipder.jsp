@@ -21,7 +21,7 @@
             <nav id="main-nav">
                 <ul class="main-navigation">
                     <li><a href="/">Blog</a></li>
-                    <li><a href="/blog/archives">Archives</a></li>
+                    <li><a href="/blog/archives.shtml">Archives</a></li>
                 </ul>
                 <section class="aboutme">
                     <p>

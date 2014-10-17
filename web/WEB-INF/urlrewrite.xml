@@ -7,19 +7,19 @@
        <to type="forward">/index.html?page=1</to>
     </rule>
     <rule>
-        <from>/page/([0-9]+).txt$</from>
+        <from>/page/([0-9]+)\.shtml</from>
         <to type="forward">/index.html?page=$1</to>
     </rule>
     <rule>
-        <from>/blog/archives$</from>
+        <from>/blog/archives.shtml</from>
         <to type="forward">/archives.html</to>
     </rule>
     <rule>
-        <from>/blog/(.*).txt$</from>
+        <from>/blog/(.*)\.shtml</from>
         <to type="forward">/blog.html?uri=$1</to>
     </rule>
     <rule>
-        <from>/category/(.*).txt$</from>
+        <from>/category/(.*)\.shtml</from>
         <to type="forward">/category.html?uri=$1</to>
     </rule>
 </urlrewrite>

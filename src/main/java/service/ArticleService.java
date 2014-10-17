@@ -67,4 +67,13 @@ public interface ArticleService {
      * @return
      */
     public List<Article> getArticleListByCategoryUri(String uri);
+
+    /**
+     * 批量删除
+     * @param batch
+     * @return -1 传递的数组为空
+     * @return -2 没有文章被删除
+     * @return 受影响行数
+     */
+    public int batchDelete(List<Integer> batch);
 }
