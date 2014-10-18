@@ -29,6 +29,9 @@ public class SettingsAjaxAction extends ActionSupport {
     // vo在ajax传输的时无法接收,暂没找到解决办法
     private String type;
     private String title;
+    private String url;
+    private String authorname;
+    private String authoremail;
     private String subtitle;
     private String description;
     private String htmlkeyword;
@@ -55,6 +58,9 @@ public class SettingsAjaxAction extends ActionSupport {
         if ("infoTab".equals(type)) {
             // 更新基础信息
             options.add(new Option("title",title));
+            options.add(new Option("url", url));
+            options.add(new Option("authoremail", authoremail));
+            options.add(new Option("authorname", authorname));
             options.add(new Option("subtitle",subtitle));
             options.add(new Option("description",description));
             options.add(new Option("htmlkeyword",htmlkeyword));
@@ -101,6 +107,30 @@ public class SettingsAjaxAction extends ActionSupport {
 
     // ---
 
+
+    public String getAuthoremail() {
+        return authoremail;
+    }
+
+    public void setAuthoremail(String authoremail) {
+        this.authoremail = authoremail;
+    }
+
+    public String getAuthorname() {
+        return authorname;
+    }
+
+    public void setAuthorname(String authorname) {
+        this.authorname = authorname;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
     public String getPagenumber() {
         return pagenumber;

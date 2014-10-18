@@ -100,6 +100,33 @@
                         </div>
                         <div class="space-4"></div>
                         <div class="form-group">
+                            <label class="col-sm-4 control-label no-padding-right" for="form-field-url">网站地址</label>
+
+                            <div class="col-sm-8">
+                                <input class="col-xs-12 col-sm-12" type="text" id="form-field-url"
+                                       value="<s2:property value="options.url.value"/>">
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label no-padding-right" for="form-field-url">作者姓名</label>
+
+                            <div class="col-sm-8">
+                                <input class="col-xs-12 col-sm-12" type="text" id="form-field-authorname"
+                                       value="<s2:property value="options.authorname.value"/>">
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label no-padding-right" for="form-field-authoremail">作者邮箱</label>
+
+                            <div class="col-sm-8">
+                                <input class="col-xs-12 col-sm-12" type="text" id="form-field-authoremail"
+                                       value="<s2:property value="options.authoremail.value"/>">
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+                        <div class="form-group">
                             <label class="col-sm-4 control-label no-padding-right" for="form-field-subtitle">附标题</label>
 
                             <div class="col-sm-8">
@@ -270,6 +297,9 @@
             var params = {
                 "type": "infoTab",
                 "title": $("#form-field-title").val(),
+                "url":$("#form-field-url").val(),
+                "authoremail":$("#form-field-authoremail").val(),
+                "authorname":$("#form-field-authorname").val(),
                 "subtitle": $("#form-field-subtitle").val(),
                 "description": $("#form-field-description").val(),
                 "htmlkeyword": $("#form-field-htmlkeyword").val(),

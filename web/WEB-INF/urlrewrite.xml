@@ -7,6 +7,10 @@
        <to type="forward">/index.html?page=1</to>
     </rule>
     <rule>
+        <from>/atom.xml$</from>
+        <to type="forward">/atom.html</to>
+    </rule>
+    <rule>
         <from>/page/([0-9]+)\.shtml</from>
         <to type="forward">/index.html?page=$1</to>
     </rule>

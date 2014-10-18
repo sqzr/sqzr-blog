@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="/atom.xml" rel="alternate" title="sqzr's blog" type="application/atom+xml">
     <link href="/favicon.ico" rel="shortcut icon">
-    <link href="//dn-sqzr.qbox.me/stylesheets/screen.css" media="screen, projection" rel="stylesheet"
+    <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet"
           type="text/css">
     <link rel="canonical" href="<s2:property value="options.url.value"/>">
     <!--[if lt IE 9]>
@@ -22,13 +22,16 @@
     <script type="text/javascript" async="" src="//ssl.google-analytics.com/ga.js"></script>
     <script src="//lib.sinaapp.com/js/jquery/1.8.3/jquery.min.js"></script>
     <script src="//dn-sqzr.qbox.me/pace.min.js"></script>
+    <script src="/javascripts/highlight.pack.js"></script>
+    <link href="/stylesheets/github.css" rel="stylesheet" type="text/css">
+    <%--<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Ubuntu:regular&subset=Latin,Cyrillic">--%>
     <link href="//dn-sqzr.qbox.me/pace.css" rel="stylesheet" type="text/css">
     <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
     <link href="//dn-sqzr.qbox.me/font2.css" rel="stylesheet" type="text/css">
     <link href="//dn-sqzr.qbox.me/font3.css" rel="stylesheet" type="text/css">
 </head>
 
-
+<script>hljs.initHighlightingOnLoad();</script>
 <body class="pace-done">
 <div class="pace  pace-inactive">
     <div class="pace-progress" data-progress-text="100%" data-progress="99" style="width: 100%;">

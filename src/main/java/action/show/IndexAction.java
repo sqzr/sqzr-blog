@@ -1,13 +1,20 @@
 package action.show;
 
+import com.sqzr.rssutil.Author;
+import com.sqzr.rssutil.Entry;
+import com.sqzr.rssutil.Feed;
+import org.apache.struts2.ServletActionContext;
 import other.Page;
 import com.opensymphony.xwork2.ActionSupport;
 import model.Article;
-import model.Option;
 import org.markdown4j.Markdown4jProcessor;
 import service.ArticleService;
 import service.OptionService;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -48,6 +55,41 @@ public class IndexAction extends ActionSupport {
         this.articles = articleService.list();
         this.options = optionService.getAllOption();
         return "success";
+    }
+
+    public String atom() throws Exception {
+        this.options = optionService.getAllOption();
+        String option_title = ((HashMap<String, String>) this.options.get("title")).get("value");
+        String option_url = ((HashMap<String, String>) this.options.get("url")).get("value");
+        String option_author_name = ((HashMap<String, String>) this.options.get("authorname")).get("value");
+        String option_author_email = ((HashMap<String, String>) this.options.get("authoremail")).get("value");
+        Feed feed = new Feed();
+        feed.setXMLEncoding("UTF-8");
+        feed.setTitle(option_title);
+        feed.setThisLink(option_url + "/atom.xml");
+        feed.setLink(option_url);
+        feed.setId(option_url);
+        feed.setAuthor(new Author(option_author_name, option_author_email));
+        List<Entry> entries = new ArrayList<Entry>();
+        this.articles = articleService.list();
+        for (Article article1 : articles) {
+            entries.add(new Entry(
+                    article1.getTitle(),
+                    option_url + "/" + article1.getUri() + ".shtml",
+                    new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(article1.getDate()),
+                    new Markdown4jProcessor().process(article1.getContent())));
+        }
+        feed.setEntryList(entries);
+        String rssxml = feed.generateDocument().asXML();
+        HttpServletResponse response = ServletActionContext.getResponse();
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("text/xml;charset=utf-8");
+        response.setHeader("Cache-Control", "no-cache");
+        PrintWriter out = response.getWriter();
+        out.write(rssxml);
+        out.flush();
+        out.close();
+        return null;
     }
 
     // ---

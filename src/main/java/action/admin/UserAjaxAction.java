@@ -54,8 +54,8 @@ public class UserAjaxAction extends ActionSupport {
             jsonInfo.put("status", false);
             jsonInfo.put("tips","用户名或密码错误");
         } else {
+            String keeplogin = userService.updateKeeplogin(user.getId());
             if (this.keepMeLoggedInd == true) {
-                String keeplogin = userService.updateKeeplogin(user.getId());
                 CookieUtil.setCookie(this.response,"keeplogin",keeplogin,Integer.MAX_VALUE);
             }
             jsonInfo.put("status", true);

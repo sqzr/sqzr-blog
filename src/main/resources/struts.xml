@@ -114,6 +114,11 @@
     <package name="index" namespace="/" extends="struts-default">
         <action name="*" class="action.show.IndexAction" method="{1}">
             <result name="success">/show/sqzr_{1}.jsp</result>
+            <!--<result name="atom" type="plainText"/>-->
+        </action>
+        <!-- rss -->
+        <action name="atom" class="action.show.IndexAction" method="atom">
+            <result type="plainText"></result>
         </action>
     </package>
 </struts>
