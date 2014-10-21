@@ -6203,11 +6203,11 @@ th .lbl:only-child,td .lbl:only-child {
     filter:progid:DXImageTransform.Microsoft.gradient(enabled=false)
 }
 .header-color-blue {
-    /*background:#307ecc;*/
-    border-color:#b5b5b5
+    background:#307ecc;
+    border-color:#307ecc
 }
 .header-color-blue+.widget-body {
-    border-color:#b5b5b5
+    border-color:#307ecc;
 }
 .header-color-blue2 {
     background:#5090c1;
@@ -10385,7 +10385,7 @@ ul.attachment-list>li {
 .widget-body .md-header .btn {
     border-color:transparent;
     background:rgba(255,255,255,0.25)!important;
-    color:#669fc7!important;
+    /*color:#669fc7!important;*/
     text-align:center;
     padding-left:0;
     padding-right:0;
@@ -12704,4 +12704,12 @@ th[aria-selected=true] .ui-jqgrid-sortable {
 
 .height-33 {
     height: 33px!important;
+}
+
+.i-exlink {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    vertical-align: text-bottom;
+    background: url(/images/icons.png) no-repeat;
 }

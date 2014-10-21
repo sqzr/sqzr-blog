@@ -1,6 +1,7 @@
 package dao;
 
 import model.Article;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -33,6 +34,13 @@ public interface ArticleDao {
      * @return
      */
     public List<Article> list();
+
+    /**
+     * 获取所有文章
+     * @param showDraft 是否显示草稿
+     * @return
+     */
+    public List<Article> list(@Param(value = "showDraft")boolean showDraft);
 
     /**
      * 通过id删除文章
@@ -68,6 +76,14 @@ public interface ArticleDao {
      * @return
      */
     public int getCountByUri(String uri);
+
+    /**
+     * 除id外,获取uri存在数量
+     * @param uri
+     * @param id
+     * @return
+     */
+    public int getCountByUri(String uri, int id);
 
     /**
      * 移动文章到默认分类

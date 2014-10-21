@@ -66,4 +66,18 @@
         select * from category
         where uri = #{uri}
     </select>
+
+    <select id="getCategoryByName" parameterType="String" resultType="Category">
+        select * from category
+        where name = #{name}
+    </select>
+    
+    <select id="checkValueExist" parameterType="map" resultType="int">
+        select count(*) from category
+        <where>
+            <if test="name != null">name = #{name}</if>
+            <if test="uri != null">or uri = #{uri}</if>
+            <if test="id != null">and not id = #{id}</if>
+        </where>
+    </select>
 </mapper>

@@ -77,9 +77,9 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public Page<Article> list(int pageNum, int pageSize) {
+    public Page<Article> list(int pageNum, int pageSize,boolean showDraft) {
         PageHelper.startPage(pageNum, pageSize);
-        Page<Article> page = (Page<Article>) articleDao.list();
+        Page<Article> page = (Page<Article>) articleDao.list(showDraft);
         return page;
     }
 
@@ -120,26 +120,17 @@ public class ArticleServiceImpl implements ArticleService {
         if ("".equals(article.getTitle())) {
             return -1;
         }
+        // 判断uri是否为空
+        if("".equals(article.getUri())) {
+            return -4;
+        }
         // 判断是否选择分类
         if (article.getCategory().getId() == 0) {
             return -2;
         }
         // 判断uri是否重复
-        if ("".equals(article.getUri())) {
-            // 自动生成uri
-            article.setUri(PinyinHelper.convertToPinyinString(article.getTitle().replace(" ", ""), "-", PinyinFormat.WITHOUT_TONE));
-            // 判断自动生成的uri 是否存在
-            int count = articleDao.getCountByUri(article.getUri());
-            if (count > 0) {
-                article.setUri(article.getUri() + "-" + new Random().nextInt());
-            }
-        } else {
-            // 判断用户自己输的uri是否存在
-            int count = articleDao.getCountByUri(article.getUri());
-            if (count > 0) {
-                // 重复
-                return -3;
-            }
+        if (articleDao.getCountByUri(article.getUri(), article.getId()) > 0) {
+            return -3;
         }
         // 判断是否有更改过分类
         if (article.getCategory().getId() != new_c_id) {
@@ -150,8 +141,7 @@ public class ArticleServiceImpl implements ArticleService {
         if (result == 0) {
             throw new NotFoundException();
         }
-        logDao.addLog(LogFactory.build("updateArticle", String.valueOf(article.getId()), "true"));
-        return 1;
+        return result;
     }
 
     @Override

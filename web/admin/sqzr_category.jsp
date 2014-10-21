@@ -43,26 +43,18 @@
                         </small>
                     </h1>
                 </div>
-                <div class="alert alert-block hidden" id="add-tips">
-                    <button type="button" class="close" id="close-add-tips">
-                        <i class="icon-remove"></i>
-                    </button>
-                    <i class="icon-ok green"></i>
-                    <font id="add-tips-text">
-                    </font>
-                </div>
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="col-xs-7">
                             <div class="widget-box">
-                                <div class="widget-header">
+                                <div class="widget-header header-color-blue">
                                     <h4 class="smaller">
                                         分类列表
                                     </h4>
                                 </div>
 
                                 <div class="widget-body">
-                                    <div class="widget-main">
+                                    <div class="widget-main" style="padding: 0px;">
                                         <div class="table-responsive">
                                             <s2:if test="categories.size()==0">
                                                 <div class="error-container">
@@ -95,9 +87,10 @@
                                                 <s2:iterator value="categories">
                                                 <tr class="category-<s2:property value="id"/>">
                                                     <td class="category-name">
-                                                            <s2:property value="name"/><s2:if test="type == 'default'">&nbsp;<span class="label label-sm label-inverse arrowed-in default">默认</span></s2:if>
+                                                            <span class="value"><s2:property value="name"/></span>
+                                                            <span class="label label-sm label-inverse arrowed-in default"><s2:if test="type == 'default'">默认</s2:if></span>
                                                     </td>
-                                                    <td class="category-uri"><s2:property value="uri"/></td>
+                                                    <td class="category-uri"><span class="value"><s2:property value="uri"/></span></td>
                                                     <td class="category-count"><a href="/admin/main_category_list.html?id=<s2:property value="id"/>"><s2:property value="count"/></a></td>
                                                     <td>
                                                         <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
@@ -171,15 +164,18 @@
 
                         <div class="col-xs-5">
                             <div class="widget-box">
+                                <div class="widget-header header-color-blue">
+                                    <h4 id="update-tips">添加分类</h4>
+                                </div>
                                 <div class="widget-body">
-                                    <div class="widget-main" style="border-top: 1px solid #CCC;">
+                                    <div class="widget-main">
                                         <form id="target" class="form-horizontal"
                                               style="background-color: rgb(255, 255, 255);">
                                             <fieldset>
                                                 <div id="legend" class="component" rel="popover" trigger="manual"
                                                      data-original-title="Form Title"
                                                      style="border-top-width: 1px; border-top-style: solid; border-top-color: white; border-bottom-style: none;">
-                                                    <legend class="valtype" id="update-tips" data-valtype="text">添加分类</legend>
+
                                                 </div>
                                                 <div class="control-group component" data-type="text" rel="popover"
                                                      trigger="manual"
@@ -222,7 +218,7 @@
                                                     <div style="float:right;" class="controls valtype" data-valtype="button">
                                                         <button onclick="work_add()" class="btn btn-info category-add" id="category-button" type="button">
                                                             <i class="icon-ok bigger-110"></i>
-                                                            <span id="button-text">Save</span>
+                                                            <span id="button-text">保存</span>
                                                         </button>
                                                     </div>
                                                 </div>
@@ -230,7 +226,6 @@
                                             </fieldset>
                                          </form>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -291,7 +286,7 @@
                     if (data.status == true) {
                         myAlert(data.tips,"info");
                         $(".default").html("");
-                        $(".category-"+id+" .category-name").append("<span class=\"label label-sm label-inverse arrowed-in default\">默认</span>");
+                        $(".category-"+id+" .category-name .default").html("默认");
                     } else if (data.status == false) {
                         myAlert(data.tips,"error");
                     }
@@ -348,31 +343,24 @@
                 },
                 contentType: 'application/json',
                 success: function (data) {
-                    $("#add-tips").removeClass("hidden");
                     if (data.status == true) {
                         //修改成功
-                        $("#add-tips").addClass("alert-success");
-                        $("#add-tips-text").text("");
-                        $(".category-"+params['id']+" .category-uri").text(params['uri']);
-                        $(".category-"+params['id']+" .category-name").text(params['name']);
-                        $("#add-tips-text").append(data.tips+"&nbsp;&nbsp;<a href='#' onclick='window.location.reload()'>点击刷新</a>");
-
+                        myAlert(data.tips, "info");
+                        $(".category-"+params['id']+" .category-uri .value").text(params['uri']);
+                        $(".category-"+params['id']+" .category-name .value").text(params['name']);
                     } else if (data.status == false) {
                         //添加失败
-                        $("#add-tips").addClass("alert-error");
-                        $("#add-tips-text").text("");
-                        $("#add-tips-text").append(data.tips);
+                        myAlert(data.tips, "error");
                     }
-                    $('body,html').animate({scrollTop:0},1000);
                 }
             });
         }
 
         function update(id) {
-            var name = $(".category-"+id+" .category-name").text().trim();
-            var uri = $(".category-"+id+" .category-uri").text().trim();
+            var name = $(".category-"+id+" .category-name .value").text().trim();
+            var uri = $(".category-"+id+" .category-uri .value").text().trim();
             $("#update-tips").text("修改分类 id:"+id);
-            $("#update-tips").append("&nbsp;&nbsp;<a style='font-size: 10px' href='javascript:void(0)' onclick='switchAdd()'>切换到添加</a>");
+            $("#update-tips").append("&nbsp;&nbsp;<a style='font-size: 10px;color:#FFF;' href='javascript:void(0)' onclick='switchAdd()'>切换到添加</a>");
             $("#update-id").val(id);
             $("#name").val(name);
             $("#uri").val(uri);

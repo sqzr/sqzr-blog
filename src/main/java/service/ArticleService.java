@@ -24,7 +24,7 @@ public interface ArticleService {
 
     public List<Article> list();
 
-    public Page<Article> list(int pageNum,int pageSize);
+    public Page<Article> list(int pageNum,int pageSize,boolean showDraft);
 
     /**
      * 删除文章
@@ -42,6 +42,7 @@ public interface ArticleService {
      * @return int -1 标题为空
      * @return int -2 没有选择分类
      * @return int -3 uri重复
+     * @return int -4 uri为空
      * @throws ParameterIsEmptyException 没有传递文章id
      * @throws NotFoundException 修改后没有影响行数
      */

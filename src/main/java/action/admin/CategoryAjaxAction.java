@@ -20,29 +20,59 @@ public class CategoryAjaxAction extends ActionSupport {
 
     public String add() throws Exception {
         int result = categoryService.add(new Category(this.name, this.uri));
-        if (result > 0) {
-            // 添加成功
-            this.jsonInfo.put("status", true);
-            this.jsonInfo.put("tips", "添加分类成功");
-        } else {
-            // 添加失败
-            this.jsonInfo.put("status", false);
-            this.jsonInfo.put("tips", "添加分类失败");
+        boolean temp = (result > 0) ? true : false;
+        this.jsonInfo.put("status", temp);
+        switch (result) {
+            case -1:
+                this.jsonInfo.put("tips", "分类名不能为空");
+                break;
+            case -2:
+                this.jsonInfo.put("tips", "uri不能为空");
+                break;
+            case -3:
+                this.jsonInfo.put("tips", "分类名重复");
+                break;
+            case -4:
+                this.jsonInfo.put("tips", "uri重复");
+                break;
+            case -5:
+                this.jsonInfo.put("tips", "添加失败");
+                break;
+            default:
+                this.jsonInfo.put("tips", "添加成功");
+                break;
         }
         return "json";
     }
 
     public String update() throws Exception {
-        if (categoryService.update(new Category(this.id, this.uri, this.name))) {
-            //修改成功
-            this.jsonInfo.put("status", true);
-            this.jsonInfo.put("tips", "修改分类成功");
-        } else {
-            // 修改失败
-            this.jsonInfo.put("status", false);
-            this.jsonInfo.put("tips", "修改分类失败");
+        int result = categoryService.update(new Category(this.id, this.uri, this.name));
+        boolean temp = (result > 0) ? true : false;
+        this.jsonInfo.put("status", temp);
+        switch (result) {
+            case -1:
+                this.jsonInfo.put("tips", "分类名不能为空");
+                break;
+            case -2:
+                this.jsonInfo.put("tips", "uri不能为空");
+                break;
+            case -3:
+                this.jsonInfo.put("tips", "分类名重复");
+                break;
+            case -4:
+                this.jsonInfo.put("tips", "uri重复");
+                break;
+            case -5:
+                this.jsonInfo.put("tips", "参数错误");
+                break;
+            case -6:
+                this.jsonInfo.put("tips", "修改失败");
+                break;
+            default:
+                this.jsonInfo.put("tips", "修改成功");
+                break;
         }
-        return "json";
+            return "json";
     }
 
     public String delete() throws Exception {

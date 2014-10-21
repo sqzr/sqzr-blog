@@ -126,18 +126,18 @@
                                                                 <label>
                                                                     <input type="checkbox" class="ace"
                                                                            value="<s2:property value="id"/>">
-                                                                        <%--<span class="lbl"></span>--%>
                                                                 </label>
                                                             </td>
-                                                            <td><s2:property value="title"/><s2:if
-                                                                    test="type == 'post_draft'">&nbsp;<span class="label label-sm label-inverse arrowed-in">草稿</span></s2:if>
+                                                            <td>
+                                                            <a href="/admin/main_article_update.html?id=<s2:property value="id"/>"><s2:property value="title"/></a>
+                                                                <s2:if test="type == 'post_draft'"><span class="label label-sm label-inverse arrowed-in">草稿</span></s2:if>
+                                                                <s2:else><a href="/blog/<s2:property value="uri"/>.shtml" target="_blank"><i class="i-exlink"></i></a></s2:else>
                                                             </td>
                                                             <td>
                                                                 <a href="/admin/main_category_list.html?id=<s2:property value="category.id"/>"><s2:property
                                                                         value="category.name"/></a></td>
                                                             <td><div:dateformat><s2:date name="date"
                                                                                          format="yyyy-MM-dd HH:mm:ss"/></div:dateformat></td>
-                                                                <%--<td><s2:date name="date" format="yyyy-MM-dd HH:mm"/></td>--%>
                                                             <td>
                                                                 <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
                                                                     <a href="/admin/main_article_update.html?id=<s2:property value="id"/>"

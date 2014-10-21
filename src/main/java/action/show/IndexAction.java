@@ -35,7 +35,7 @@ public class IndexAction extends ActionSupport {
     public String index() throws Exception {
         this.options = optionService.getAllOption();
         Map<String, String> numberMap = (HashMap<String,String>) this.options.get("pagenumber");
-        this.articlePage = articleService.list(this.page, Integer.parseInt(numberMap.get("value")));
+        this.articlePage = articleService.list(this.page, Integer.parseInt(numberMap.get("value")),false);
         return "success";
     }
 

@@ -63,4 +63,21 @@ public interface CategoryDao {
      * @return
      */
     public Category getCategoryByUri(String uri);
+
+    /**
+     * 判断value是否已存在与column
+     * @param name
+     * @param uri
+     * @return
+     */
+    public boolean checkValueExist(String name, String uri);
+
+    /**
+     * 除id外,判断value是否已存在与column
+     * @param value
+     * @param column 字段
+     * @param id 排除id
+     * @return
+     */
+    public boolean checkValueExist(String value, String column, int id);
 }

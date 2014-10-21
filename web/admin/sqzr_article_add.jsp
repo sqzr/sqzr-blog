@@ -68,7 +68,7 @@
                     </div>
                     <div class="col-xs-4">
                         <div class="widget-box">
-                            <div class="widget-header">
+                            <div class="widget-header header-color-blue">
                                 <h4>属性</h4>
                                 <span class="widget-toolbar">
 														<a href="#" data-action="settings">

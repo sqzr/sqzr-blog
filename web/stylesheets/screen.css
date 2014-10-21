@@ -1469,7 +1469,7 @@ html {
 }
 body {
     background:#3D4349;
-    font-family:"Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti !important;
+    font-family:"Georgia", "Xin Gothic", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif !important;
     height:100%
 }
 ::selection,::-moz-selection,::-webkit-selection {

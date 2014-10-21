@@ -22,12 +22,12 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public int add(Category category) {
+        if ("".equals(category.getName())) {return -1;}
+        if ("".equals(category.getUri())){return -2;}
+        if(categoryDao.checkValueExist(category.getName(),"name")){return -3;}
+        if(categoryDao.checkValueExist(category.getUri(),"uri")){return -4;}
         int result = categoryDao.add(category);
-        if (result > 0) {
-            logDao.addLog(LogFactory.build("addCategory",category.getName(),"true"));
-        }else{
-            logDao.addLog(LogFactory.build("addCategory",category.getName(),"false"));
-        }
+        if (result < 0){return -5;}
         return result;
     }
 
@@ -54,15 +54,15 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public boolean update(Category category) {
-        if (category.getId() == 0) {
-            return false;
-        }
+    public int update(Category category) {
+        if ("".equals(category.getName())) {return -1;}
+        if ("".equals(category.getUri())){return -2;}
+        if(category.getId() == 0){return -5;}
+        if(categoryDao.checkValueExist(category.getName(),"name",category.getId())){return -3;}
+        if(categoryDao.checkValueExist(category.getUri(),"uri",category.getId())){return -4;}
         int result = categoryDao.update(category);
-        if (result == 0) {
-            return false;
-        }
-        return true;
+        if (result < 0){return -6;}
+        return result;
     }
 
     @Override

@@ -11,24 +11,20 @@
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="/atom.xml" rel="alternate" title="sqzr's blog" type="application/atom+xml">
-    <link href="/favicon.ico" rel="shortcut icon">
+    <link href="<s2:property value="options.url.value"/>/atom.xml" rel="alternate" title="sqzr's blog" type="application/atom+xml">
+    <link href="<s2:property value="options.url.value"/>/favicon.ico" rel="shortcut icon">
     <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet"
           type="text/css">
     <link rel="canonical" href="<s2:property value="options.url.value"/>">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-    <link href="//dn-sqzr.qbox.me/font1.css" rel="stylesheet" type="text/css">
-    <script type="text/javascript" async="" src="//ssl.google-analytics.com/ga.js"></script>
-    <script src="//lib.sinaapp.com/js/jquery/1.8.3/jquery.min.js"></script>
-    <script src="//dn-sqzr.qbox.me/pace.min.js"></script>
-    <script src="/javascripts/highlight.pack.js"></script>
-    <link href="/stylesheets/github.css" rel="stylesheet" type="text/css">
-    <%--<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Ubuntu:regular&subset=Latin,Cyrillic">--%>
+    <!--[if IE]>
+    <script src="//dn-sqzr.qbox.me/javascript/html5.js"></script>
+    < ![endif]-->
+    <%--<script type="text/javascript" async="" src="//ssl.google-analytics.com/ga.js"></script>--%>
+    <script src="//dn-sqzr.qbox.me/javascript/jquery.js"></script>
+    <script src="//dn-sqzr.qbox.me/javascript/pace.js"></script>
+    <script src="//dn-sqzr.qbox.me/javascript/highlight.js"></script>
+    <link href="//dn-sqzr.qbox.me/stylesheet/github.css" rel="stylesheet" type="text/css">
     <link href="//dn-sqzr.qbox.me/pace.css" rel="stylesheet" type="text/css">
-    <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
-    <link href="//dn-sqzr.qbox.me/font2.css" rel="stylesheet" type="text/css">
-    <link href="//dn-sqzr.qbox.me/font3.css" rel="stylesheet" type="text/css">
 </head>
 
 <script>hljs.initHighlightingOnLoad();</script>

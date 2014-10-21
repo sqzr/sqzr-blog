@@ -15,13 +15,13 @@
 
             </div>
             <hgroup>
-                <h1><a href="/"><s2:property value="options.title.value"/></a></h1>
+                <h1><a href="<s2:property value="options.url.value"/>"><s2:property value="options.title.value"/></a></h1>
                 <p class="subtitle"><s2:property value="options.subtitle.value"/></p>
             </hgroup>
             <nav id="main-nav">
                 <ul class="main-navigation">
-                    <li><a href="/">Blog</a></li>
-                    <li><a href="/blog/archives.shtml">Archives</a></li>
+                    <li><a href="<s2:property value="options.url.value"/>">Blog</a></li>
+                    <li><a href="<s2:property value="options.url.value"/>/blog/archives.shtml">Archives</a></li>
                 </ul>
                 <section class="aboutme">
                     <p>
@@ -46,7 +46,7 @@
                     <s2:if test="options.google.value != ''">
                         <a class="google" href="https://plus.google.com/<s2:property value="options.google.value"/>" title="Google">Google</a>
                     </s2:if>
-                    <a class="rss" href="/atom.xml" title="RSS">RSS</a>
+                    <a class="rss" href="<s2:property value="options.url.value"/>/atom.xml" title="RSS">RSS</a>
                 </div>
             </nav>
         </header>

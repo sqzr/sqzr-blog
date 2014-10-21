@@ -21,10 +21,10 @@
                             </time></span>
                                 <br>
 		<span class="tags">
-	<a class="category" href="/category/<s2:property value="category.uri"/>.shtml"><s2:property value="category.name"/></a>
+	<a class="category" href="<s2:property value="options.url.value"/>/category/<s2:property value="category.uri"/>.shtml"><s2:property value="category.name"/></a>
 </span>
                             </div>
-                            <h1 class="title" itemprop="name"><a href="/blog/<s2:property value="uri"/>.shtml"><s2:property value="title"/></a>
+                            <h1 class="title" itemprop="name"><a href="<s2:property value="options.url.value"/>/blog/<s2:property value="uri"/>.shtml"><s2:property value="title"/></a>
                             </h1>
                         </article>
                     </s2:iterator>
@@ -35,8 +35,8 @@
             Copyright © 2014 - sqzr
         </p>
         </footer>
-        <script src="https://dn-sqzr.qbox.me/javascripts/slash.js"></script>
-        <script src="https://dn-sqzr.qbox.me/javascripts/jquery.fancybox.pack.js"></script>
+        <script src="//dn-sqzr.qbox.me/javascripts/slash.js"></script>
+        <script src="//dn-sqzr.qbox.me/javascripts/jquery.fancybox.pack.js"></script>
         <script type="text/javascript">
             (function ($) {
                 $('.fancybox').fancybox();

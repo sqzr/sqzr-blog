@@ -36,15 +36,7 @@
             </div>
             <div class="page-content">
                 <div class="page-header">
-                    <h1>
-                        文章
-                        <small>
-                            <i class="icon-double-angle-right"></i>
-                            修改文章
-                            <i class="icon-double-angle-right"></i>
-                            id:<s2:property value="id"/>
-                        </small>
-                    </h1>
+                    <h1>修改文章<small><i class="icon-double-angle-right"></i>  id:<s2:property value="id"/></small></h1>
                 </div>
                 <div class="form-group" style="height: 50px;">
                     <div class="row" style="height: 40px;">
@@ -71,7 +63,7 @@
                     </div>
                     <div class="col-xs-4">
                         <div class="widget-box">
-                            <div class="widget-header">
+                            <div class="widget-header header-color-blue">
                                 <h4>属性</h4>
                                  <span class="widget-toolbar">
 														<a href="#" data-action="settings">
@@ -80,14 +72,6 @@
 														<a href="#" data-action="reload">
                                                             <i class="icon-refresh category-refresh"></i>
                                                         </a>
-
-														<%--<a href="#" data-action="collapse">--%>
-                                                            <%--<i class="icon-chevron-up"></i>--%>
-                                                        <%--</a>--%>
-
-														<%--<a href="#" data-action="close">--%>
-                                                            <%--<i class="icon-remove"></i>--%>
-                                                        <%--</a>--%>
 								</span>
                             </div>
 
@@ -121,13 +105,11 @@
                                     <hr>
                                     <div class="clearfix">
                                         <div style="text-align: right;">
-                                            <s2:if test="article.type == 'post_draft'">
-                                            <button id="btn-post" class="btn" type="button">
-                                                发表文章
+                                            <button id="btn-draft" class="btn" type="button">
+                                                保存草稿
                                             </button>
-                                            </s2:if>
                                             <button id="btn-update" class="btn btn-info" type="button">
-                                                更新文章
+                                                发布文章
                                             </button>
                                         </div>
                                     </div>
@@ -165,8 +147,8 @@
         $("#btn-update").click(function () {
             update();
         });
-        $("#btn-post").click(function(){
-           post();
+        $("#btn-draft").click(function(){
+           draft();
         });
         $(".category-refresh").click(
                 function(){
@@ -222,7 +204,7 @@
             }
         });
     }
-    function post() {
+    function draft() {
         var params = {
             "title": $("#title").val(),
             "content": $("#content").val() ,
@@ -230,7 +212,7 @@
             "id":$("#articleId").val(),
             "oldcid":$("#oldcid").val(),
             "newcid":$("#c_id").val(),
-            "type":"post"
+            "type":"post_draft"
         };
         $.ajax({
             type: "post",
@@ -238,10 +220,10 @@
             dataType: 'json',
             data: JSON.stringify(params),
             beforeSend: function () {
-                $("#btn-post").attr('disabled', "true");
+                $("#btn-draft").attr('disabled', "true");
             },
             complete: function () {
-                $("#btn-post").removeAttr("disabled");
+                $("#btn-draft").removeAttr("disabled");
             },
             contentType: 'application/json',
             success: function (data) {

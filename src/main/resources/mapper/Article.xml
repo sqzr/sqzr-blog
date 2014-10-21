@@ -30,7 +30,7 @@
         select * from article
         where uri = #{uri}
     </select>
-    
+
     <select id="getCategoryIdByArticleId" parameterType="int" resultType="int">
         select c_id from article
         where id = #{id}
@@ -41,8 +41,12 @@
         where c_id = #{id} order by date desc
     </select>
     
-    <select id="list" resultMap="resultArticle">
-        select * from article order by date desc
+    <select id="list" resultMap="resultArticle" parameterType="boolean">
+        select * from article
+        <where>
+            <if test="_parameter != null">not type = 'post_draft'</if>
+        </where>
+        order by date desc
     </select>
     
     <delete id="delete" parameterType="int">
@@ -61,8 +65,12 @@
         where id = #{id}
     </update>
     
-    <select id="getCountByUri" parameterType="String" resultType="int">
-        select count(*) from article where uri = #{uri}
+    <select id="getCountByUri" parameterType="map" resultType="int">
+        select count(*) from article
+        <where>
+          <if test="uri != null">uri = #{uri}</if>
+          <if test="id != null">and not id = #{id}</if>
+        </where>
     </select>
 
     <update id="moveArticleToDefaultCategory" parameterType="int">

@@ -17,15 +17,15 @@
                                     </time>
                                 </div>
                                 <div class="tags">
-                                    <a class="category" href="category/<s2:property value="category.uri"/>.shtml"><s2:property value="category.name"/></a>
+                                    <a class="category" href="<s2:property value="options.url.value"/>/category/<s2:property value="category.uri"/>.shtml"><s2:property value="category.name"/></a>
                                 </div>
                             </div>
                             <h1 class="title" itemprop="name"><a
-                                    href="blog/<s2:property value="uri"/>.shtml"
+                                    href="<s2:property value="options.url.value"/>/blog/<s2:property value="uri"/>.shtml"
                                     itemprop="url"><s2:property value="title"/></a></h1>
                             <div class="entry-content" itemprop="articleBody">
                                 <div:markdown><div:htmlmoresplit><s2:property value="content" escape="false"/></div:htmlmoresplit></div:markdown>
-                                <a href="blog/<s2:property value="uri"/>.shtml"
+                                <a href="<s2:property value="options.url.value"/>/blog/<s2:property value="uri"/>.shtml"
                                    class="more-link">Read on →</a>
                             </div>
 
@@ -37,16 +37,16 @@
                     <s2:set name="previousPage" value="articlePage.pageNum - 1"/>
                     <s2:if test="articlePage.pageNum > 1">
                         <s2:if test="articlePage.pageNum == 2">
-                            <a href="/" class="prev">Prev</a>
+                            <a href="<s2:property value="options.url.value"/>" class="prev">Prev</a>
                         </s2:if>
                         <s2:else>
-                            <a href="page/<s2:property value="#previousPage"/>.shtml" class="prev">Prev</a>
+                            <a href="<s2:property value="options.url.value"/>/page/<s2:property value="#previousPage"/>.shtml" class="prev">Prev</a>
                         </s2:else>
                     </s2:if>
                     <s2:if test="articlePage.endRow < articlePage.total">
                     <a href="page/<s2:property value="#nextPage"/>.shtml" class="next">Next</a>
                     </s2:if>
-                    <div class="center"><a href="blog/archives.shtml">Blog Archives</a></div>
+                    <div class="center"><a href="<s2:property value="options.url.value"/>/blog/archives.shtml">Blog Archives</a></div>
                 </nav>
             </div>
         </div>

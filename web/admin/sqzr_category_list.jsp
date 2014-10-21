@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="div" uri="/divtag" %>
 <%@ include file="common/sqzr_header-main.jsp" %>
 <div class="main-container" id="main-container">
 <script type="text/javascript">
@@ -99,12 +100,6 @@
                                                             </div>
                                                         </label></div>
                                                 </div>
-                                                    <%--                                                    <div class="col-sm-6">
-                                                                                                            <div class="dataTables_filter" id="sample-table-2_filter">
-                                                                                                                <label>Search: <input type="text"
-                                                                                                                                      aria-controls="sample-table-2"></label>
-                                                                                                            </div>
-                                                                                                        </div>--%>
                                             </div>
                                             <table id="sample-table-1"
                                                    class="table table-striped table-bordered table-hover">
@@ -133,12 +128,13 @@
                                                                 <input type="checkbox" class="ace" value="<s2:property value="id"/>">
                                                             </label>
                                                         </td>
-                                                        <td><s2:property value="title"/><s2:if
-                                                                test="type == 'post_draft'">&nbsp;<span class="label label-sm label-inverse arrowed-in">草稿</span></s2:if>
-                                                        </td>
+                                                        <td>
+                                                            <a href="/admin/main_article_update.html?id=<s2:property value="id"/>"><s2:property value="title"/></a>
+                                                            <s2:if test="type == 'post_draft'"><span class="label label-sm label-inverse arrowed-in">草稿</span></s2:if>
+                                                            <s2:else><a href="/blog/<s2:property value="uri"/>.shtml" target="_blank"><i class="i-exlink"></i></a></s2:else>
                                                         </td>
                                                         <td><s2:property value="category.name"/></td>
-                                                        <td><s2:date name="date" format="yyyy-MM-dd HH:mm"/></td>
+                                                        <td><div:dateformat><s2:date name="date" format="yyyy-MM-dd HH:mm:ss"/></div:dateformat></td>
                                                         <td>
                                                             <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
                                                                 <a href="/admin/main_article_update.html?id=<s2:property value="id"/>"
@@ -188,32 +184,6 @@
                                                     </tr>
                                                 </s2:iterator>
                                                 </tbody>
-                                                <div class="modal hidd">
-                                                    <div class="modal-dialog">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <button type="button" class="close"
-                                                                        data-dismiss="modal">
-                                                                    <span aria-hidden="true">&times;</span><span
-                                                                        class="sr-only">Close</span></button>
-                                                                <h4 class="modal-title">删除确认</h4>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <p>您确认要删除此条吗？</p>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-default"
-                                                                        data-dismiss="modal">取消
-                                                                </button>
-                                                                <a href="#" id="btn-delete-confirm"
-                                                                   class="btn btn-primary">确定</a>
-                                                            </div>
-                                                        </div>
-                                                        <!-- /.modal-content -->
-                                                    </div>
-                                                    <!-- /.modal-dialog -->
-                                                </div>
-                                                <!-- /.modal -->
                                             </table>
                                         </div>
                                 </s2:else>

@@ -20,8 +20,8 @@
             Copyright © 2014 - sqzr
         </p>
         </footer>
-        <script src="https://dn-sqzr.qbox.me/javascripts/slash.js"></script>
-        <script src="https://dn-sqzr.qbox.me/javascripts/jquery.fancybox.pack.js"></script>
+        <script src="//dn-sqzr.qbox.me/javascripts/slash.js"></script>
+        <script src="//dn-sqzr.qbox.me/javascripts/jquery.fancybox.pack.js"></script>
         <script type="text/javascript">
             (function ($) {
                 $('.fancybox').fancybox();

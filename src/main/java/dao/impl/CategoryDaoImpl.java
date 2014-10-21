@@ -77,6 +77,23 @@ public class CategoryDaoImpl implements CategoryDao {
         return sqlSession.selectOne("model.Category.getCategoryByUri", uri);
     }
 
+    public boolean checkValueExist(String value, String column) {
+        Map<String, Object> condition = new HashMap<String, Object>();
+        condition.put(column, value);
+        int result = sqlSession.selectOne("model.Category.checkValueExist", condition);
+        return (result != 0) ? true : false;
+    }
+
+    @Override
+    public boolean checkValueExist(String value, String column, int id) {
+        Map<String, Object> condition = new HashMap<String, Object>();
+        condition.put(column, value);
+        condition.put("id", id);
+        int result = sqlSession.selectOne("model.Category.checkValueExist", condition);
+        return (result != 0) ? true : false;
+    }
+
+
     @Override
     public List<Category> list() {
         return sqlSession.selectList("model.Category.list");

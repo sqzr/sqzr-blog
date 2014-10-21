@@ -2,10 +2,13 @@ package dao.impl;
 
 import dao.ArticleDao;
 import model.Article;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.SqlSession;
 
 import javax.xml.transform.Result;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by weiyang on 2014/9/14.
@@ -35,6 +38,11 @@ public class ArticleDaoImpl implements ArticleDao {
     }
 
     @Override
+    public List<Article> list(@Param(value = "showDraft")boolean showDraft) {
+        return sqlSession.selectList("model.Article.list", showDraft);
+    }
+
+    @Override
     public int deleteArticleById(int id) {
         return sqlSession.delete("model.Article.delete", id);
     }
@@ -56,7 +64,17 @@ public class ArticleDaoImpl implements ArticleDao {
 
     @Override
     public int getCountByUri(String uri) {
-        return sqlSession.selectOne("model.Article.getCountByUri", uri);
+        Map<String, Object> condition = new HashMap<String, Object>();
+        condition.put("uri", uri);
+        return sqlSession.selectOne("model.Article.getCountByUri", condition);
+    }
+
+    @Override
+    public int getCountByUri(String uri, int id) {
+        Map<String, Object> condition = new HashMap<String, Object>();
+        condition.put("uri", uri);
+        condition.put("id", id);
+        return sqlSession.selectOne("model.Article.getCountByUri",condition);
     }
 
     @Override
