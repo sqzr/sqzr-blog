@@ -44,7 +44,7 @@
                         </s2:else>
                     </s2:if>
                     <s2:if test="articlePage.endRow < articlePage.total">
-                    <a href="page/<s2:property value="#nextPage"/>.shtml" class="next">Next</a>
+                    <a href="<s2:property value="options.url.value"/>/page/<s2:property value="#nextPage"/>.shtml" class="next">Next</a>
                     </s2:if>
                     <div class="center"><a href="<s2:property value="options.url.value"/>/blog/archives.shtml">Blog Archives</a></div>
                 </nav>
