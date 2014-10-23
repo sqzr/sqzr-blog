@@ -77,9 +77,16 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    public Page<Article> list(int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        Page<Article> page = (Page<Article>) articleDao.list();
+        return page;
+    }
+
+    @Override
     public Page<Article> list(int pageNum, int pageSize,boolean showDraft) {
         PageHelper.startPage(pageNum, pageSize);
-        Page<Article> page = (Page<Article>) articleDao.list(showDraft);
+        Page<Article> page = (Page<Article>) ((showDraft) ? articleDao.list() : articleDao.listDontDraft());
         return page;
     }
 
@@ -147,6 +154,13 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public List<Article> getArticleByCategoryId(int c_id) {
         return articleDao.getArticleByCategoryId(c_id);
+    }
+
+    @Override
+    public Page<Article> getArticleByCategoryId(int c_id, int pageNum, int pageSize, boolean showDraft) {
+        PageHelper.startPage(pageNum, pageSize);
+        Page<Article> page = (Page<Article>) ((showDraft) ? articleDao.getArticleByCategoryId(c_id) : articleDao.getArticleByCategoryIdDontDraft(c_id));
+        return page;
     }
 
     @Override

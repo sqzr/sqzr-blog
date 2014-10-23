@@ -40,13 +40,19 @@
         select * from article
         where c_id = #{id} order by date desc
     </select>
-    
-    <select id="list" resultMap="resultArticle" parameterType="boolean">
+
+    <select id="getArticleByCategoryIdDontDraft" parameterType="int" resultMap="resultArticle">
         select * from article
-        <where>
-            <if test="_parameter != null">not type = 'post_draft'</if>
-        </where>
+        where c_id = #{id} and not type = 'post_draft' order by date desc
+    </select>
+    
+    <select id="list" resultMap="resultArticle">
+        select * from article
         order by date desc
+    </select>
+    
+    <select id="listDontDraft" resultMap="resultArticle">
+        select * from article where not type = 'post_draft' order by date desc
     </select>
     
     <delete id="delete" parameterType="int">

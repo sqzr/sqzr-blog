@@ -36,11 +36,10 @@ public interface ArticleDao {
     public List<Article> list();
 
     /**
-     * 获取所有文章
-     * @param showDraft 是否显示草稿
+     * 获取所有文章(不显示草稿)
      * @return
      */
-    public List<Article> list(@Param(value = "showDraft")boolean showDraft);
+    public List<Article> listDontDraft();
 
     /**
      * 通过id删除文章
@@ -69,6 +68,13 @@ public interface ArticleDao {
      * @return
      */
     public List<Article> getArticleByCategoryId(int c_id);
+
+    /**
+     * 获取指定分类下的所有文章(不显示草稿)
+     * @param c_id
+     * @return
+     */
+    public List<Article> getArticleByCategoryIdDontDraft(int c_id);
 
     /**
      * 获取uri存在数量
@@ -105,4 +111,5 @@ public interface ArticleDao {
      * @return 受影响行数
      */
     public int batchDelete(List<Integer> batch);
+
 }

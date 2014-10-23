@@ -22,8 +22,27 @@ public interface ArticleService {
 
     public Article getArticleById(int id) throws ParameterIsEmptyException, NotFoundException;
 
+    /**
+     * 显示文章列表
+     * @return
+     */
     public List<Article> list();
 
+    /**
+     * 显示文章列表
+     * @param pageNum 页数
+     * @param pageSize 每页条数
+     * @return
+     */
+    public Page<Article> list(int pageNum,int pageSize);
+
+    /**
+     * 显示文章列表
+     * @param pageNum 页数
+     * @param pageSize 每页条数
+     * @param showDraft 是否显示草稿
+     * @return
+     */
     public Page<Article> list(int pageNum,int pageSize,boolean showDraft);
 
     /**
@@ -54,6 +73,16 @@ public interface ArticleService {
      * @return
      */
     public List<Article> getArticleByCategoryId(int c_id);
+
+    /**
+     * 获取指定分类下的所有文章
+     * @param c_id 分类id
+     * @param pageNum 当前页数
+     * @param pageSize 每页显示条数
+     * @param showDraft 是否显示草稿
+     * @return
+     */
+    public Page<Article> getArticleByCategoryId(int c_id, int pageNum, int pageSize,boolean showDraft);
 
     /**
      * 通过uri获取文章

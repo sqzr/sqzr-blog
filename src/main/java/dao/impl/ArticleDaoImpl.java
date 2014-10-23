@@ -38,8 +38,8 @@ public class ArticleDaoImpl implements ArticleDao {
     }
 
     @Override
-    public List<Article> list(@Param(value = "showDraft")boolean showDraft) {
-        return sqlSession.selectList("model.Article.list", showDraft);
+    public List<Article> listDontDraft() {
+        return sqlSession.selectList("model.Article.listDontDraft");
     }
 
     @Override
@@ -60,6 +60,11 @@ public class ArticleDaoImpl implements ArticleDao {
     @Override
     public List<Article> getArticleByCategoryId(int c_id) {
         return sqlSession.selectList("model.Article.getArticleByCategoryId", c_id);
+    }
+
+    @Override
+    public List<Article> getArticleByCategoryIdDontDraft(int c_id) {
+        return sqlSession.selectList("model.Article.getArticleByCategoryIdDontDraft",c_id);
     }
 
     @Override

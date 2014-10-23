@@ -100,6 +100,11 @@
                                                             </div>
                                                         </label></div>
                                                 </div>
+                                                <div class="col-sm-6">
+                                                    <s2:set name="curpage" value="articlePage.pageNum"/>
+                                                    <s2:set name="pagecount" value="articlePage.pages"/>
+                                                    <div:pager uri="/admin/main_category_list.html?id=44" curpage="${curpage}" pagecount="${pagecount}" rowcount="10"/>
+                                                </div>
                                             </div>
                                             <table id="sample-table-1"
                                                    class="table table-striped table-bordered table-hover">
@@ -121,7 +126,7 @@
                                                 </thead>
 
                                                 <tbody>
-                                                <s2:iterator value="articles">
+                                                <s2:iterator value="articlePage">
                                                     <tr class="selected">
                                                         <td class="center">
                                                             <label>
@@ -199,8 +204,13 @@
         </div>
     </div>
 </div>
+<s2:debug/>
+<s2:property value="#request.query_string"/>
+<s2:property value="#request.request_uri"/>
 <script src="/javascripts/bootbox.min.js"></script>
 <script type="text/javascript">
+    $(".pagination .disabled a").attr("href","#");
+    $(".pagination .active a").attr("href","#");
     $('table th input:checkbox').on('click', function () {
         var that = this;
         $(this).closest('table').find('tr > td:first-child input:checkbox')

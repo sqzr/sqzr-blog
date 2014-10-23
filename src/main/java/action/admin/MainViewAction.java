@@ -3,6 +3,7 @@ package action.admin;
 import com.opensymphony.xwork2.ActionSupport;
 import model.Article;
 import model.Category;
+import other.Page;
 import service.ArticleService;
 import service.CategoryService;
 import service.OptionService;
@@ -19,7 +20,9 @@ public class MainViewAction extends ActionSupport {
     private Map<String, Object> options = new HashMap<String, Object>();
     private List<Article> articles;
     private List<Category> categories;
+    private Page<Article> articlePage;
     private int id;
+    private int page;
     private ArticleService articleService;
     private CategoryService categoryService;
     private OptionService optionService;
@@ -41,7 +44,8 @@ public class MainViewAction extends ActionSupport {
 
     public String category_list() throws Exception {
         this.category = categoryService.getCategoryById(this.id);
-        this.articles = articleService.getArticleByCategoryId(this.id);
+        this.articlePage = articleService.getArticleByCategoryId(this.id,this.page,10,true);
+        this.info.put("uri", "/admin/main_category_list.html?id=" + this.id);
         this.info.put("menu", "category_list");
         this.info.put("title", "分类:" + category.getName());
         return SUCCESS;
@@ -65,7 +69,7 @@ public class MainViewAction extends ActionSupport {
     public String article_list() throws Exception {
         this.info.put("title", "文章列表");
         this.info.put("menu", "article_list");
-        this.articles = articleService.list();
+        this.articlePage = articleService.list(this.page, 10);
         return SUCCESS;
     }
     public String settings() throws Exception {
@@ -86,6 +90,21 @@ public class MainViewAction extends ActionSupport {
 
     // ---
 
+    public int getPage() {
+        return page;
+    }
+
+    public void setPage(int page) {
+        this.page = page;
+    }
+
+    public Page<Article> getArticlePage() {
+        return articlePage;
+    }
+
+    public void setArticlePage(Page<Article> articlePage) {
+        this.articlePage = articlePage;
+    }
 
     public Map<String, Object> getOptions() {
         return options;

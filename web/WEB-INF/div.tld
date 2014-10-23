@@ -22,4 +22,30 @@
         <tag-class>tag.MarkdownTag</tag-class>
         <body-content>scriptless</body-content>
     </tag>
+
+    <tag>
+        <name>pager</name>
+        <tag-class>tag.PagerTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>uri</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>curpage</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>pagecount</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>rowcount</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
 </taglib>

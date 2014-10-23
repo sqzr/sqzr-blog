@@ -12713,3 +12713,12 @@ th[aria-selected=true] .ui-jqgrid-sortable {
     vertical-align: text-bottom;
     background: url(/images/icons.png) no-repeat;
 }
+
+
+.prev a {
+    height: 32px;
+}
+
+.next a {
+    height: 32px;
+}
