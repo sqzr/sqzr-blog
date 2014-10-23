@@ -26,6 +26,15 @@ public class Article {
         this.uri = uri;
     }
 
+    public Article(String type,String title,Category category, String content, String uri, Date date) {
+        this.category = category;
+        this.type = type;
+        this.title = title;
+        this.content = content;
+        this.uri = uri;
+        this.date = date;
+    }
+
     public Article(int id,String type,Category category, String title, String content, String uri) {
         this.id = id;
         this.type = type;
@@ -35,6 +44,15 @@ public class Article {
         this.uri = uri;
     }
 
+    public Article(int id,String type,Category category, String title, String content, String uri,Date date) {
+        this.id = id;
+        this.type = type;
+        this.category = category;
+        this.title = title;
+        this.content = content;
+        this.uri = uri;
+        this.date = date;
+    }
 
 
     public Article(String uri, String title, String content) {

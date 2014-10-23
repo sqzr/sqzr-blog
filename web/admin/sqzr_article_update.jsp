@@ -8,6 +8,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="common/sqzr_header-main.jsp" %>
 <link rel="stylesheet" href="/stylesheets/chosen.css">
+<link rel="stylesheet" href="/stylesheets/jquery-ui.css">
+<link rel="stylesheet" href="/stylesheets/jquery-ui-timepicker-addon.css">
+<script src="/javascripts/jquery-ui.js"></script>
+<script src="/javascripts/jquery-ui-timepicker-addon.js"></script>
+<script src="/javascripts/jquery-ui-timepicker-zh-CN.js"></script>
+<script src="/javascripts/bootstrap-datepicker.zh-CN.js"></script>
+
 <div class="main-container" id="main-container">
     <script type="text/javascript">
         try {
@@ -78,6 +85,11 @@
                             <div class="widget-body"><div class="widget-body-inner" style="display: block;">
                                 <div class="widget-main">
                                     <div>
+                                        <label for="date">发表日期:</label>
+                                        <input class="form-control black" value="<s2:date name="article.date" format="yyyy-MM-dd HH:mm"/>" type="text" id="date">
+                                    </div>
+                                    <hr>
+                                    <div>
                                         <label for="uri">URI:</label>
                                         <input class="form-control black" value="<s2:property value="article.uri"/>" type="text" id="uri">
                                     </div>
@@ -130,13 +142,18 @@
 <script src="/javascripts/chosen.jquery.min.js"></script>
 </div>
 <script type="text/javascript">
-    function myAlert(alertMessage, type) {
-        $._messengerDefaults = {
-            extraClasses: 'messenger-fixed messenger-on-bottom messenger-on-right',
-            theme: 'air'
-        }
-        $.globalMessenger().post({message: alertMessage, type: type, showCloseButton: true});
-    }
+    $(function() {
+        $( "#date" ).datetimepicker({
+            language: "zh-CN",
+            constrainInput: true,
+            showMonthAfterYear: true,
+            changeMonth: true,
+            changeYear: true,
+            showButtonPanel: true,
+            gotoCurrent: true,
+            dateFormat: "yy-mm-dd"
+        });
+    });
     $(".chosen-select").chosen({
         width: "100%",
         no_results_text: "没有找到!"
@@ -177,6 +194,7 @@
             "content": $("#content").val() ,
             "uri":$("#uri").val(),
             "id":$("#articleId").val(),
+            "date":$("#date").val(),
             "oldcid":$("#oldcid").val(),
             "newcid":$("#c_id").val()
         };
@@ -210,6 +228,7 @@
             "content": $("#content").val() ,
             "uri":$("#uri").val(),
             "id":$("#articleId").val(),
+            "date":$("#date").val(),
             "oldcid":$("#oldcid").val(),
             "newcid":$("#c_id").val(),
             "type":"post_draft"

@@ -67,6 +67,7 @@ public class MainViewAction extends ActionSupport {
     }
 
     public String article_list() throws Exception {
+        this.info.put("uri", "/admin/main_article_list.html");
         this.info.put("title", "文章列表");
         this.info.put("menu", "article_list");
         this.articlePage = articleService.list(this.page, 10);

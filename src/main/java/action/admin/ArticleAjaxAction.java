@@ -8,6 +8,7 @@ import opensource.jpinyin.PinyinHelper;
 import org.apache.commons.lang3.StringUtils;
 import service.ArticleService;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -24,6 +25,7 @@ public class ArticleAjaxAction extends ActionSupport {
     private String content;
     private String uri;
     private String type;
+    private String date;
     private int c_id;
     private int oldcid;
     private int newcid;
@@ -35,7 +37,8 @@ public class ArticleAjaxAction extends ActionSupport {
      * @throws Exception
      */
     public String add() throws Exception {
-        int result = articleService.add(new Article(this.type, this.title, new Category(this.c_id), this.content, this.uri));
+        Date tempDate = ("".equals(this.date)) ? new Date() : new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(this.date);
+        int result = articleService.add(new Article(this.type, this.title, new Category(this.c_id), this.content, this.uri, tempDate));
         boolean temp = (result > 0) ? true : false;
         this.jsonInfo.put("status", temp);
         switch (result) {
@@ -64,7 +67,9 @@ public class ArticleAjaxAction extends ActionSupport {
      * @return
      */
     public String update() throws Exception {
-        int result = articleService.update(new Article(id, type, new Category(this.newcid), title, content, uri), this.oldcid);
+        Date tempDate = ("".equals(this.date)) ? null : new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(this.date);
+        Article article = new Article(id, type, new Category(this.newcid), title, content, uri, tempDate);
+        int result = articleService.update(article, this.oldcid);
         boolean temp = (result > 0) ? true : false;
         this.jsonInfo.put("status", temp);
         switch (result) {
@@ -119,6 +124,14 @@ public class ArticleAjaxAction extends ActionSupport {
     }
     // ---
 
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
 
     public List<Integer> getBatch() {
         return batch;

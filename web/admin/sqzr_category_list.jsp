@@ -103,7 +103,8 @@
                                                 <div class="col-sm-6">
                                                     <s2:set name="curpage" value="articlePage.pageNum"/>
                                                     <s2:set name="pagecount" value="articlePage.pages"/>
-                                                    <div:pager uri="/admin/main_category_list.html?id=44" curpage="${curpage}" pagecount="${pagecount}" rowcount="10"/>
+                                                    <s2:set name="uri" value="info['uri']"/>
+                                                    <div:pager uri="${uri}" curpage="${curpage}" pagecount="${pagecount}" rowcount="10"/>
                                                 </div>
                                             </div>
                                             <table id="sample-table-1"

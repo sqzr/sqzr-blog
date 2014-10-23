@@ -8,6 +8,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="common/sqzr_header-main.jsp" %>
 <link rel="stylesheet" href="/stylesheets/chosen.css">
+<link rel="stylesheet" href="/stylesheets/jquery-ui.css">
+<link rel="stylesheet" href="/stylesheets/jquery-ui-timepicker-addon.css">
+<script src="/javascripts/jquery-ui.js"></script>
+<script src="/javascripts/jquery-ui-timepicker-addon.js"></script>
+<script src="/javascripts/jquery-ui-timepicker-zh-CN.js"></script>
+<script src="/javascripts/bootstrap-datepicker.zh-CN.js"></script>
+
 <div class="main-container" id="main-container">
     <script type="text/javascript">
         try {
@@ -91,6 +98,11 @@
                             <div class="widget-body"><div class="widget-body-inner" style="display: block;">
                                 <div class="widget-main">
                                     <div>
+                                        <label for="date">发表日期:</label>
+                                        <input class="form-control black" type="text" id="date">
+                                    </div>
+                                    <hr>
+                                    <div>
                                         <label for="uri">URI:</label>
                                         <input class="form-control black" type="text" id="uri">
                                     </div>
@@ -140,6 +152,18 @@
 <script src="/javascripts/chosen.jquery.min.js"></script>
 <script type="text/javascript">
     $(".chosen-select").chosen({width: "100%"});
+    $(function() {
+        $( "#date" ).datetimepicker({
+            language: "zh-CN",
+            constrainInput: true,
+            showMonthAfterYear: true,
+            changeMonth: true,
+            changeYear: true,
+            showButtonPanel: true,
+            gotoCurrent: true,
+            dateFormat: "yy-mm-dd"
+        });
+    });
     $(document).ready(function () {
         $("#btn-save").click(function () {
             var params = {
@@ -147,6 +171,7 @@
                 "title": $("#title").val(),
                 "content": $("#content").val(),
                 "uri":$("#uri").val(),
+                "date":$("#date").val(),
                 "c_id":$("#c_id").val()
             };
             add(params);
@@ -156,6 +181,7 @@
                 "type":"post_draft",
                 "title": $("#title").val(),
                 "content": $("#content").val(),
+                "date":$("#date").val(),
                 "uri":$("#uri").val(),
                 "c_id":$("#c_id").val()
             };

@@ -67,6 +67,7 @@
             <if test="content != null">content = #{content},</if>
             <if test="uri != null">uri = #{uri},</if>
             <if test="type != null">type = #{type}</if>
+            <if test="date != null">date = #{date}</if>
         </set>
         where id = #{id}
     </update>
