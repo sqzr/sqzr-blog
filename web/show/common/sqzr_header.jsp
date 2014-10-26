@@ -23,7 +23,11 @@
     <script src="//dn-sqzr.qbox.me/javascript/jquery.js"></script>
     <script src="//dn-sqzr.qbox.me/javascript/pace.js"></script>
     <script src="//dn-sqzr.qbox.me/javascript/highlight.js"></script>
+    <script src="/javascripts/sweet-alert.min.js"></script>
     <link href="//dn-sqzr.qbox.me/stylesheet/github.css" rel="stylesheet" type="text/css">
+    <link href="/stylesheets/style.css" rel="stylesheet" type="text/css">
+    <link href="/stylesheets/buttons.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/stylesheets/sweet-alert.css" />
     <link href="//dn-sqzr.qbox.me/pace.css" rel="stylesheet" type="text/css">
 </head>
 

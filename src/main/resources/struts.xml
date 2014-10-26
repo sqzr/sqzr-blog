@@ -114,11 +114,19 @@
     <package name="index" namespace="/" extends="struts-default">
         <action name="*" class="action.show.IndexAction" method="{1}">
             <result name="success">/show/sqzr_{1}.jsp</result>
-            <!--<result name="atom" type="plainText"/>-->
         </action>
         <!-- rss -->
         <action name="atom" class="action.show.IndexAction" method="atom">
             <result type="plainText"></result>
+        </action>
+    </package>
+    
+    <package name="comment" namespace="/" extends="json-default">
+        <action name="comment" class="action.show.ajax.CommentAction" method="comment">
+            <interceptor-ref name="json"/>
+            <result name="json" type="json">
+                <param name="root">jsonInfo</param>
+            </result>
         </action>
     </package>
 </struts>

@@ -3,18 +3,15 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="model.Article">
-    <sql id="articleColumns">id,title,content,uri,date</sql>
     <resultMap id="resultArticle" type="Article">
         <id column="id" property="id"/>
         <result column="title" property="title"/>
         <result column="content" property="content"/>
         <result column="date" property="date"/>
         <result column="uri" property="uri"/>
-        <association property="category" select="selectCategory" javaType="Category" column="c_id"/>
+        <association property="category" select="model.Category.getCategoryById" javaType="Category" column="c_id" />
+        <collection property="comments" select="model.Comment.getCommentByArticleId" column="id" />
     </resultMap>
-    <select id="selectCategory" parameterType="int" resultType="Category">
-        select * from category where id = #{id}
-    </select>
 
     <insert id="add" parameterType="Article" useGeneratedKeys="true" keyProperty="id">
       insert into article(type,title,content,date,uri,c_id)
