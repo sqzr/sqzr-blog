@@ -131,7 +131,6 @@
             <artifactId>cglib</artifactId>
             <version>2.2.2</version>
         </dependency>
-<<<<<<< HEAD
         <dependency>
             <groupId>net.sf.json-lib</groupId>
             <artifactId>json-lib</artifactId>
@@ -163,8 +162,6 @@
             <artifactId>guava</artifactId>
             <version>18.0-rc1</version>
         </dependency>
-=======
->>>>>>> 8ea64571c579a5b9b276f9edcc3887674058f651
     </dependencies>
 
 </project>
