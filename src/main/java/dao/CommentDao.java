@@ -14,7 +14,6 @@ public interface CommentDao {
      * @return id值
      */
     public int add(Comment comment);
-
     /**
      * 获取所有评论
      * @return
@@ -34,7 +33,6 @@ public interface CommentDao {
      * @return
      */
     public List<Comment> get(boolean waiting,boolean spam);
-
     /**
      * 删除评论
      * @param id
@@ -63,4 +61,5 @@ public interface CommentDao {
      * @return
      */
     public int updateStatus(int id,String status);
+
 }

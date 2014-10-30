@@ -20,6 +20,7 @@ public class Comment {
     private String status;
     //    private List<Comment> parent;
     private int parent;
+
     public Comment() {
     }
 
@@ -63,13 +64,7 @@ public class Comment {
         return parent;
     }*/
 
-    public int getParent() {
-        return parent;
-    }
 
-    public void setParent(int parent) {
-        this.parent = parent;
-    }
 
     public int getId() {
         return id;
@@ -159,4 +154,11 @@ public class Comment {
         this.status = status;
     }
 
+    public int getParent() {
+        return parent;
+    }
+
+    public void setParent(int parent) {
+        this.parent = parent;
+    }
 }

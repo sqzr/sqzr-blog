@@ -13,6 +13,10 @@ import service.CommentService;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import dao.CommentDao;
+import model.Comment;
+import service.CommentService;
+
 /**
  * Created by weiyang on 2014/10/26.
  */
@@ -43,6 +47,15 @@ public class CommentServiceImpl implements CommentService {
         }
         if (comment.getText().length() > 500 || comment.getText().length() < 6) {
             return -9;
+        }
+        if("".equals(comment.getText())) {
+            return -2;
+        }
+        if ("".equals(comment.getAuthor())) {
+            return -3;
+        }
+        if ("".equals(comment.getMail())) {
+            return -4;
         }
         int result = commentDao.add(comment);
         return (result > 0) ? result : -5;

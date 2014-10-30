@@ -36,7 +36,6 @@
                             </div>
                             <div class="comment-content"><s2:property value="text"/></div>
                             <div class="comment-reply">
-
                             </div>
                         </li>
                     </s2:iterator>
@@ -73,6 +72,11 @@
             </div>
             </s2:if>
 
+                        <a style="display: none;" id="jump"></a>
+                    </p>
+                </div>
+            </div>
+
         </div>
         <footer id="footer" class="inner"><p>
             Copyright © 2014 - sqzr
@@ -93,7 +97,7 @@
                 addComment();
             });
             function addComment(params) {
-                $("#comment-form").on('valid.form',function(){
+                $("#comment-form").on('valid.form',function() {
                     var params = {
                         "a_id": <s2:property value="article.id"/>,
                         "parent": 0,
@@ -109,10 +113,10 @@
                         data: JSON.stringify(params),
                         contentType: 'application/json',
                         success: function (data) {
-                            if(data.status == true) {
-                                window.location.reload("#comment-"+data.id);
-                            }else {
-                                swal("Oops..",data.tips, "error")
+                            if (data.status == true) {
+                                window.location.reload("#comment-" + data.id);
+                            } else {
+                                swal("Oops..", data.tips, "error")
                             }
                         }
                     });

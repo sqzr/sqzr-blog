@@ -19,6 +19,9 @@
         <association property="article" select="model.Article.getArticleById" javaType="Article" column="a_id"/>
         <!--<collection property="parent" select="getCommentByParentId" javaType="Comment" column="parent"/>-->
     </resultMap>
+    <select id="selectArticle" parameterType="int" resultType="Category">
+        select * from article where id = #{id}
+    </select>
 
     <insert id="add" parameterType="Category" useGeneratedKeys="true" keyProperty="id">
       insert into comment(a_id,created,author,mail,url,ip,useragent,text,type,status,parent)
@@ -67,6 +70,6 @@
     <select id="getCommentByParentId" parameterType="int" resultMap="resultComment">
         select * from comment
         where parent = #{parent}
-    </select>
+</select>
 
 </mapper>

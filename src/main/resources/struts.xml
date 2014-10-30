@@ -63,4 +63,5 @@
     
     <!-- 前台ajax-->
     <include file="struts-conf/user-ajax.xml"/>
+
 </struts>
