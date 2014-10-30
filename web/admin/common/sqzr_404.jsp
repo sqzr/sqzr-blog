@@ -31,63 +31,7 @@
     <script src="/javascripts/ace.min.js"></script>
 </head>
 <body>
-<div class="navbar navbar-default" id="navbar" style="height: 10px;">
-    <script type="text/javascript">
-        try{ace.settings.check('navbar' , 'fixed')}catch(e){}
-    </script>
-
-    <div class="navbar-container" id="navbar-container">
-        <div class="navbar-header pull-left">
-            <a href="/admin/main_index.html" class="navbar-brand">
-                <small>
-                    ( ˘ ³˘) 后台管理哒
-                </small>
-            </a><!-- /.brand -->
-        </div><!-- /.navbar-header -->
-
-        <div class="navbar-header pull-right" role="navigation">
-            <ul class="nav ace-nav">
-
-                <li class="light-blue">
-                    <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-                        <img class="nav-user-photo" src="<s2:property value="#session.user.avatar"/> " alt="Jason's Photo" />
-								<span class="user-info">
-									<small>欢迎光临,</small>
-									<s2:property value="#session.user.username" />
-								</span>
-
-                        <i class="icon-caret-down"></i>
-                    </a>
-
-                    <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-                        <li>
-                            <a href="#">
-                                <i class="icon-cog"></i>
-                                设置
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="#">
-                                <i class="icon-user"></i>
-                                个人资料
-                            </a>
-                        </li>
-
-                        <li class="divider"></li>
-
-                        <li>
-                            <a href="/admin/user_logout.html">
-                                <i class="icon-off"></i>
-                                退出
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-            </ul><!-- /.ace-nav -->
-        </div><!-- /.navbar-header -->
-    </div><!-- /.container -->
-</div>
+<s2:include value="sqzr_header-main.jsp"/>
 
 
 <div class="main-container" id="main-container">
@@ -98,74 +42,7 @@
         }
     </script>
     <div class="main-container-inner">
-        <a class="menu-toggler" id="menu-toggler" href="#">
-            <span class="menu-text"></span>
-        </a>
-
-        <div class="sidebar" id="sidebar">
-            <script type="text/javascript">
-                try {
-                    ace.settings.check('sidebar', 'fixed');
-                } catch (e) {
-                }
-            </script>
-            <div class="sidebar-shortcuts" id="sidebar-shortcuts">
-                <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
-                    <a class="btn btn-success" href="#">
-                        <i class="icon-signal"></i>
-                    </a>
-
-                    <a class="btn btn-info" href="/admin/main_article_add.html">
-                        <i class="icon-pencil"></i>
-                    </a>
-
-                    <a class="btn btn-warning" href="#">
-                        <i class="icon-group"></i>
-                    </a>
-                </div>
-            </div>
-            <!-- #sidebar-shortcuts -->
-
-            <ul class="nav nav-list">
-                <li>
-                    <a href="/admin/main_index.html">
-                        <i class="icon-dashboard"></i>
-                        <span class="menu-text"> 控制台 </span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="#" class="dropdown-toggle">
-                        <i class="icon-edit"></i>
-                        <span class="menu-text"> 文章管理 </span>
-                        <b class="arrow icon-angle-down"></b>
-                    </a>
-                    <ul class="submenu">
-                        <li>
-                            <a href="/admin/main_article_list.html">
-                                <i class="icon-double-angle-right"></i>
-                                文章列表
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="/admin/main_article_add.html">
-                                <i class="icon-double-angle-right"></i>
-                                添加文章
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="/admin/main_category.html">
-                        <i class="icon-list"></i>
-                        <span class="menu-text"> 分类管理 </span>
-                    </a>
-                </li>
-            </ul>
-            <!-- /.nav-list -->
-
-        </div>
+        <s2:include value="sqzr_sidebar.jsp"/>
         <div class="main-content">
             <div class="breadcrumbs" id="breadcrumbs">
                 <script type="text/javascript">

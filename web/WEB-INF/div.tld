@@ -48,4 +48,16 @@
             <rtexprvalue>true</rtexprvalue>
         </attribute>
     </tag>
+
+    <tag>
+        <name>md5</name>
+        <tag-class>tag.Md5Tag</tag-class>
+        <body-content>scriptless</body-content>
+    </tag>
+    
+    <tag>
+        <name>json</name>
+        <tag-class>tag.JsonTag</tag-class>
+        <body-content>scriptless</body-content>
+    </tag>
 </taglib>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <package name="admin_ajax" namespace="/ajax/admin" extends="admin-permission">
+        <action name="user_*" class="action.admin.UserAjaxAction" method="{1}">
+            <interceptor-ref name="json"/>
+            <interceptor-ref name="defaultStack"/>
+            <result name="json" type="json">
+                <param name="root">jsonInfo</param>
+            </result>
+        </action>
+        <action name="main_article_*" class="action.admin.ArticleAjaxAction" method="{1}">
+            <interceptor-ref name="json"/>
+            <interceptor-ref name="PermissionStack"/>
+            <result name="json" type="json">
+                <param name="root">jsonInfo</param>
+            </result>
+        </action>
+        <action name="main_category_*" class="action.admin.CategoryAjaxAction" method="{1}">
+            <interceptor-ref name="json"/>
+            <interceptor-ref name="PermissionStack"/>
+            <result name="json" type="json">
+                <param name="root">jsonInfo</param>
+            </result>
+        </action>
+        <action name="main_settings_*" class="action.admin.SettingsAjaxAction" method="{1}">
+            <interceptor-ref name="json"/>
+            <interceptor-ref name="PermissionStack"/>
+            <result name="json" type="json">
+                <param name="root">jsonInfo</param>
+            </result>
+        </action>
+        <action name="main_comment_*" class="action.admin.ajax.CommentAjaxAction" method="{1}">
+            <interceptor-ref name="json"/>
+            <interceptor-ref name="PermissionStack"/>
+            <result name="json" type="json">
+                <param name="root">jsonInfo</param>
+            </result>
+        </action>
+    </package>
+</struts>

@@ -26,6 +26,10 @@
     <bean id="optionDao" class="dao.impl.OptionDaoImpl">
         <property name="sqlSession" ref="sqlSession"/>
     </bean>
+    <bean id="commentDao" class="dao.impl.CommentDaoImpl">
+        <property name="sqlSession" ref="sqlSession"/>
+    </bean>
+
 
 
     <!-- service bean -->
@@ -45,6 +49,9 @@
     </bean>
     <bean id="optionService" class="service.impl.OptionServiceImpl">
         <property name="optionDao" ref="optionDao"/>
+    </bean>
+    <bean id="commentService" class="service.impl.CommentServiceImpl">
+        <property name="commentDao" ref="commentDao"/>
     </bean>
 
 

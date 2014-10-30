@@ -49,7 +49,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean logout(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
         User user = (User) session.getAttribute("user");
-        this.updateKeeplogin(user.getId());
+        if (user != null) {
+            user.setId(user.getId());
+            user.setKeeplogin(DigestUtils.md5Hex(String.valueOf(new Random().nextInt())));
+            userDao.updateKeeplogin(user);
+        }
         session.setAttribute("user", null);
         CookieUtil.removeCookie(request, response, "keeplogin");
         return true;

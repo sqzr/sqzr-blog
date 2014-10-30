@@ -93,18 +93,18 @@
                                                     <td class="category-uri"><span class="value"><s2:property value="uri"/></span></td>
                                                     <td class="category-count"><a href="/admin/main_category_list.html?id=<s2:property value="id"/>"><s2:property value="count"/></a></td>
                                                     <td>
-                                                        <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
+                                                        <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
                                                             <a href="javascript:void(0)"
-                                                               onclick="update(<s2:property value="id"/>)" class="btn btn-xs btn-info">
-                                                                <i class="icon-edit bigger-120"></i>
+                                                               onclick="update(<s2:property value="id"/>)" class="green">
+                                                                <i class="icon-pencil bigger-100"></i>
                                                             </a>
                                                             <a href="javascript:void(0)"
-                                                               onclick="setDefault(<s2:property value="id"/>)" class="btn btn-xs btn-warning">
-                                                                <i class="icon-flag bigger-120"></i>
+                                                               onclick="setDefault(<s2:property value="id"/>)" class="orange">
+                                                                <i class="icon-flag bigger-100"></i>
                                                             </a>
                                                             <a href="javascript:void(0)"
-                                                               onclick="deleteCategoryConfirm(<s2:property value="id"/>)" class="btn btn-xs btn-danger">
-                                                                <i class="icon-trash bigger-120"></i>
+                                                               onclick="deleteCategoryConfirm(<s2:property value="id"/>)" class="red">
+                                                                <i class="icon-trash bigger-100"></i>
                                                             </a>
                                                         </div>
 
@@ -238,37 +238,25 @@
     <script src="/javascripts/bootbox.min.js"></script>
     <script type="text/javascript">
         function deleteCategoryConfirm(id) {
-            bootbox.dialog({
-                message:"确定要删除么?(如果分类下有文章,则自动移动到默认分类)",
-                title:"提示",
-                buttons:{
-                    no : {
-                        label: "离开",
-                        className: "btn-default"
-                    },
-                    ok : {
-                        label: "删除",
-                        className: "btn-primary",
-                        callback: function() {
-                            var params = {
-                                "id":id
-                            };
-                            $.ajax({
-                                type: "post",
-                                url: "/ajax/admin/main_category_delete.html",
-                                dataType: 'json',
-                                data: JSON.stringify(params),
-                                contentType: 'application/json',
-                                success: function (data) {
-                                    if (data.status == true) {
-                                        location.reload(true);
-                                    } else if(data.status == false) {
-                                        myAlert(data.tips, "error");
-                                    }
-                                }
-                            });
+            swal({   title: "提示", text: "确定要删除么?(如果分类下有文章,则自动移动到默认分类)", type: "warning", showCancelButton: true, confirmButtonColor: "#DD6B55", confirmButtonText: "删除", cancelButtonText: "离开", closeOnConfirm: true, closeOnCancel: true }, function (isConfirm) {
+                if (isConfirm) {
+                    var params = {
+                        "id": id
+                    };
+                    $.ajax({
+                        type: "post",
+                        url: "/ajax/admin/main_category_delete.html",
+                        dataType: 'json',
+                        data: JSON.stringify(params),
+                        contentType: 'application/json',
+                        success: function (data) {
+                            if (data.status == true) {
+                                location.reload(true);
+                            } else if (data.status == false) {
+                                swal({title: "错误信息",text: data.tips,type: "error",timer: 1500});
+                            }
                         }
-                    }
+                    });
                 }
             });
         }
@@ -284,11 +272,11 @@
                 contentType: 'application/json',
                 success: function (data) {
                     if (data.status == true) {
-                        myAlert(data.tips,"info");
+                        swal({title: "提示",text: data.tips,type: "success",timer: 1500});
                         $(".default").html("");
                         $(".category-"+id+" .category-name .default").html("默认");
                     } else if (data.status == false) {
-                        myAlert(data.tips,"error");
+                        swal({title: "提示",text: data.tips,type: "error",timer: 1500});
                     }
                     $('body,html').animate({scrollTop:0},1000);
                 }
@@ -317,8 +305,7 @@
                         //添加成功
                         location.reload(true);
                     } else if (data.status == false) {
-                        //添加失败
-                        myAlert(data.tips,"error");
+                        swal({title: "添加成功",text: data.tips,type: "error",timer: 1500});
                     }
                 }
             });
@@ -344,13 +331,11 @@
                 contentType: 'application/json',
                 success: function (data) {
                     if (data.status == true) {
-                        //修改成功
-                        myAlert(data.tips, "info");
+                        swal({title: "修改成功",text: data.tips,type: "success",timer: 1500});
                         $(".category-"+params['id']+" .category-uri .value").text(params['uri']);
                         $(".category-"+params['id']+" .category-name .value").text(params['name']);
                     } else if (data.status == false) {
-                        //添加失败
-                        myAlert(data.tips, "error");
+                        swal({title: "修改成功",text: data.tips,type: "error",timer: 1500});
                     }
                 }
             });

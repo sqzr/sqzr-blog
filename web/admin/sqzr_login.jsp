@@ -111,14 +111,9 @@
             contentType: 'application/json',
             success: function (data) {
                 if (data.status == false) {
-                    //登陆失败
-                    myAlert(data.tips, "error");
+                    swal({title: "错误信息",text: data.tips,type: "error",timer: 1500});
                 } else if (data.status == true) {
-                    //登陆成功
-                    myAlert(data.tips, "info");
-                    window.setTimeout(function () {
-                        location.href = '/admin/main_index.html'
-                    }, 1000);
+                    location.href = '/admin/main_index.html';
                 }
             }
         });

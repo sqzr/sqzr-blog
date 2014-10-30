@@ -129,6 +129,35 @@
                             </div></div>
                         </div>
                     </div>
+                    <div class="col-xs-4">
+                        <div class="widget-box collapsed">
+                            <div class="widget-header header-color-blue">
+                                <h4>高级设置</h4>
+
+                                <div class="widget-toolbar">
+                                    <a href="#" data-action="close">
+                                        <%--<i class="icon-remove"></i>--%>
+                                    </a>
+                                    <a href="#" data-action="collapse">
+                                        <i class="icon-chevron-down"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="widget-body"><div class="widget-body-inner" style="display: none;">
+                                <div class="widget-main">
+                                    <div>
+                                        <label>
+                                            <small class="muted">开放评论:</small>
+                                            <input id="allowcomment" <s2:if test="article.allowcomment == 1">checked="checked"</s2:if> type="checkbox" style="opacity:0;margin-right:-70px;" class="ace ace-switch ace-switch-5">
+                                            <span class="lbl"></span>
+                                        </label>
+                                    </div>
+                                    <hr>
+
+                                </div>
+                            </div></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -196,7 +225,9 @@
             "id":$("#articleId").val(),
             "date":$("#date").val(),
             "oldcid":$("#oldcid").val(),
-            "newcid":$("#c_id").val()
+            "newcid":$("#c_id").val(),
+            "type":"post",
+            "allowcomment":$("#allowcomment").prop("checked")
         };
         $.ajax({
             type: "post",
@@ -212,13 +243,15 @@
             contentType: 'application/json',
             success: function (data) {
                 if (data.status == true) {
-                    myAlert(data.tips,"info");
+                    swal({   title: "提示", text: "文章修改成功", type: "success", showCancelButton: true, confirmButtonColor: "#438eb9", confirmButtonText: "返回列表", cancelButtonText: "确定", closeOnConfirm: true, closeOnCancel: true }, function (isConfirm) {
+                        if (isConfirm){
+                            location.href='/admin/main_article_list.html';
+                        }});
                     $("#oldcid").val($("#c_id").val());
                     $("#currentname").val($(".chosen-single span").text());
                 }else if(data.status == false){
-                    myAlert(data.tips, "error");
+                    swal({title: "错误信息",text: data.tips,type: "error",timer: 2000});
                 }
-                $('body,html').animate({scrollTop:0},1000);
             }
         });
     }
@@ -231,7 +264,8 @@
             "date":$("#date").val(),
             "oldcid":$("#oldcid").val(),
             "newcid":$("#c_id").val(),
-            "type":"post_draft"
+            "type":"post_draft",
+            "allowcomment":$("#allowcomment").prop("checked")
         };
         $.ajax({
             type: "post",
@@ -247,13 +281,15 @@
             contentType: 'application/json',
             success: function (data) {
                 if (data.status == true) {
-                    myAlert(data.tips,"info");
+                    swal({   title: "提示", text: "草稿保存成功", type: "success", showCancelButton: true, confirmButtonColor: "#438eb9", confirmButtonText: "返回列表", cancelButtonText: "确定", closeOnConfirm: true, closeOnCancel: true }, function (isConfirm) {
+                        if (isConfirm){
+                            location.href='/admin/main_article_list.html';
+                        }});
                     $("#oldcid").val($("#c_id").val());
                     $("#currentname").val($(".chosen-single span").text());
                 }else if(data.status == false){
-                    myAlert(data.tips, "error");
+                    swal({title: "错误信息",text: data.tips,type: "error",timer: 2000});
                 }
-                $('body,html').animate({scrollTop:0},1000);
             }
         });
     }

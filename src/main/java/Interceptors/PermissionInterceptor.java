@@ -47,7 +47,7 @@ public class PermissionInterceptor implements Interceptor {
             ApplicationContext appctx = new ClassPathXmlApplicationContext("spring-config.xml");
             UserService userService = (UserService)appctx.getBean("userService");
             User user = userService.getUserByKeeplogin(cookie.getValue());
-            if (cookie == null)
+            if (user == null)
             {
                 if ("XMLHttpRequest".equals(request.getHeader("X-Requested-With"))) {
                     // ajax

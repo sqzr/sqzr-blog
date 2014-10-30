@@ -922,8 +922,9 @@ footer {
     font-size:0.9em
 }
 article code,article pre {
-    border:1px solid #ccc;
-    font-faarticle premily:Menlo,Monaco,"Andale Mono","lucida console","Courier New",monospace
+    border: 1px solid #ccc;
+    font-faarticle: premily Menlo, Monaco, "Andale Mono", "lucida console", "Courier New", monospace;
+
 }
 article code {
     font-size:0.9em;
@@ -931,11 +932,11 @@ article code {
     margin:0 3px
 }
 article pre {
-    font-size:1 / 0.9em;
-    line-height:1.5;
-    margin-top:10px;
+    font-size: 1 / 0.9em;
+    line-height: 1.5;
+    margin-top: 10px;
     /*padding:5px 15px;*/
-    overflow-x:auto
+    overflow-x: auto
 }
 article pre code {
     background:none;

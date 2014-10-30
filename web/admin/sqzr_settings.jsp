@@ -330,18 +330,12 @@
             url: "/ajax/admin/main_settings_update.html",
             dataType: 'json',
             data: JSON.stringify(params),
-            beforeSend: function () {
-                $("#settings-save").attr('disabled', "true");
-            },
-            complete: function () {
-                $("#settings-save").removeAttr("disabled");
-            },
             contentType: 'application/json',
             success: function (data) {
-                if (data.status == "true") {
-                    myAlert(data.info, "info");
-                } else if (data.status == "false") {
-                    myAlert(data.info, "error");
+                if (data.status == true) {
+                    swal({title: "提示",text: data.tips,type: "success",timer: 1500});
+                } else if (data.status == false) {
+                    swal({title: "提示",text: data.tips,type: "error",timer: 1500});
                 }
             }
         });

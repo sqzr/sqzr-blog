@@ -77,11 +77,7 @@ public class PagerTag extends SimpleTagSupport {
             } else {
                 out.println("<li>");
             }
-            if (i == 1) {
-                out.println("<a href=\"" + this.uri + "\">" + i + "</a>");
-            }else {
-                out.println("<a href=\"" + this.uri + this.separated + "page=" + i + "\">" + i + "</a>");
-            }
+            out.println("<a href=\"" + this.uri + this.separated + "page=" + i + "\">" + i + "</a>");
             out.println("</li>");
         }
 

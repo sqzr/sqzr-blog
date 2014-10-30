@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="/stylesheets/messenger.css" />
     <link rel="stylesheet" href="/stylesheets/diy-style.css" />
     <link rel="stylesheet" href="/stylesheets/dropzone.css" />
+    <link rel="stylesheet" href="/stylesheets/sweet-alert.css" />
 
     <!-- js -->
     <script src="/javascripts/jquery.min.js"></script>
@@ -32,4 +33,5 @@
     <script src="/javascripts/ace-elements.min.js"></script>
     <script src="/javascripts/ace.min.js"></script>
     <script src="/javascripts/ace-extra.min.js"></script>
+    <script src="/javascripts/sweet-alert.min.js"></script>
 </head>

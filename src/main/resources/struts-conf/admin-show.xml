@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <package name="admin" namespace="/admin" extends="admin-permission">
+        <action name="user_*" class="action.admin.UserViewAction" method="{1}">
+            <interceptor-ref name="defaultStack"/>
+            <result name="success">
+                /admin/sqzr_{1}.jsp
+            </result>
+            <result type="redirect" name="logout">
+                /admin/user_login.html
+            </result>
+        </action>
+
+        <action name="main_*" class="action.admin.MainViewAction" method="{1}">
+            <result name="success">
+                /admin/sqzr_{1}.jsp
+            </result>
+            <result name="article_delete" type="redirect">
+                /admin/main_article_list.html
+            </result>
+            <result name="category_delete" type="redirect">
+                /admin/main_category.html
+            </result>
+        </action>
+    </package>
+</struts>

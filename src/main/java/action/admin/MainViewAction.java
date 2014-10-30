@@ -1,12 +1,16 @@
 package action.admin;
 
+import com.google.common.collect.ImmutableList;
 import com.opensymphony.xwork2.ActionSupport;
 import model.Article;
 import model.Category;
+import model.Comment;
 import other.Page;
 import service.ArticleService;
 import service.CategoryService;
+import service.CommentService;
 import service.OptionService;
+import webException.NotFoundException;
 
 import java.util.HashMap;
 import java.util.List;
@@ -20,12 +24,15 @@ public class MainViewAction extends ActionSupport {
     private Map<String, Object> options = new HashMap<String, Object>();
     private List<Article> articles;
     private List<Category> categories;
+    private Page<Comment> comments;
     private Page<Article> articlePage;
     private int id;
     private int page;
+    private String type;
     private ArticleService articleService;
     private CategoryService categoryService;
     private OptionService optionService;
+    private CommentService commentService;
     private Article article;
     private Category category;
 
@@ -58,6 +65,20 @@ public class MainViewAction extends ActionSupport {
         return SUCCESS;
     }
 
+    public String comment() throws Exception {
+        ImmutableList<String> statusCondition = ImmutableList.of("waiting", "approved", "spam");
+        if (!statusCondition.contains(this.type)) {
+            throw new NotFoundException("找不到页面");
+        }
+        this.info.put("title", "评论管理");
+        this.info.put("menu", "comment_"+this.type);
+        this.info.put("uri", "/admin/main_comment.html?type=" + this.type);
+        this.info.put("waitingCount", commentService.getStatusCount("waiting"));
+        this.info.put("spamCount", commentService.getStatusCount("spam"));
+        this.comments = commentService.get(this.page, 10, this.type);
+        return SUCCESS;
+    }
+
     public String article_update() throws Exception {
         this.info.put("menu", "article_update");
         this.categories = categoryService.list();
@@ -80,16 +101,39 @@ public class MainViewAction extends ActionSupport {
         return SUCCESS;
     }
 
+
     public String category_delete() throws Exception {
         categoryService.delete(id);
         return "category_delete";
     }
 
 
-
-
-
     // ---
+
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public CommentService getCommentService() {
+        return commentService;
+    }
+
+    public void setCommentService(CommentService commentService) {
+        this.commentService = commentService;
+    }
+
+    public Page<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(Page<Comment> comments) {
+        this.comments = comments;
+    }
 
     public int getPage() {
         return page;

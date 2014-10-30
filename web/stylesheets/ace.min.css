@@ -279,7 +279,7 @@ blockquote,blockquote.pull-right {
     background-color:#6faed9;
     border-color:#6faed9;
     color:#fff;
-    text-shadow:0 -1px 0 rgba(0,0,0,0.25)
+    /*text-shadow:0 -1px 0 rgba(0,0,0,0.25)*/
 }
 .list-group-item {
     border-radius:0!important
@@ -579,7 +579,7 @@ blockquote,blockquote.pull-right {
     border-bottom:0
 }
 .no-border-top {
-    border-top:0
+    border-top:0!important;
 }
 .no-border-left {
     border-left:none
@@ -8601,7 +8601,7 @@ li.item-default {
 .message-navbar {
     line-height:24px;
     padding:10px 12px;
-    border:1px solid #d6e1ea;
+    border:1px solid #d6e1ea!important;
     border-color:#d6e1ea transparent;
     background-color:#f1f5fa;
     position:relative
@@ -8627,7 +8627,8 @@ li.item-default {
      padding:12px 16px;
      border:1px solid #e6e6e6;
      border-width:1px 0;
-     border-top:1px solid #e4e9ee
+     border-top:1px solid #e4e9ee;
+     margin-top:-20px;
  }
 .message-footer .pagination {
     margin:0
@@ -12722,3 +12723,64 @@ th[aria-selected=true] .ui-jqgrid-sortable {
 .next a {
     height: 32px;
 }
+
+.nav-blue .active a {
+    background-color: #f1f5fa!important;
+    box-shadow: 0 -2px 3px 0 rgba(0, 0, 0, 0.1);
+    color: #48768e;
+}
+
+
+.comment-meta {
+    font-size: 87.5%;
+}
+
+.comment-meta span, .comment-date {
+    font-size: 5px;
+    color: #999;
+}
+.comment-date {
+    margin-bottom: 10px;
+}
+
+.comment-body {
+    line-height: 10px;
+}
+
+.comment-body p {
+    max-width: 800px;
+    font-size: 14px;
+    line-height: 25px;
+    word-wrap: break-word;
+    word-break: normal;
+}
+
+tr td .hidden-by-mouse {
+    font-size: 87.5%;
+    opacity: 0;
+}
+
+tr:hover td .hidden-by-mouse {
+    opacity: 1;
+}
+
+.message-footer .pagination .active a,.message-footer .pagination .active a:hover {
+    background-color: transparent !important;
+    color:#777!important;
+}
+
+.message-footer .pagination>li>a {
+    color:#6faed9!important;
+}
+
+.message-footer .pagination .disabled a,.message-footer .pagination .disabled a:hover {
+    background-color: transparent !important;
+    color: #777 !important;
+}
+
+.message-footer .next a,.message-footer .prev a {
+    margin-top: 2px;
+}
+
+
+

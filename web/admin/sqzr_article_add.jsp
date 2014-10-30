@@ -139,6 +139,35 @@
                             </div></div>
                         </div>
                     </div>
+                    <div class="col-xs-4">
+                        <div class="widget-box collapsed">
+                            <div class="widget-header header-color-blue">
+                                <h4>高级设置</h4>
+
+                                <div class="widget-toolbar">
+                                    <a href="#" data-action="close">
+                                        <%--<i class="icon-remove"></i>--%>
+                                    </a>
+                                    <a href="#" data-action="collapse">
+                                        <i class="icon-chevron-down"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="widget-body"><div class="widget-body-inner" style="display: none;">
+                                <div class="widget-main">
+                                    <div>
+                                        <label>
+                                            <small class="muted">开放评论:</small>
+                                            <input id="allowcomment" checked="checked" type="checkbox" style="opacity:0;margin-right:-70px;" class="ace ace-switch ace-switch-5">
+                                            <span class="lbl"></span>
+                                        </label>
+                                    </div>
+                                    <hr>
+
+                                </div>
+                            </div></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -172,7 +201,8 @@
                 "content": $("#content").val(),
                 "uri":$("#uri").val(),
                 "date":$("#date").val(),
-                "c_id":$("#c_id").val()
+                "c_id":$("#c_id").val(),
+                "allowcomment":$("#allowcomment").prop("checked")
             };
             add(params);
         });
@@ -183,7 +213,8 @@
                 "content": $("#content").val(),
                 "date":$("#date").val(),
                 "uri":$("#uri").val(),
-                "c_id":$("#c_id").val()
+                "c_id":$("#c_id").val(),
+                "allowcomment":$("#allowcomment").prop("checked")
             };
             add(params);
         });
@@ -217,17 +248,19 @@
                     //成功
                     if(params['type'] == "post") {
                         // 发表文章 跳到文章列表
-                        myAlert(data.tips + "&nbsp;<a href='/admin/main_article_update.html?id="+data.article_id+"'>点击编辑</a>", "info");
+                        swal({   title: "提示", text: "文章添加成功", type: "success", showCancelButton: true, confirmButtonColor: "#438eb9", confirmButtonText: "返回列表", cancelButtonText: "确定", closeOnConfirm: true, closeOnCancel: true }, function (isConfirm) {
+                            if (isConfirm){
+                                location.href='/admin/main_article_list.html';
+                            }});
                     }else if(params['type'] == "post_draft") {
-                        // 保存草稿 跳到编辑文章
-                        myAlert("添加草稿成功,自动跳转中..", "info");
-                        window.setTimeout(function(){location.href='/admin/main_article_update.html?id='+data.article_id},2000);
-//                        window.location.href="/admin/main_article_update.html?id="+data.article_id;
+                        swal({   title: "提示", text: "草稿保存成功", type: "success", showCancelButton: true, confirmButtonColor: "#438eb9", confirmButtonText: "返回列表", cancelButtonText: "确定", closeOnConfirm: true, closeOnCancel: true }, function (isConfirm) {
+                            if (isConfirm){
+                                location.href='/admin/main_article_list.html';
+                            }});
                     }
                 } else if(data.status == false) {
-                    myAlert(data.tips, "error");
+                    swal({title: "错误信息",text: data.tips,type: "error",timer: 2500});
                 }
-                $('body,html').animate({scrollTop:0},1000);
             }
         });
     }

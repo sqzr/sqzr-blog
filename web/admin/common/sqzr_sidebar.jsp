@@ -73,6 +73,12 @@
                     </li>
                 </ul>
             </li>
+            <li class="<s2:if test="info['menu'].contains('comment')">active open</s2:if>">
+                <a href="/admin/main_comment.html?type=approved">
+                    <i class="icon-inbox"></i>
+                    <span class="menu-text"> 评论 </span>
+                </a>
+            </li>
             <li class="<s2:if test="info['menu'].contains('category')">active open</s2:if>">
                 <a href="/admin/main_category.html">
                     <i class="icon-list"></i>

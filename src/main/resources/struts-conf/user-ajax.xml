@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <package name="comment" namespace="/" extends="json-default">
+        <action name="comment" class="action.show.ajax.CommentAction" method="comment">
+            <interceptor-ref name="json"/>
+            <result name="json" type="json">
+                <param name="root">jsonInfo</param>
+            </result>
+        </action>
+    </package>
+</struts>

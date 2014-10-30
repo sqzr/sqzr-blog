@@ -142,15 +142,15 @@
                                                         <td><s2:property value="category.name"/></td>
                                                         <td><div:dateformat><s2:date name="date" format="yyyy-MM-dd HH:mm:ss"/></div:dateformat></td>
                                                         <td>
-                                                            <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
+                                                            <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
                                                                 <a href="/admin/main_article_update.html?id=<s2:property value="id"/>"
-                                                                   class="btn btn-xs btn-info">
-                                                                    <i class="icon-edit bigger-120"></i>
+                                                                   class="green">
+                                                                    <i class="icon-pencil bigger-100"></i>
                                                                 </a>
                                                                 <a href="javascript:void(0)"
                                                                    onclick="deleteConfirm(<s2:property value="id"/>)"
-                                                                   class="btn btn-xs btn-danger">
-                                                                    <i class="icon-trash bigger-120"></i>
+                                                                   class="red">
+                                                                    <i class="icon-trash bigger-100"></i>
                                                                 </a>
                                                             </div>
                                                             <div class="visible-xs visible-sm hidden-md hidden-lg">
@@ -228,76 +228,52 @@
             }
         });
         if(batch.length != 0){
-            bootbox.dialog({
-                message: "确定要删除所勾选项么?",
-                title: "提示",
-                buttons: {
-                    no: {
-                        label: "离开",
-                        className: "btn-default"
-                    },
-                    ok: {
-                        label: "删除",
-                        className: "btn-primary",
-                        callback: function () {
-                            var params = {
-                                "batch": batch
-                            };
-                            $.ajax({
-                                type: "post",
-                                url: "/ajax/admin/main_article_delete_batch.html",
-                                dataType: 'json',
-                                data: JSON.stringify(params),
-                                contentType: 'application/json',
-                                success: function (data) {
-                                    if (data.status == true) {
-                                        location.reload(true);
-                                    } else if (data.status == false) {
-                                        myAlert(data.tips, "error");
-                                    }
-                                }
-                            });
+            swal({   title: "提示", text: "确定要删除所勾选项么?", type: "warning", showCancelButton: true, confirmButtonColor: "#DD6B55", confirmButtonText: "删除", cancelButtonText: "离开", closeOnConfirm: true, closeOnCancel: true }, function (isConfirm) {
+                if (isConfirm) {
+                    var params = {
+                        "batch": batch
+                    };
+                    $.ajax({
+                        type: "post",
+                        url: "/ajax/admin/main_article_delete_batch.html",
+                        dataType: 'json',
+                        data: JSON.stringify(params),
+                        contentType: 'application/json',
+                        success: function (data) {
+                            if (data.status == true) {
+                                location.reload(true);
+                            } else if (data.status == false) {
+                                swal({title: "错误信息",text: data.tips,type: "error",timer: 1500});
+                            }
                         }
-                    }
+                    });
                 }
             });
         }else {
-            myAlert("没有文章被删除", "error");
+            swal({title: "错误信息",text: "没有文章被删除",type: "error",timer: 1500});
         }
 
     });
     function deleteConfirm(id) {
-        bootbox.dialog({
-            message: "确定要删除么?",
-            title: "提示",
-            buttons: {
-                no: {
-                    label: "离开",
-                    className: "btn-default"
-                },
-                ok: {
-                    label: "删除",
-                    className: "btn-primary",
-                    callback: function () {
-                        var params = {
-                            "id": id
-                        };
-                        $.ajax({
-                            type: "post",
-                            url: "/ajax/admin/main_article_delete.html",
-                            dataType: 'json',
-                            data: JSON.stringify(params),
-                            contentType: 'application/json',
-                            success: function (data) {
-                                if (data.status == true) {
-                                    location.reload(true);
-                                } else if (data.status == false) {
-                                    myAlert(data.tips, "error");
-                                }
-                            }
-                        });
+        swal({   title: "提示", text: "确定要删除么?", type: "warning", showCancelButton: true, confirmButtonColor: "#DD6B55", confirmButtonText: "删除", cancelButtonText: "离开", closeOnConfirm: true, closeOnCancel: true }, function (isConfirm) {
+            if (isConfirm) {
+                var params = {
+                    "id": id
+                };
+                $.ajax({
+                    type: "post",
+                    url: "/ajax/admin/main_article_delete.html",
+                    dataType: 'json',
+                    data: JSON.stringify(params),
+                    contentType: 'application/json',
+                    success: function (data) {
+                        if (data.status == true) {
+                            location.reload(true);
+                        } else if (data.status == false) {
+                            swal({title: "错误信息",text: data.tips,type: "error",timer: 1500});
+                        }
                     }
-                }
+                });
             }
         });
     }
