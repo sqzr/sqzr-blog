@@ -1,5 +1,6 @@
 package dao;
 
+import model.Article;
 import model.Comment;
 
 import java.util.List;
@@ -26,6 +27,14 @@ public interface CommentDao {
      * @return
      */
     public List<Comment> get(String status);
+
+    /**
+     * 获取指定状态指定文章下的评论
+     * @param stauts
+     * @param aid
+     * @return
+     */
+    public List<Comment> get(String stauts, int aid);
     /**
      * 获取所有评论
      * @param waiting 是否获取待审核的评论
@@ -55,11 +64,25 @@ public interface CommentDao {
     public int getStatusCount(String column);
 
     /**
+     * 获取指定文章的某个状态条数
+     * @param column
+     * @param aid
+     * @return
+     */
+    public int getStatusCount(String column, int aid);
+    /**
      * 修改状态
      * @param id
      * @param status
      * @return
      */
     public int updateStatus(int id,String status);
+
+    /**
+     * 通过评论id获取文章id
+     * @param id
+     * @return
+     */
+    public int getArticleIdByCommentId(int id);
 
 }

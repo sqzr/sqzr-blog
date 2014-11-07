@@ -17,7 +17,6 @@
         <result column="status" property="status"/>
         <result column="parent" property="parent"/>
         <association property="article" select="model.Article.getArticleById" javaType="Article" column="a_id"/>
-        <!--<collection property="parent" select="getCommentByParentId" javaType="Comment" column="parent"/>-->
     </resultMap>
     <select id="selectArticle" parameterType="int" resultType="Category">
         select * from article where id = #{id}
@@ -32,7 +31,9 @@
         select * from comment
         <where>
             <if test="status != null">status = #{status}</if>
+            <if test="aid != null">and a_id = #{aid}</if>
         </where>
+        order by created desc
     </select>
 
     <delete id="delete" parameterType="int">
@@ -59,6 +60,7 @@
             <if test="approved != null">status = 'approved'</if>
             <if test="waiting != null">or status = 'waiting'</if>
             <if test="spam != null">or status = 'spam'</if>
+            <if test="aid != null">and a_id = #{aid}</if>
         </where>
     </select>
 
@@ -71,5 +73,8 @@
         select * from comment
         where parent = #{parent}
 </select>
-
+    <select id="getArticleIdByCommentId" resultType="int" parameterType="int">
+        select a_id from comment
+        where id = #{id}
+    </select>
 </mapper>

@@ -28,6 +28,7 @@ public class MainViewAction extends ActionSupport {
     private Page<Article> articlePage;
     private int id;
     private int page;
+    private int aid;
     private String type;
     private ArticleService articleService;
     private CategoryService categoryService;
@@ -39,6 +40,8 @@ public class MainViewAction extends ActionSupport {
     public String index() throws Exception {
         this.info.put("title", "控制台");
         this.info.put("menu", "index");
+        this.articlePage = articleService.list(1, 10);
+        this.comments = commentService.get(1, 10);
         return SUCCESS;
     }
 
@@ -72,10 +75,16 @@ public class MainViewAction extends ActionSupport {
         }
         this.info.put("title", "评论管理");
         this.info.put("menu", "comment_"+this.type);
-        this.info.put("uri", "/admin/main_comment.html?type=" + this.type);
-        this.info.put("waitingCount", commentService.getStatusCount("waiting"));
-        this.info.put("spamCount", commentService.getStatusCount("spam"));
-        this.comments = commentService.get(this.page, 10, this.type);
+        this.info.put("uri", (this.aid == 0) ? "/admin/main_comment.html?type=" + this.type : "/admin/main_comment.html?aid=" + this.aid + "&type=" + this.type);
+        int waitingCount = (this.aid == 0) ? commentService.getStatusCount("waiting") : commentService.getStatusCount("waiting", this.aid);
+        int spamCount = (this.aid == 0) ? commentService.getStatusCount("spam") : commentService.getStatusCount("spam", this.aid);
+        this.info.put("waitingCount", waitingCount);
+        this.info.put("spamCount", spamCount);
+        String otherStatusUri = (this.aid == 0) ? "/admin/main_comment.html?type=" : "/admin/main_comment.html?aid=" + this.aid + "&type=";
+        this.info.put("otherStatusUri", otherStatusUri);
+        this.comments = (this.aid == 0)?
+                commentService.get(this.page, 10, this.type):
+                commentService.get(this.page, 10, this.type,this.aid);
         return SUCCESS;
     }
 
@@ -110,6 +119,14 @@ public class MainViewAction extends ActionSupport {
 
     // ---
 
+
+    public int getAid() {
+        return aid;
+    }
+
+    public void setAid(int aid) {
+        this.aid = aid;
+    }
 
     public String getType() {
         return type;

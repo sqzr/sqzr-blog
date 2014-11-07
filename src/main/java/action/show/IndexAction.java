@@ -3,6 +3,7 @@ package action.show;
 import com.sqzr.rssutil.Author;
 import com.sqzr.rssutil.Entry;
 import com.sqzr.rssutil.Feed;
+import model.Comment;
 import org.apache.struts2.ServletActionContext;
 import other.Page;
 import com.opensymphony.xwork2.ActionSupport;
@@ -41,6 +42,13 @@ public class IndexAction extends ActionSupport {
 
     public String blog() throws Exception {
         this.article = articleService.getArticleByUri(this.uri);
+        List<Comment> temp = new ArrayList<Comment>();
+        for (Comment comment : this.article.getComments()) {
+            if ("approved".equals(comment.getStatus())) {
+                temp.add(comment);
+            }
+        }
+        this.article.setComments(temp);
         this.options = optionService.getAllOption();
         return "success";
     }

@@ -97,6 +97,38 @@ public class ArticleDaoImpl implements ArticleDao {
         return sqlSession.delete("model.Article.batchDelete", batch);
     }
 
+    @Override
+    public int plusCommentCount(Article article, int num) {
+        Map<String, Object> condition = new HashMap<String, Object>();
+        condition.put("a_id", article.getId());
+        condition.put("num", num);
+        return sqlSession.update("model.Article.plusCommentCount",condition);
+    }
+
+    @Override
+    public int plusCommentCount(int id, int num) {
+        Map<String, Object> condition = new HashMap<String, Object>();
+        condition.put("a_id",id);
+        condition.put("num", num);
+        return sqlSession.update("model.Article.plusCommentCount",condition);
+    }
+
+    @Override
+    public int minusCommentCount(Article article, int num) {
+        Map<String, Object> condition = new HashMap<String, Object>();
+        condition.put("a_id", article.getId());
+        condition.put("num", num);
+        return sqlSession.update("model.Article.minusCommentCount",condition);
+    }
+
+    @Override
+    public int minusCommentCount(int id, int num) {
+        Map<String, Object> condition = new HashMap<String, Object>();
+        condition.put("a_id", id);
+        condition.put("num", num);
+        return sqlSession.update("model.Article.minusCommentCount",condition);
+    }
+
     // ---
 
 

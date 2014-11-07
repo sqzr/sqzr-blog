@@ -60,4 +60,15 @@
         <tag-class>tag.JsonTag</tag-class>
         <body-content>scriptless</body-content>
     </tag>
+
+    <tag>
+        <name>length</name>
+        <tag-class>tag.LengthTag</tag-class>
+        <body-content>scriptless</body-content>
+        <attribute>
+            <name>num</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
 </taglib>

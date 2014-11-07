@@ -2,6 +2,8 @@ package service;
 
 import model.Comment;
 import other.Page;
+import webException.NotFoundException;
+import webException.ParameterIsEmptyException;
 
 import java.util.List;
 
@@ -49,6 +51,16 @@ public interface CommentService {
     public Page<Comment> get(int pageNum, int pageSize,String status);
 
     /**
+     * 获取指定文章下面的评论
+     * @param pageNum
+     * @param pageSize
+     * @param status 状态
+     * @param aid 文章id
+     * @return
+     */
+    public Page<Comment> get(int pageNum, int pageSize,String status,int aid) throws NotFoundException, ParameterIsEmptyException;
+
+    /**
      * 获取所有评论
      * @param waiting 是否获取待审核的评论
      * @param spam 是否获取垃圾评论
@@ -82,6 +94,13 @@ public interface CommentService {
      */
     public int getStatusCount(String column);
 
+    /**
+     * 获取指定文章的某个状态条数
+     * @param column
+     * @param aid
+     * @return
+     */
+    public int getStatusCount(String column, int aid);
     /**
      * 修改状态
      * @param id

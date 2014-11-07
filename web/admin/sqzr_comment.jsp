@@ -40,7 +40,12 @@
                         评论
                         <small>
                             <i class="icon-double-angle-right"></i>
-                            评论管理
+                            <s2:if test="#parameters.aid[0] != null">
+                            文章id:<s2:property value="#parameters.aid[0]"/>下的评论
+                            </s2:if>
+                            <s2:else>
+                            所有评论
+                            </s2:else>
                         </small>
                     </h1>
                 </div>
@@ -48,14 +53,14 @@
                 <div class="tabbable">
                     <ul class="nav nav-tabs nav-blue height-33">
                         <li <s2:if test="info['menu'] == 'comment_approved'">class="active"</s2:if> id="approved-tab">
-                            <a href="?type=approved">
+                            <a href="<s2:property value="info['otherStatusUri']"/>approved">
                                 已通过
                             </a>
                         </li>
 
                         <li <s2:if test="info['menu'] == 'comment_waiting'">class="active"</s2:if> id="waiting-tab">
                             <s2:if test="info['waitingCount'] != 0">
-                            <a href="?type=waiting">
+                            <a href="<s2:property value="info['otherStatusUri']"/>waiting">
                                 待审核&nbsp;<span class="badge"><s2:property value="info['waitingCount']"/></span>
                             </a>
                             </s2:if>
@@ -68,7 +73,7 @@
 
                         <li <s2:if test="info['menu'] == 'comment_spam'">class="active"</s2:if> id="spam-tab">
                             <s2:if test="info['spamCount'] != 0">
-                            <a href="?type=spam">
+                            <a href="<s2:property value="info['otherStatusUri']"/>spam">
                                 垃圾&nbsp;<span class="badge"><s2:property value="info['spamCount']"/></span>
                             </a>
                             </s2:if>

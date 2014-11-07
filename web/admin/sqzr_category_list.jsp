@@ -136,8 +136,9 @@
                                                         </td>
                                                         <td>
                                                             <a href="/admin/main_article_update.html?id=<s2:property value="id"/>"><s2:property value="title"/></a>
-                                                            <s2:if test="type == 'post_draft'"><span class="label label-sm label-inverse arrowed-in">草稿</span></s2:if>
+                                                            <s2:if test="type == 'post_draft'"><span class="label label-sm label-inverse">草稿</span></s2:if>
                                                             <s2:else><a href="/blog/<s2:property value="uri"/>.shtml" target="_blank"><i class="i-exlink"></i></a></s2:else>
+                                                            <a href="/admin/main_comment.html?aid=<s2:property value="id"/>&type=approved"><span class="badge"><s2:property value="commentsnum"/></span></a>
                                                         </td>
                                                         <td><s2:property value="category.name"/></td>
                                                         <td><div:dateformat><s2:date name="date" format="yyyy-MM-dd HH:mm:ss"/></div:dateformat></td>
@@ -205,7 +206,6 @@
         </div>
     </div>
 </div>
-<s2:debug/>
 <s2:property value="#request.query_string"/>
 <s2:property value="#request.request_uri"/>
 <script src="/javascripts/bootbox.min.js"></script>

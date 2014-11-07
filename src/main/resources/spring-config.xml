@@ -52,6 +52,8 @@
     </bean>
     <bean id="commentService" class="service.impl.CommentServiceImpl">
         <property name="commentDao" ref="commentDao"/>
+        <property name="articleDao" ref="articleDao"/>
+        <property name="articleService" ref="articleService"/>
     </bean>
 
 

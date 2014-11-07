@@ -112,4 +112,36 @@ public interface ArticleDao {
      */
     public int batchDelete(List<Integer> batch);
 
+    /**
+     * 增加评论数
+     * @param article 文章
+     * @param num 评论数
+     * @return
+     */
+    public int plusCommentCount(Article article, int num);
+
+    /**
+     * 减少评论数
+     * @param id 文章id
+     * @param num 评论数
+     * @return
+     */
+    public int plusCommentCount(int id, int num);
+
+    /**
+     * 减少评论数
+     * @param article 文章
+     * @param num 评论数
+     * @return
+     */
+    public int minusCommentCount(Article article, int num);
+
+    /**
+     * 减少评论数
+     * @param id 文章id
+     * @param num 评论数
+     * @return
+     */
+    public int minusCommentCount(int id, int num);
+
 }

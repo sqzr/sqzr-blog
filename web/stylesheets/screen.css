@@ -917,7 +917,7 @@ article .entry-content .video-container iframe,article .entry-content .video-con
 }
 footer {
     padding:15px 0;
-    border-top:1px solid #fff;
+    /*border-top:1px solid #fff;*/
     text-align:center;
     font-size:0.9em
 }

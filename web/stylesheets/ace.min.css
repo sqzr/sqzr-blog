@@ -4453,7 +4453,8 @@ input[type=checkbox].ace.ace-switch {
 }
 input[type=checkbox].ace.ace-switch+.lbl {
     margin:0 4px;
-    min-height:24px
+    min-height:24px;
+    z-index:0;
 }
 input[type=checkbox].ace.ace-switch+.lbl::before {
     font-family:Arial,Helvetica,sans-serif;
@@ -5739,7 +5740,7 @@ th .lbl:only-child,td .lbl:only-child {
     vertical-align:top
 }
 .table-header {
-    background-color:#307ecc;
+    background-color:#438eb9;
     color:#FFF;
     font-size:14px;
     line-height:38px;
@@ -6203,11 +6204,11 @@ th .lbl:only-child,td .lbl:only-child {
     filter:progid:DXImageTransform.Microsoft.gradient(enabled=false)
 }
 .header-color-blue {
-    background:#307ecc;
-    border-color:#307ecc
+    background:#438eb9;
+    border-color:#438eb9
 }
 .header-color-blue+.widget-body {
-    border-color:#307ecc;
+    border-color:#438eb9;
 }
 .header-color-blue2 {
     background:#5090c1;
@@ -12782,5 +12783,23 @@ tr:hover td .hidden-by-mouse {
     margin-top: 2px;
 }
 
+.main-index-recent-post ul,.main-index-recent-comment ul {
+    list-style:none;
+    margin:0 0 0 10px
+}
+.main-index-recent-post ul li,.main-index-recent-comment ul li {
+    margin-bottom: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
+}
+.main-index-recent-post ul li span,.main-index-recent-comment ul li span {
+    display: inline-block;
+    margin-right: 4px;
+    padding-right: 8px;
+    border-right: 1px solid #ECECEC;
+    text-align: right;
+    color: #999;
+}
 

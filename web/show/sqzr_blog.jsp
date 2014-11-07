@@ -71,16 +71,16 @@
             </form>
             </div>
             </s2:if>
-
                         <a style="display: none;" id="jump"></a>
                     </p>
                 </div>
             </div>
 
         </div>
-        <footer id="footer" class="inner"><p>
-            Copyright © 2014 - sqzr
-        </p>
+        <%--<footer id="footer" class="inner">--%>
+            <%--<p>--%>
+            <%--Copyright © 2014 - sqzr--%>
+        <%--</p>--%>
         </footer>
         <script src="//dn-sqzr.qbox.me/javascripts/slash.js"></script>
         <script src="//dn-sqzr.qbox.me/javascripts/jquery.fancybox.pack.js"></script>
