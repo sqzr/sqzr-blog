@@ -80,4 +80,8 @@
             <if test="id != null">and not id = #{id}</if>
         </where>
     </select>
+    
+    <select id="getCount" resultType="int">
+        select count(*) from category;
+    </select>
 </mapper>

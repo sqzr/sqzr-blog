@@ -108,21 +108,21 @@
                                                 </div>
                                             </div>
                                             <table id="sample-table-1"
-                                                   class="table table-striped table-bordered table-hover">
+                                                   class="table table-striped table-bordered table-hover" style="table-layout:fixed;word-break:break-all;">
                                                 <thead>
                                                 <tr>
-                                                    <th class="center">
+                                                    <th class="center" width="8%">
                                                         <label>
                                                             <input type="checkbox" class="ace">
                                                         </label>
                                                     </th>
-                                                    <th>标题</th>
-                                                    <th>分类</th>
-                                                    <th>
-                                                        <i class="icon-time bigger-110 hidden-480"></i>
-                                                        发表时间
+                                                    <th width="65%">标题</th>
+                                                    <th width="10%">分类</th>
+                                                    <th width="7%">
+                                                        <i class="icon-time bigger-110 hidden-480" style="width: 10px;margin-right: 2px;"></i>
+                                                        时间
                                                     </th>
-                                                    <th></th>
+                                                    <th width="8%"></th>
                                                 </tr>
                                                 </thead>
 

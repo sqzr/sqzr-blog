@@ -44,8 +44,7 @@
                     </h1>
                 </div>
                 <div class="row">
-                    <div class="col-xs-12">
-                        <div class="col-xs-7">
+                        <div class="col-xs-12 col-md-7">
                             <div class="widget-box">
                                 <div class="widget-header header-color-blue">
                                     <h4 class="smaller">
@@ -162,7 +161,7 @@
                         </div>
                         <!-- /span -->
 
-                        <div class="col-xs-5">
+                        <div class="col-xs-12 col-md-5">
                             <div class="widget-box">
                                 <div class="widget-header header-color-blue">
                                     <h4 id="update-tips">添加分类</h4>
@@ -229,7 +228,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
                     <!-- /span -->
                 </div>
             </div>

@@ -93,6 +93,11 @@ public class CategoryDaoImpl implements CategoryDao {
         return (result != 0) ? true : false;
     }
 
+    @Override
+    public int getCount() {
+        return sqlSession.selectOne("model.Category.getCount");
+    }
+
 
     @Override
     public List<Category> list() {

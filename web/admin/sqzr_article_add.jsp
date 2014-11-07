@@ -59,7 +59,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xs-8">
+                    <div class="col-xs-12 col-md-8">
                         <div class="widget-box editor">
                             <div class="widget-header widget-header-small header-color-blue"></div>
 
@@ -73,7 +73,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xs-4">
+                    <div class="col-xs-12 col-sm-6 col-md-4">
                         <div class="widget-box">
                             <div class="widget-header header-color-blue">
                                 <h4>属性</h4>
@@ -139,7 +139,7 @@
                             </div></div>
                         </div>
                     </div>
-                    <div class="col-xs-4">
+                    <div class="col-xs-12 col-sm-6 col-md-4">
                         <div class="widget-box collapsed">
                             <div class="widget-header header-color-blue">
                                 <h4>高级设置</h4>

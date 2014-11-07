@@ -42,6 +42,11 @@ public class MainViewAction extends ActionSupport {
         this.info.put("menu", "index");
         this.articlePage = articleService.list(1, 10);
         this.comments = commentService.get(1, 10);
+        this.info.put("article_count",articlePage.getTotal());
+        this.info.put("comment_count",comments.getTotal());
+        this.info.put("category_count",categoryService.getCount());
+        this.info.put("comment_spam_count", commentService.getStatusCount("spam"));
+        this.info.put("comment_waiting_count", commentService.getStatusCount("waiting"));
         return SUCCESS;
     }
 

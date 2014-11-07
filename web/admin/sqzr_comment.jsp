@@ -89,17 +89,17 @@
                             <div class="message-container">
                                 <s2:if test="comments.size > 0">
                                 <div class="message-list-container">
-                                    <table class="table no-border">
+                                    <table class="table no-border" style="table-layout: fixed;word-break: break-all;">
                                         <thead>
                                         <tr class="message-navbar"
                                             style="background-color:#f1f5fa;background-image:none;">
-                                            <th class="center" style="border-bottom:1px solid #d6e1ea!important;">
+                                            <th class="center" style="border-bottom:1px solid #d6e1ea!important;width:40px;">
                                                 <label>
                                                     <input type="checkbox" class="ace">
                                                 </label>
                                             </th>
-                                            <th style="border-bottom:1px solid #d6e1ea!important;">
-                                                <div class="inline position-relative" style="margin-left: -22px;">
+                                            <th style="border-bottom:1px solid #d6e1ea!important;width: 60px;">
+                                                <div class="inline position-relative">
                                                     <a href="#" data-toggle="dropdown" class="dropdown-toggle">
                                                         <i class="icon-caret-down bigger-125 middle"></i>
                                                     </a>
@@ -111,7 +111,7 @@
                                                     </ul>
                                                 </div>
                                             </th>
-                                            <th class="blue no-border-bottom" style="border-bottom:1px solid #d6e1ea!important;">作者</th>
+                                            <th class="blue no-border-bottom" style="border-bottom:1px solid #d6e1ea!important;width: 180px;">作者</th>
                                             <th class="blue no-border-bottom" style="border-bottom:1px solid #d6e1ea!important;">内容</th>
                                         </tr>
                                         </thead>
@@ -251,7 +251,6 @@
         </div>
     </div>
 </div>
-<s2:debug/>
 <script type="text/javascript">
     $('table th input:checkbox').on('click', function () {
         var that = this;

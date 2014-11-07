@@ -101,26 +101,25 @@
                                                     <div:pager uri="${uri}" curpage="${curpage}" pagecount="${pagecount}" rowcount="10"/>
                                                 </div>
                                             </div>
-                                            <table id="sample-table-1"
-                                                   class="table table-striped table-bordered table-hover">
+                                            <table id="sample-table-1"  class="table table-striped table-bordered table-hover" style="table-layout:fixed;word-break:break-all;">
                                                 <thead>
                                                 <tr>
-                                                    <th class="center">
+                                                    <th class="center" width="8%">
                                                         <label>
                                                             <input type="checkbox" class="ace">
                                                                 <%--<span class="lbl"></span>--%>
                                                         </label>
                                                     </th>
-                                                    <th>标题</th>
-                                                    <th>分类</th>
-                                                    <th>
-                                                        <i class="icon-time bigger-110 hidden-480"></i>
+                                                    <th width="65%">标题</th>
+                                                    <th width="10%">分类</th>
+                                                    <th width="7%">
+                                                        <i class="icon-time bigger-110 hidden-480" style="width: 10px;margin-right: 2px;"></i>
                                                         日期
                                                     </th>
-                                                    <th></th>
+                                                    <th width="8%"></th>
                                                 </tr>
                                                 </thead>
-                                                <tbody>
+                                                <tbody valign="bottom">
                                                 <s2:iterator value="articlePage" id="article">
                                                     <tr>
                                                         <td class="center">

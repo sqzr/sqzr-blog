@@ -37,6 +37,11 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    public int getCount() {
+        return categoryDao.getCount();
+    }
+
+    @Override
     public int delete(int id){
         if (id == 0) {
             return -1;

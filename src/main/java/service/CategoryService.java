@@ -25,6 +25,12 @@ public interface CategoryService {
     public List<Category> list();
 
     /**
+     * 获取分类总数
+     * @return
+     */
+    public int getCount();
+
+    /**
      * 删除分类
      * @param id
      * @return -1 参数错误

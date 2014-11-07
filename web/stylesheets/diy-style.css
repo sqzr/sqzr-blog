@@ -66,3 +66,26 @@
     font-style: normal;
 }
 
+.well h4 {
+    color: #999;
+    font-size: 16px;
+}
+
+.well h4 em {
+    color: #444;
+    font-size: 2em;
+    font-style: normal;
+    font-family: Georgia, serif;
+}
+
+#start-link {
+    margin: 13px 0 0 0;
+    font-size: 15px;
+    list-style: none;
+}
+
+#start-link li {
+    float: left;
+    margin-right:1.5em;
+}
+

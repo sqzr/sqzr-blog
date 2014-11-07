@@ -80,4 +80,10 @@ public interface CategoryDao {
      * @return
      */
     public boolean checkValueExist(String value, String column, int id);
+
+    /**
+     * 获取分类总数
+     * @return
+     */
+    public int getCount();
 }
