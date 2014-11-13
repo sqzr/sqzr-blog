@@ -13,7 +13,10 @@ import util.EnvironmentInfo;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.*;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
 
 /**
  * Created by weiyang on 2014/9/12.
@@ -25,12 +28,11 @@ public class UserServiceImpl implements UserService {
     public User login(String username, String password) {
         User user = userDao.login(username, password);
         // 日志对象
-        Log log = new Log();
-        log.setIp(EnvironmentInfo.getIpAddr());
-        log.setUseragent(EnvironmentInfo.getUserAgent());
-        log.setType("login");
-        log.setDate(new Date());
-        log.setContent("username:" + username + "-password:" + password);
+        Log log = new Log("login",
+                EnvironmentInfo.getIpAddr(),
+                EnvironmentInfo.getUserAgent(),
+                "username:" + username + "-password:" + password,
+                new Date());
         if (user != null) {
             // 登陆成功,更新登陆记录
             Map<String, Object> environmentInfo = new HashMap<String, Object>();

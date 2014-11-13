@@ -1,6 +1,5 @@
 package model;
 
-import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -24,6 +23,14 @@ public class Log {
         this.useragent = useragent;
         this.content = content;
         this.result = result;
+        this.date = date;
+    }
+
+    public Log(String type, String ip, String useragent, String content, Date date) {
+        this.type = type;
+        this.ip = ip;
+        this.useragent = useragent;
+        this.content = content;
         this.date = date;
     }
 

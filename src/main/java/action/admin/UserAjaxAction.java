@@ -2,21 +2,13 @@ package action.admin;
 
 import com.opensymphony.xwork2.ActionSupport;
 import model.User;
-import org.apache.ibatis.io.Resources;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.struts2.ServletActionContext;
 import service.UserService;
-import util.Conversion;
 import util.CookieUtil;
-import util.EnvironmentInfo;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -41,6 +33,7 @@ public class UserAjaxAction extends ActionSupport {
 
     /**
      * 后台登陆
+     *
      * @return
      * @throws Exception
      */
@@ -52,11 +45,11 @@ public class UserAjaxAction extends ActionSupport {
         }
         if (user == null) {
             jsonInfo.put("status", false);
-            jsonInfo.put("tips","用户名或密码错误");
+            jsonInfo.put("tips", "用户名或密码错误");
         } else {
             String keeplogin = userService.updateKeeplogin(user.getId());
             if (this.keepMeLoggedInd == true) {
-                CookieUtil.setCookie(this.response,"keeplogin",keeplogin,Integer.MAX_VALUE);
+                CookieUtil.setCookie(this.response, "keeplogin", keeplogin, Integer.MAX_VALUE);
             }
             jsonInfo.put("status", true);
             jsonInfo.put("tips", "登陆成功,跳转中");
