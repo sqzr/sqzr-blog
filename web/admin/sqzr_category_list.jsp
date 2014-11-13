@@ -117,8 +117,8 @@
                                                         </label>
                                                     </th>
                                                     <th width="65%">标题</th>
-                                                    <th width="10%">分类</th>
-                                                    <th width="7%">
+                                                    <th width="9%">分类</th>
+                                                    <th width="8%">
                                                         <i class="icon-time bigger-110 hidden-480" style="width: 10px;margin-right: 2px;"></i>
                                                         时间
                                                     </th>

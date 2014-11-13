@@ -9,13 +9,15 @@
         <result column="content" property="content"/>
         <result column="date" property="date"/>
         <result column="uri" property="uri"/>
+        <result column="allowcomment" property="allowcomment" jdbcType="INTEGER" javaType="Boolean" typeHandler="handler.BooleanTypeHandler"/>
+        <result column="commentsnum" property="commentsnum"/>
         <association property="category" select="model.Category.getCategoryById" javaType="Category" column="c_id"/>
         <collection property="comments" select="model.Comment.getCommentByArticleId" column="id"/>
     </resultMap>
 
     <insert id="add" parameterType="Article" useGeneratedKeys="true" keyProperty="id">
-      insert into article(type,title,content,date,uri,c_id)
-      value (#{type},#{title},#{content},#{date},#{uri},#{category.id})
+      insert into article(type,title,content,date,uri,c_id,allowcomment)
+      value (#{type},#{title},#{content},#{date},#{uri},#{category.id},#{allowcomment, javaType=Boolean, jdbcType=INTEGER})
     </insert>
     
     <select id="getArticleById" parameterType="int" resultMap="resultArticle">
@@ -64,7 +66,9 @@
             <if test="content != null">content = #{content},</if>
             <if test="uri != null">uri = #{uri},</if>
             <if test="type != null">type = #{type},</if>
-            <if test="date != null">date = #{date}</if>
+            <if test="date != null">date = #{date},</if>
+            <if test="allowcomment != null">allowcomment = #{allowcomment, javaType=Boolean, jdbcType=INTEGER},</if>
+            <if test="commentsnum != null">commentsnum = #{commentsnum},</if>
         </set>
         where id = #{id}
     </update>

@@ -18,12 +18,13 @@
                     </div>
                 </article>
             </div>
-            <s2:if test="article.allowcomment == 1">
+            <s2:if test="article.allowcomment == true">
             <div id="comments">
                 <ol class="comment-list">
                     <s2:if test="article.comments.size > 0">
-                    <h3>已有 <s2:property value="article.comments.size"/> 条评论</h3>
+                    <%--<h3>已有 <s2:property value="article.comments.size"/> 条评论</h3>--%>
                     <s2:iterator value="article.comments">
+                        <s2:if test="status == 'approved'">
                         <li id="comment-<s2:property value="id"/>" class="comment-body comment-parent comment-odd">
                             <div class="comment-author">
                                 <img class="avatar"
@@ -34,10 +35,11 @@
                                 <a href="#comment-<s2:property value="id"/>"><s2:date
                                         name="created" format="yyyy-MM-dd HH:mm:ss"/></a>
                             </div>
-                            <div class="comment-content"><s2:property value="text"/></div>
+                                <div class="comment-content"><s2:property value="text"/></div>
                             <div class="comment-reply">
                             </div>
                         </li>
+                        </s2:if>
                     </s2:iterator>
                 </ol>
                 </s2:if>
@@ -45,17 +47,17 @@
                 <div class="comment-add">
                     <p>
                         <label for="author" class="required" style="float: left;">称呼</label><span style="float: left;margin-top: 0px;" class="msg-box n-right" for="author"></span>
-                        <input type="text" name="author" id="author" class="text" value="" data-rule="称呼:required;filter;length[1~16]">
+                        <input type="text" name="author" id="author" class="text" value="<s2:property value="cookie.author"/>" data-rule="称呼:required;filter;length[1~16]">
                     </p>
 
                     <p>
                         <label for="mail" class="required" style="float: left;">Email</label><span style="float: left;margin-top: 0px;" class="msg-box n-right" for="mail"></span>
-                        <input type="email" name="mail" id="mail" class="text" value="" data-rule="Email:required;email;filter;length[2~50]" data-tip="邮箱不会显示给访客" >
+                        <input type="email" name="mail" id="mail" class="text" value="<s2:property value="cookie.mail"/>" data-rule="Email:required;email;filter;length[2~50]" data-tip="邮箱不会显示给访客" >
                     </p>
 
                     <p>
                         <label for="url" style="float: left;">网站</label><span style="float: left;margin-top: 0px;" class="msg-box n-right" for="url"></span>
-                        <input type="url" name="url" id="url" class="text" placeholder="http://" data-rule="Url:url;filter" data-tip="不是必填项">
+                        <input type="url" name="url" id="url" class="text" value="<s2:property value="cookie.url"/>" placeholder="http://" data-rule="Url:url;filter" data-tip="不是必填项">
                     </p>
 
                     <p>
@@ -142,7 +144,6 @@
 
     </div>
 </div>
-
 
 </body>
 </html>

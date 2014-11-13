@@ -41,16 +41,9 @@ public class IndexAction extends ActionSupport {
     }
 
     public String blog() throws Exception {
-        this.article = articleService.getArticleByUri(this.uri);
-        List<Comment> temp = new ArrayList<Comment>();
-        for (Comment comment : this.article.getComments()) {
-            if ("approved".equals(comment.getStatus())) {
-                temp.add(comment);
-            }
-        }
-        this.article.setComments(temp);
-        this.options = optionService.getAllOption();
-        return "success";
+            this.article = articleService.getArticleByUri(this.uri);
+            this.options = optionService.getAllOption();
+            return "success";
     }
 
     public String category() throws Exception {

@@ -18,7 +18,6 @@ public class Comment {
     private String text;
     private String type;
     private String status;
-    //    private List<Comment> parent;
     private int parent;
 
     public Comment() {
@@ -55,16 +54,6 @@ public class Comment {
                 ", parent=" + parent +
                 '}';
     }
-
-    /*public void setParent(List<Comment> parent) {
-        this.parent = parent;
-    }
-
-    public List<Comment> getParent() {
-        return parent;
-    }*/
-
-
 
     public int getId() {
         return id;

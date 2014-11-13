@@ -4,6 +4,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import model.Article;
 import model.Comment;
 import service.CommentService;
+import util.CookieUtil;
 import util.EnvironmentInfo;
 
 import java.util.Date;
@@ -25,15 +26,7 @@ public class CommentAction extends ActionSupport {
 
     public String comment() throws Exception {
         Comment comment = new Comment(
-                new Article(this.a_id),
-                new Date(),
-                this.author,
-                this.mail,
-                this.url,
-                EnvironmentInfo.getIpAddr(),
-                EnvironmentInfo.getUserAgent(),
-                this.text,
-                "article_comment","approved",this.parent);
+                new Article(this.a_id), new Date(), this.author, this.mail, this.url, EnvironmentInfo.getIpAddr(),EnvironmentInfo.getUserAgent(), this.text, "article_comment","approved",this.parent);
         int result = this.commentService.add(comment);
         this.jsonInfo.put("status", (result > 0) ? true : false);
         switch (result) {
@@ -67,6 +60,10 @@ public class CommentAction extends ActionSupport {
             default:
                 this.jsonInfo.put("id", result);
                 this.jsonInfo.put("tips", "评论成功");
+                // 保存用户cookie
+                CookieUtil.setCookie("author", this.author);
+                CookieUtil.setCookie("mail", this.mail);
+                CookieUtil.setCookie("url",this.url);
                 break;
         }
         return "json";

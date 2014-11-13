@@ -3,6 +3,8 @@ package util;
 /**
  * Created by weiyang on 2014/10/11.
  */
+import org.apache.struts2.ServletActionContext;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -41,9 +43,31 @@ public class CookieUtil
         }
         return cookie;
     }
+    public static Cookie getCookie(String name)
+    {
+        HttpServletRequest request = ServletActionContext.getRequest();
+        Cookie[] cookies = request.getCookies();
+        if ((null == cookies) || (null == name) || (name.length() == 0)) {
+            return null;
+        }
+        Cookie cookie = null;
+        for (Cookie c : cookies) {
+            if (name.equals(c.getName())) {
+                cookie = c;
+                break;
+            }
+        }
+        return cookie;
+    }
 
     public static void setCookie(HttpServletResponse response, String name, String value)
     {
+        setCookie(response, name, value, 604800);
+    }
+
+    public static void setCookie(String name, String value)
+    {
+        HttpServletResponse response = ServletActionContext.getResponse();
         setCookie(response, name, value, 604800);
     }
 

@@ -12,7 +12,7 @@ public class Article {
     private Category category;
     private String type;
     private String title;
-    private int allowcomment;
+    private boolean allowcomment;
     private int commentsnum;
     private String content;
     private String uri;
@@ -44,7 +44,7 @@ public class Article {
         this.date = date;
     }
 
-    public Article(String type,String title,Category category, String content, String uri, Date date,int allowcomment) {
+    public Article(String type,String title,Category category, String content, String uri, Date date,boolean allowcomment) {
         this.category = category;
         this.type = type;
         this.title = title;
@@ -63,7 +63,7 @@ public class Article {
         this.uri = uri;
     }
 
-    public Article(int id,String type,Category category, String title, String content, String uri,Date date,int allowcomment) {
+    public Article(int id,String type,Category category, String title, String content, String uri,Date date,boolean allowcomment) {
         this.id = id;
         this.type = type;
         this.category = category;
@@ -116,11 +116,11 @@ public class Article {
         this.comments = comments;
     }
 
-    public int getAllowcomment() {
+    public boolean getAllowcomment() {
         return allowcomment;
     }
 
-    public void setAllowcomment(int allowcomment) {
+    public void setAllowcomment(boolean allowcomment) {
         this.allowcomment = allowcomment;
     }
 

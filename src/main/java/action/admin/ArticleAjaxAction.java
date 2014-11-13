@@ -1,5 +1,6 @@
 package action.admin;
 
+import com.google.common.base.Strings;
 import com.opensymphony.xwork2.ActionSupport;
 import model.Article;
 import model.Category;
@@ -26,6 +27,7 @@ public class ArticleAjaxAction extends ActionSupport {
     private String uri;
     private String type;
     private String date;
+    private boolean allowcomment;
     private int c_id;
     private int oldcid;
     private int newcid;
@@ -37,8 +39,8 @@ public class ArticleAjaxAction extends ActionSupport {
      * @throws Exception
      */
     public String add() throws Exception {
-        Date tempDate = ("".equals(this.date)) ? new Date() : new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(this.date);
-        int result = articleService.add(new Article(this.type, this.title, new Category(this.c_id), this.content, this.uri, tempDate));
+        Date tempDate = (Strings.isNullOrEmpty(this.date)) ? new Date() : new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(this.date);
+        int result = articleService.add(new Article(this.type, this.title, new Category(this.c_id), this.content, this.uri, tempDate,this.allowcomment));
         boolean temp = (result > 0) ? true : false;
         this.jsonInfo.put("status", temp);
         switch (result) {
@@ -67,8 +69,8 @@ public class ArticleAjaxAction extends ActionSupport {
      * @return
      */
     public String update() throws Exception {
-        Date tempDate = ("".equals(this.date)) ? null : new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(this.date);
-        Article article = new Article(id, type, new Category(this.newcid), title, content, uri, tempDate);
+        Date tempDate = (Strings.isNullOrEmpty(this.date)) ? null : new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(this.date);
+        Article article = new Article(id, type, new Category(this.newcid), title, content, uri, tempDate,this.allowcomment);
         int result = articleService.update(article, this.oldcid);
         boolean temp = (result > 0) ? true : false;
         this.jsonInfo.put("status", temp);
@@ -124,6 +126,14 @@ public class ArticleAjaxAction extends ActionSupport {
     }
     // ---
 
+
+    public boolean getAllowcomment() {
+        return allowcomment;
+    }
+
+    public void setAllowcomment(boolean allowcomment) {
+        this.allowcomment = allowcomment;
+    }
 
     public String getDate() {
         return date;
