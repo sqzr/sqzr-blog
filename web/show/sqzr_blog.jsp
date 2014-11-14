@@ -47,17 +47,20 @@
                 <div class="comment-add">
                     <p>
                         <label for="author" class="required" style="float: left;">称呼</label><span style="float: left;margin-top: 0px;" class="msg-box n-right" for="author"></span>
-                        <input type="text" name="author" id="author" class="text" value="<s2:property value="cookie.author"/>" data-rule="称呼:required;filter;length[1~16]">
+                        <input type="text" name="author" id="author" class="text" value="${cookie.author.value}"
+                               data-rule="称呼:required;filter;length[1~16]">
                     </p>
 
                     <p>
                         <label for="mail" class="required" style="float: left;">Email</label><span style="float: left;margin-top: 0px;" class="msg-box n-right" for="mail"></span>
-                        <input type="email" name="mail" id="mail" class="text" value="<s2:property value="cookie.mail"/>" data-rule="Email:required;email;filter;length[2~50]" data-tip="邮箱不会显示给访客" >
+                        <input type="email" name="mail" id="mail" class="text" value="${cookie.mail.value}"
+                               data-rule="Email:required;email;filter;length[2~50]" data-tip="邮箱不会显示给访客">
                     </p>
 
                     <p>
                         <label for="url" style="float: left;">网站</label><span style="float: left;margin-top: 0px;" class="msg-box n-right" for="url"></span>
-                        <input type="url" name="url" id="url" class="text" value="<s2:property value="cookie.url"/>" placeholder="http://" data-rule="Url:url;filter" data-tip="不是必填项">
+                        <input type="url" name="url" id="url" class="text" value="${cookie.url.value}"
+                               placeholder="http://" data-rule="Url:url;filter" data-tip="不是必填项">
                     </p>
 
                     <p>
