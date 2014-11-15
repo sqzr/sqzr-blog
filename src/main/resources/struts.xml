@@ -38,12 +38,6 @@
         </global-exception-mappings>
     </package>
 
-    <!--&lt;!&ndash; 错误提示 直接显示 &ndash;&gt;-->
-    <!--<package name="errorView" namespace="/admin/error" extends="struts-default">-->
-        <!--<action name="500"><result name="success">/admin/common/sqzr_500.jsp</result></action>-->
-        <!--<action name="404"><result name="success">/admin/common/sqzr_404.jsp</result></action>-->
-    <!--</package>-->
-
     <!-- 错误提示 json输出 -->
     <package name="errorJson" namespace="/error/json" extends="json-default">
         <action name="notlogon" class="action.ErrorAction" method="notlogon">

@@ -75,93 +75,113 @@
                 <h4 class="header blue bolder smaller">一般</h4>
 
                 <div class="row">
-                    <div class="col-xs-12 col-sm-4">
+                    <div class="col-xs-12 col-md-3 center">
                         <div>
 												<span class="profile-picture">
 													<img id="avatar"
                                                          class="editable img-responsive editable-click editable-empty"
-                                                         alt="Alex's Avatar" src="/images/avatar/sqzr.jpg"
-                                                         style="display: block;">
+                                                         src="<s2:property value="options.avatar.value"/>"
+                                                         style="display: block;height: 190px;width: 190px">
                                                     </img>
+                                                    <p id="profile-tips" class="error" style="display:none;"></p>
 												</span>
+
+                            <div class="row">
+                                <div id="uploader" class="wu-example">
+                                    <div id="thelist" class="uploader-list"></div>
+                                    <div class="btns">
+                                        <div id="picker">选择文件</div>
+                                        <label id="ctlBtn" class="btn btn-default"
+                                               style="margin-top: 10px;">开始上传</label>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    <div class="col-xs-12 col-md-9">
+                        <div class="profile-user-info profile-user-info-striped">
+                            <div class="profile-info-row">
+                                <div class="profile-info-name">网站名称</div>
 
-                    <div class="vspace-xs"></div>
-
-                    <div class="col-xs-12 col-sm-5">
-                        <div class="form-group">
-                            <label class="col-sm-4 control-label no-padding-right" for="form-field-title">网站名称</label>
-
-                            <div class="col-sm-8">
-                                <input class="col-xs-12 col-sm-12" type="text" id="form-field-title"
-                                       value="<s2:property value="options.title.value"/>">
+                                <div class="profile-info-value">
+                                    <span class="editable editable-click"><input type="text" id="form-field-title"
+                                                                                 value="<s2:property value="options.title.value"/>"> </span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="space-4"></div>
-                        <div class="form-group">
-                            <label class="col-sm-4 control-label no-padding-right" for="form-field-url">网站地址</label>
 
-                            <div class="col-sm-8">
-                                <input class="col-xs-12 col-sm-12" type="text" id="form-field-url"
-                                       value="<s2:property value="options.url.value"/>">
+                            <div class="profile-info-row">
+                                <div class="profile-info-name">网站地址</div>
+
+                                <div class="profile-info-value">
+                                    <span class="editable editable-click"><input type="text" id="form-field-url"
+                                                                                 value="<s2:property value="options.url.value"/>"></span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="space-4"></div>
-                        <div class="form-group">
-                            <label class="col-sm-4 control-label no-padding-right" for="form-field-url">作者姓名</label>
 
-                            <div class="col-sm-8">
-                                <input class="col-xs-12 col-sm-12" type="text" id="form-field-authorname"
-                                       value="<s2:property value="options.authorname.value"/>">
+                            <div class="profile-info-row">
+                                <div class="profile-info-name"> 附标题</div>
+
+                                <div class="profile-info-value">
+                                    <span class="editable editable-click">
+                                        <input type="text" id="form-field-subtitle"
+                                               value="<s2:property value="options.subtitle.value"/>">
+                                    </span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="space-4"></div>
-                        <div class="form-group">
-                            <label class="col-sm-4 control-label no-padding-right" for="form-field-authoremail">作者邮箱</label>
 
-                            <div class="col-sm-8">
-                                <input class="col-xs-12 col-sm-12" type="text" id="form-field-authoremail"
-                                       value="<s2:property value="options.authoremail.value"/>">
+                            <div class="profile-info-row">
+                                <div class="profile-info-name"> 个人说明</div>
+
+                                <div class="profile-info-value">
+                                    <span class="editable editable-click">
+                                        <input type="text" id="form-field-description"
+                                               value="<s2:property value="options.description.value"/>">
+                                    </span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="space-4"></div>
-                        <div class="form-group">
-                            <label class="col-sm-4 control-label no-padding-right" for="form-field-subtitle">附标题</label>
 
-                            <div class="col-sm-8">
-                                <input class="col-xs-12 col-sm-12" type="text" id="form-field-subtitle"
-                                       value="<s2:property value="options.subtitle.value"/>">
+                            <div class="profile-info-row">
+                                <div class="profile-info-name">作者姓名</div>
+
+                                <div class="profile-info-value">
+                                    <span class="editable editable-click"><input type="text" id="form-field-authorname"
+                                                                                 value="<s2:property value="options.authorname.value"/>"></span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-4 control-label no-padding-right"
-                                   for="form-field-description">个人说明</label>
 
-                            <div class="col-sm-8">
-                                <input class="col-xs-12 col-sm-12" type="text" id="form-field-description"
-                                       value="<s2:property value="options.description.value"/>">
+                            <div class="profile-info-row">
+                                <div class="profile-info-name"> 作者邮箱</div>
+
+                                <div class="profile-info-value">
+                                    <span class="editable editable-click editable-open">
+                                        <input type="text" id="form-field-authoremail"
+                                               value="<s2:property value="options.authoremail.value"/>"></span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-4 control-label no-padding-right"
-                                   for="form-field-htmlkeyword">网站关键词</label>
 
-                            <div class="col-sm-8">
-                                <input class="col-xs-12 col-sm-12" type="text" id="form-field-htmlkeyword"
-                                       value="<s2:property value="options.htmlkeyword.value"/>">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-4 control-label no-padding-right"
-                                   for="form-field-htmldescription">网站描述</label>
+                            <div class="profile-info-row">
+                                <div class="profile-info-name"> 网站关键词</div>
 
-                            <div class="col-sm-8">
-                                <textarea class="col-xs-12 col-sm-12" id="form-field-htmldescription"><s2:property
-                                        value="options.htmldescription.value"/></textarea>
+                                <div class="profile-info-value">
+                                    <span class="editable editable-click">
+                                        <input type="text" id="form-field-htmlkeyword"
+                                               value="<s2:property value="options.htmlkeyword.value"/>">
+                                    </span>
                             </div>
                         </div>
 
+                            <div class="profile-info-row" style="height: 75px;">
+                                <div class="profile-info-name"> 网站描述</div>
+
+                                <div class="profile-info-value">
+                                    <span class="editable editable-click">
+                                        <textarea class="col-xs-12 col-sm-12"
+                                                  id="form-field-htmldescription"><s2:property
+                                                value="options.htmldescription.value"/></textarea>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <h4 class="header blue bolder smaller">社交链接</h4>
@@ -290,6 +310,7 @@
 </div>
 <script src="/javascripts/ace-editable.min.js"></script>
 <script src="/javascripts/bootstrap-editable.min.js"></script>
+<script type="text/javascript" src="/javascripts/webuploader.js"></script>
 <script type="text/javascript">
     $('#settings-save').click(function () {
         var tab = $(".tabbable .active").attr("id");
@@ -340,7 +361,86 @@
             }
         });
     });
-
+    // 定义图片上传提示
+    function showTips(tips, status) {
+        $(".profile-picture #profile-tips").attr("class", status);
+        $(".profile-picture #profile-tips").text(tips);
+        $(".profile-picture #profile-tips").fadeIn(1000);
+        setInterval(function () {
+            $(".profile-picture #profile-tips").fadeOut(1000);
+        }, 5000);
+    }
+    // 初始化Web Uploader
+    var uploader = WebUploader.create({
+        auto: false,
+        fileVal: 'uploadFile',
+        server: '/ajax/admin/main_settings_avatar_update.html',
+//        fileNumLimit:1,
+        pick: {
+            id: '#picker',
+            multiple: false
+        },
+        dnd: '.profile-picture',
+        disableGlobalDnd: true,
+        chunked: true,
+        paste: document.body,
+        fileSingleSizeLimit: 5 * 1024 * 1024,
+        // 只允许选择图片文件。
+        accept: {
+            title: 'Images',
+            extensions: 'gif,jpg,jpeg,bmp,png',
+            mimeTypes: 'image/*'
+        }
+    });
+    // 文件添加进入前删除队列所有文件
+    uploader.on('beforeFileQueued', function (file) {
+        var currentFiles = uploader.getFiles();
+        if (currentFiles.length > 0) {
+            $.each(currentFiles, function (key, file) {
+                uploader.removeFile(file, true);
+            });
+        }
+    });
+    // 加入队列生成缩略图
+    uploader.on('fileQueued', function (file) {
+        // 隐藏错误信息
+        uploader.makeThumb(file, function (error, src) {
+            $("#avatar").attr("src", src);
+        }, 190, 190);
+    });
+    // 上传失败
+    uploader.on('uploadError', function (file) {
+        showTips("上传失败", "error");
+    });
+    // 上传成功
+    uploader.on('uploadSuccess', function (file, data) {
+        if (data.status == true) {
+            showTips("上传成功", "success");
+        } else {
+            showTips(data.tips, "error");
+        }
+    });
+    uploader.on('error', function (error) {
+        switch (error) {
+            case 'Q_EXCEED_NUM_LIMIT':
+                errorinfo = '超过限制';
+                break;
+            case 'Q_EXCEED_SIZE_LIMIT':
+                errorinfo = '超过大小';
+                break;
+            case 'Q_TYPE_DENIED':
+                errorinfo = '只能上传图片';
+                break;
+            default :
+                errorinfo = '未知错误';
+                break;
+        }
+        // 显示错误信息
+        showTips(errorinfo, "error");
+    });
+    $("#ctlBtn").on('click', function () {
+        uploader.upload();
+    });
 </script>
 </body>
 </html>

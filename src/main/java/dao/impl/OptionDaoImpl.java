@@ -4,7 +4,6 @@ import dao.OptionDao;
 import model.Option;
 import org.apache.ibatis.session.SqlSession;
 
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -16,12 +15,11 @@ public class OptionDaoImpl implements OptionDao {
     @Override
     public Map<String, Object> getAllOption() {
         return sqlSession.selectMap("model.Option.getAllOption",null,"name");
-//        return sqlSession.selectOne("model.Option.getAllOption");
     }
 
     @Override
-    public void update(Option option) {
-        sqlSession.update("model.Option.update", option);
+    public int update(Option option) {
+        return sqlSession.update("model.Option.update", option);
     }
 
     // ---

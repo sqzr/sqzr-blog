@@ -1,16 +1,17 @@
 package action.admin;
 
 import com.opensymphony.xwork2.ActionSupport;
-import com.opensymphony.xwork2.ModelDriven;
 import model.Option;
 import model.User;
+import org.apache.commons.io.FileUtils;
 import org.apache.struts2.ServletActionContext;
 import service.OptionService;
 import service.UserService;
-import vo.OptionInfoVo;
+import util.FileNameToProcess;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,6 +21,9 @@ import java.util.Map;
  * Created by weiyang on 2014/10/7.
  */
 public class SettingsAjaxAction extends ActionSupport {
+    private File uploadFile;
+    private String uploadFileContentType;
+    private String uploadFileFileName;
     private Map<String, Object> jsonInfo = new HashMap<String,Object>();
     private OptionService optionService;
     private UserService userService;
@@ -70,7 +74,7 @@ public class SettingsAjaxAction extends ActionSupport {
             options.add(new Option("googleplus",googleplus));
             options.add(new Option("weibo",weibo));
             options.add(new Option("github",github));
-            optionService.updateAll(options);
+            optionService.update(options);
             this.jsonInfo.put("status", true);
             this.jsonInfo.put("info", "更新成功");
             return "json";
@@ -97,7 +101,7 @@ public class SettingsAjaxAction extends ActionSupport {
 
         if ("settingsTab".equals(type)) {
             options.add(new Option("pagenumber", pagenumber));
-            optionService.updateAll(options);
+            optionService.update(options);
             this.jsonInfo.put("status", true);
             this.jsonInfo.put("info", "更新成功");
             return "json";
@@ -105,8 +109,51 @@ public class SettingsAjaxAction extends ActionSupport {
         return "json";
     }
 
+    public String avatar_update() throws Exception {
+        if (!FileNameToProcess.checkFileNameIsImage(this.uploadFileFileName)) {
+            // 后缀名异常,不为图片
+            this.jsonInfo.put("status", "false");
+            this.jsonInfo.put("tips", "只能上传图片");
+            return "json";
+        }
+        // 存放文件夹
+        String folder = "/images/avatar";
+        // 获取完整路径
+        String realpath = ServletActionContext.getServletContext().getRealPath(folder);
+        this.uploadFileFileName = FileNameToProcess.generateImageFileName(this.uploadFileFileName);
+        FileUtils.copyFile(this.uploadFile, new File(new File(realpath), this.uploadFileFileName));
+        // 更新数据库头像路径
+        optionService.update(new Option("avatar", folder + "/" + this.uploadFileFileName));
+        this.jsonInfo.put("status", true);
+        this.jsonInfo.put("link", folder + "/" + this.uploadFileFileName);
+        return "json";
+    }
     // ---
 
+
+    public String getUploadFileFileName() {
+        return uploadFileFileName;
+    }
+
+    public void setUploadFileFileName(String uploadFileFileName) {
+        this.uploadFileFileName = uploadFileFileName;
+    }
+
+    public String getUploadFileContentType() {
+        return uploadFileContentType;
+    }
+
+    public void setUploadFileContentType(String uploadFileContentType) {
+        this.uploadFileContentType = uploadFileContentType;
+    }
+
+    public File getUploadFile() {
+        return uploadFile;
+    }
+
+    public void setUploadFile(File uploadFile) {
+        this.uploadFile = uploadFile;
+    }
 
     public String getAuthoremail() {
         return authoremail;

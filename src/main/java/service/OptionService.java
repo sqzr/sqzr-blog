@@ -15,5 +15,13 @@ public interface OptionService {
      */
     public Map<String,Object> getAllOption();
 
-    public void updateAll(List<Option> options);
+    public void update(List<Option> options);
+
+    /**
+     * 更新单个配置
+     *
+     * @param option
+     * @return
+     */
+    public boolean update(Option option);
 }

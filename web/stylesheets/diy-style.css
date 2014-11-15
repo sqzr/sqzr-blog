@@ -89,3 +89,91 @@
     margin-right:1.5em;
 }
 
+.webuploader-container {
+    position: relative;
+}
+
+.webuploader-element-invisible {
+    position: absolute !important;
+    clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+    clip: rect(1px, 1px, 1px, 1px);
+}
+
+.webuploader-pick {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    background: #00b7ee;
+    padding: 10px 15px;
+    color: #fff;
+    text-align: center;
+    border-radius: 3px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.webuploader-pick-hover {
+    background: #00a2d4;
+}
+
+.webuploader-pick-disable {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.profile-info-value input {
+    height: 21px;
+    width: 80%;
+    font-size: 13px;
+}
+
+.profile-info-value textarea {
+    width: 80%;
+    height: 50px;
+    padding: 5px 4px;
+}
+
+.tab-content #uploader {
+    margin-top: 10px;
+}
+
+.tab-content #uploader label {
+    height: 39px;
+    width: 100%;
+    border-radius: 3px;
+    font-size: 13px;
+}
+
+.hide_clip {
+    top: 0;
+    right: 0;
+    display: block;
+    width: 24px;
+    height: 24px;
+    overflow: hidden;
+    line-height: 99px;
+    background-image: url(http://cm.qzonestyle.gtimg.cn/aoi/sprite/icenter-delay.32-tig141030203435.png?max_age=19830212&d=20141030205001);
+    background-position: -126px 0;
+}
+
+.profile-picture .error {
+    background: #f43838;
+    color: #fff;
+    position: absolute;
+    height: 28px;
+    line-height: 28px;
+    width: 189px;
+    z-index: 100;
+    margin-top: -29px;
+}
+
+.profile-picture .success {
+    background: green;
+    color: #fff;
+    position: absolute;
+    height: 28px;
+    line-height: 28px;
+    width: 191px;
+    z-index: 100;
+    margin-top: -29px;
+}

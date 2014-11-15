@@ -121,6 +121,10 @@ public class MainViewAction extends ActionSupport {
         return "category_delete";
     }
 
+    public String uploadtest() throws Exception {
+        return SUCCESS;
+    }
+
 
     // ---
 

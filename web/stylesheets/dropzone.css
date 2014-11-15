@@ -40,10 +40,12 @@
     background: rgba(255,255,255,0.8);
     position: relative;
     display: inline-block;
-    margin: 17px;
+    margin-left: -10px;
     vertical-align: top;
     border: 1px solid #acacac;
-    padding: 6px 6px 6px 6px;
+    padding: 4px 8px 4px 4px;
+    width: 166px;
+    height: 166px;
 }
 .dropzone .dz-preview.dz-file-preview [data-dz-thumbnail],
 .dropzone-previews .dz-preview.dz-file-preview [data-dz-thumbnail] {
@@ -68,8 +70,8 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
 }
 .dropzone .dz-preview .dz-details .dz-size,
 .dropzone-previews .dz-preview .dz-details .dz-size {
@@ -89,7 +91,7 @@
 }
 .dropzone .dz-preview:hover .dz-details img,
 .dropzone-previews .dz-preview:hover .dz-details img {
-    display: none;
+    /*display: none;*/
 }
 .dropzone .dz-preview .dz-success-mark,
 .dropzone-previews .dz-preview .dz-success-mark,
@@ -124,6 +126,7 @@
 }
 .dropzone .dz-preview .dz-progress .dz-upload,
 .dropzone-previews .dz-preview .dz-progress .dz-upload {
+    display: block;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -150,18 +153,20 @@
 }
 .dropzone .dz-preview:hover.dz-error .dz-error-message,
 .dropzone-previews .dz-preview:hover.dz-error .dz-error-message {
-    display: block;
+    /*display: block;*/
 }
 .dropzone {
-    border: 1px solid rgba(0,0,0,0.03);
-    min-height: 360px;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    width: 180px;
+    height: 200px;
     -webkit-border-radius: 3px;
     border-radius: 3px;
-    background: rgba(0,0,0,0.03);
-    padding: 23px;
+    background: rgba(0, 0, 0, 0.03);
+    /*padding: 23px;*/
+    background-image: url("http://dn-sqzr.qbox.me/2014-3-14.jpg");
 }
 .dropzone .dz-default.dz-message {
-    opacity: 1;
+    opacity: 0 !important;
     -ms-filter: none;
     filter: none;
     -webkit-transition: opacity 0.3s ease-in-out;
@@ -169,20 +174,20 @@
     -o-transition: opacity 0.3s ease-in-out;
     -ms-transition: opacity 0.3s ease-in-out;
     transition: opacity 0.3s ease-in-out;
-    background-image: url("../images/spritemap.png");
+    /*background-image: url("/images/spritemap.png");*/
     background-repeat: no-repeat;
     background-position: 0 0;
     position: absolute;
-    width: 428px;
-    height: 123px;
-    margin-left: -214px;
-    margin-top: -61.5px;
-    top: 50%;
-    left: 50%;
+    /*  width: 180px;*/
+    /*height: 200px;*/
+    /* margin-left: -214px;
+     margin-top: -61.5px;
+     top: 50%;
+     left: 50%;*/
 }
 @media all and (-webkit-min-device-pixel-ratio:1.5),(min--moz-device-pixel-ratio:1.5),(-o-min-device-pixel-ratio:1.5/1),(min-device-pixel-ratio:1.5),(min-resolution:138dpi),(min-resolution:1.5dppx) {
     .dropzone .dz-default.dz-message {
-        background-image: url("../images/spritemap@2x.png");
+        background-image: url("/images/spritemap@2x.png");
         -webkit-background-size: 428px 406px;
         -moz-background-size: 428px 406px;
         background-size: 428px 406px;
@@ -251,7 +256,7 @@
     -o-transition: opacity 0.4s ease-in-out;
     -ms-transition: opacity 0.4s ease-in-out;
     transition: opacity 0.4s ease-in-out;
-    background-image: url("../images/spritemap.png");
+    background-image: url("/images/spritemap.png");
     background-repeat: no-repeat;
 }
 @media all and (-webkit-min-device-pixel-ratio:1.5),(min--moz-device-pixel-ratio:1.5),(-o-min-device-pixel-ratio:1.5/1),(min-device-pixel-ratio:1.5),(min-resolution:138dpi),(min-resolution:1.5dppx) {
@@ -259,7 +264,7 @@
     .dropzone-previews .dz-preview .dz-error-mark,
     .dropzone .dz-preview .dz-success-mark,
     .dropzone-previews .dz-preview .dz-success-mark {
-        background-image: url("../images/spritemap@2x.png");
+        background-image: url("/images/spritemap@2x.png");
         -webkit-background-size: 428px 406px;
         -moz-background-size: 428px 406px;
         background-size: 428px 406px;
@@ -298,14 +303,14 @@
     left: 0;
     width: 0%;
     height: 100%;
-    background-image: url("../images/spritemap.png");
+    background-image: url("/images/spritemap.png");
     background-repeat: repeat-x;
     background-position: 0px -400px;
 }
 @media all and (-webkit-min-device-pixel-ratio:1.5),(min--moz-device-pixel-ratio:1.5),(-o-min-device-pixel-ratio:1.5/1),(min-device-pixel-ratio:1.5),(min-resolution:138dpi),(min-resolution:1.5dppx) {
     .dropzone .dz-preview .dz-progress .dz-upload,
     .dropzone-previews .dz-preview .dz-progress .dz-upload {
-        background-image: url("../images/spritemap@2x.png");
+        background-image: url("/images/spritemap@2x.png");
         -webkit-background-size: 428px 406px;
         -moz-background-size: 428px 406px;
         background-size: 428px 406px;
@@ -337,18 +342,17 @@
 }
 .dropzone .dz-preview:hover.dz-error .dz-error-message,
 .dropzone-previews .dz-preview:hover.dz-error .dz-error-message {
-    opacity: 1;
-    -ms-filter: none;
-    filter: none;
+    /*opacity: 1;*/
+    /*-ms-filter: none;*/
+    /*filter: none;*/
 }
 .dropzone a.dz-remove,
 .dropzone-previews a.dz-remove {
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fafafa), color-stop(1, #eee));
-    background-image: -webkit-linear-gradient(top, #fafafa 0, #eee 100%);
-    background-image: -moz-linear-gradient(top, #fafafa 0, #eee 100%);
-    background-image: -o-linear-gradient(top, #fafafa 0, #eee 100%);
-    background-image: -ms-linear-gradient(top, #fafafa 0, #eee 100%);
-    background-image: linear-gradient(top, #fafafa 0, #eee 100%);
+    background-image: -webkit-linear-gradient(top, #fafafa, #eee);
+    background-image: -moz-linear-gradient(top, #fafafa, #eee);
+    background-image: -o-linear-gradient(top, #fafafa, #eee);
+    background-image: -ms-linear-gradient(top, #fafafa, #eee);
+    background-image: linear-gradient(to bottom, #fafafa, #eee);
     -webkit-border-radius: 2px;
     border-radius: 2px;
     border: 1px solid #eee;
@@ -364,47 +368,34 @@
     color: #666;
 }
 @-moz-keyframes loading {
-    0% {
+    from {
         background-position: 0 -400px;
     }
-
-    100% {
+    to {
         background-position: -7px -400px;
     }
 }
 @-webkit-keyframes loading {
-    0% {
+    from {
         background-position: 0 -400px;
     }
-
-    100% {
+    to {
         background-position: -7px -400px;
     }
 }
 @-o-keyframes loading {
-    0% {
+    from {
         background-position: 0 -400px;
     }
-
-    100% {
-        background-position: -7px -400px;
-    }
-}
-@-ms-keyframes loading {
-    0% {
-        background-position: 0 -400px;
-    }
-
-    100% {
+    to {
         background-position: -7px -400px;
     }
 }
 @keyframes loading {
-    0% {
+    from {
         background-position: 0 -400px;
     }
-
-    100% {
+    to {
         background-position: -7px -400px;
     }
 }

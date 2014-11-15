@@ -19,10 +19,14 @@ public class OptionServiceImpl implements OptionService {
     }
 
     @Override
-    public void updateAll(List<Option> options) {
+    public void update(List<Option> options) {
         for (Option option : options) {
                 optionDao.update(option);
         }
+    }
+
+    public boolean update(Option option) {
+        return (optionDao.update(option) == 1) ? true : false;
     }
 
     // ---

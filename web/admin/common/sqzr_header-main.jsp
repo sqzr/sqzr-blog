@@ -32,7 +32,8 @@
 
                 <li class="light-blue">
                     <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-                        <img class="nav-user-photo" src="<s2:property value="#session.user.avatar"/> " alt="Jason's Photo" />
+                        <img class="nav-user-photo" src="<s2:property value="#session.user.avatar"/>"
+                             alt="Jason's Photo"/>
 								<span class="user-info">
 									<small>欢迎光临,</small>
 									<s2:property value="#session.user.username" />

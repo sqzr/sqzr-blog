@@ -2,7 +2,6 @@ package dao;
 
 import model.Option;
 
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -15,5 +14,5 @@ public interface OptionDao {
      */
     public Map<String,Object> getAllOption();
 
-    public void update(Option option);
+    public int update(Option option);
 }

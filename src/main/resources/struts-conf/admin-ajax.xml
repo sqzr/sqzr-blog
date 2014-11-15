@@ -41,5 +41,9 @@
                 <param name="root">jsonInfo</param>
             </result>
         </action>
+
+        <action name="uploadtest" class="action.admin.UploadTestAction" method="test">
+            <result name="success"></result>
+        </action>
     </package>
 </struts>
