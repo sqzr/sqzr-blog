@@ -244,7 +244,7 @@
                     <div class="col-sm-9">
 																	<span class="input-icon col-xs-12 col-sm-5">
 																		<input class="col-xs-12 col-sm-12" type="text"
-                                                                               value="<s2:property value="options.tqq"/>"
+                                                                               value="<s2:property value="options.github"/>"
                                                                                id="form-field-github"
                                                                                style="margin-left: -12px;">
 																		<i class="icon-github black"></i>

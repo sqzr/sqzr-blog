@@ -4,7 +4,6 @@ import dao.OptionDao;
 import model.Option;
 import org.springframework.data.redis.core.RedisTemplate;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -15,14 +14,12 @@ public class OptionRedisDaoImpl implements OptionDao {
 
     @Override
     public Map<String, String> getAllOption() {
-        Map<String, String> test = new HashMap<String, String>();
-        test.put("title", new HashMap<String, String>().put("title", "sqzr"));
-        return test;
+        return redisTemplate.opsForHash().entries("options");
     }
 
     @Override
     public int update(Option option) {
-        redisTemplate.opsForValue().set(option.getName(), option.getValue());
+        redisTemplate.opsForHash().put("options", option.getName(), option.getValue());
         return 1;
     }
 

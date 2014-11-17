@@ -51,8 +51,8 @@
         <property name="articleDao" ref="articleDao"/>
     </bean>
     <bean id="optionService" class="service.impl.OptionServiceImpl">
-        <property name="optionDao" ref="optionDao"/>
-        <!--<property name="optionDao" ref="optionRedisDao"/>-->
+        <!--<property name="optionDao" ref="optionDao"/>-->
+        <property name="optionDao" ref="optionRedisDao"/>
     </bean>
     <bean id="commentService" class="service.impl.CommentServiceImpl">
         <property name="commentDao" ref="commentDao"/>

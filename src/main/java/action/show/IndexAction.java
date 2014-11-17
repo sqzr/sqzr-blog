@@ -32,9 +32,6 @@ public class IndexAction extends ActionSupport {
     private String uri;
     private int page;
 
-    public IndexAction() {
-//        this.options = optionService.getAllOption();
-    }
     public String index() throws Exception {
         this.options = optionService.getAllOption();
         this.articlePage = articleService.list(this.page, Integer.parseInt(this.options.get("pagenumber")), false);
