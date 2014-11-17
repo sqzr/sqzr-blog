@@ -80,7 +80,7 @@
 												<span class="profile-picture">
 													<img id="avatar"
                                                          class="editable img-responsive editable-click editable-empty"
-                                                         src="<s2:property value="options.avatar.value"/>"
+                                                         src="<s2:property value="options.avatar"/>"
                                                          style="display: block;height: 190px;width: 190px">
                                                     </img>
                                                     <p id="profile-tips" class="error" style="display:none;"></p>
@@ -105,7 +105,7 @@
 
                                 <div class="profile-info-value">
                                     <span class="editable editable-click"><input type="text" id="form-field-title"
-                                                                                 value="<s2:property value="options.title.value"/>"> </span>
+                                                                                 value="<s2:property value="options.title"/>"> </span>
                                 </div>
                             </div>
 
@@ -114,7 +114,7 @@
 
                                 <div class="profile-info-value">
                                     <span class="editable editable-click"><input type="text" id="form-field-url"
-                                                                                 value="<s2:property value="options.url.value"/>"></span>
+                                                                                 value="<s2:property value="options.url"/>"></span>
                                 </div>
                             </div>
 
@@ -124,7 +124,7 @@
                                 <div class="profile-info-value">
                                     <span class="editable editable-click">
                                         <input type="text" id="form-field-subtitle"
-                                               value="<s2:property value="options.subtitle.value"/>">
+                                               value="<s2:property value="options.subtitle"/>">
                                     </span>
                                 </div>
                             </div>
@@ -135,7 +135,7 @@
                                 <div class="profile-info-value">
                                     <span class="editable editable-click">
                                         <input type="text" id="form-field-description"
-                                               value="<s2:property value="options.description.value"/>">
+                                               value="<s2:property value="options.description"/>">
                                     </span>
                                 </div>
                             </div>
@@ -145,7 +145,7 @@
 
                                 <div class="profile-info-value">
                                     <span class="editable editable-click"><input type="text" id="form-field-authorname"
-                                                                                 value="<s2:property value="options.authorname.value"/>"></span>
+                                                                                 value="<s2:property value="options.authorname"/>"></span>
                                 </div>
                             </div>
 
@@ -155,7 +155,7 @@
                                 <div class="profile-info-value">
                                     <span class="editable editable-click editable-open">
                                         <input type="text" id="form-field-authoremail"
-                                               value="<s2:property value="options.authoremail.value"/>"></span>
+                                               value="<s2:property value="options.authoremail"/>"></span>
                                 </div>
                             </div>
 
@@ -165,7 +165,7 @@
                                 <div class="profile-info-value">
                                     <span class="editable editable-click">
                                         <input type="text" id="form-field-htmlkeyword"
-                                               value="<s2:property value="options.htmlkeyword.value"/>">
+                                               value="<s2:property value="options.htmlkeyword"/>">
                                     </span>
                             </div>
                         </div>
@@ -177,7 +177,7 @@
                                     <span class="editable editable-click">
                                         <textarea class="col-xs-12 col-sm-12"
                                                   id="form-field-htmldescription"><s2:property
-                                                value="options.htmldescription.value"/></textarea>
+                                                value="options.htmldescription"/></textarea>
                                     </span>
                                 </div>
                             </div>
@@ -192,7 +192,7 @@
                     <div class="col-sm-9">
 																	<span class="input-icon  col-xs-12 col-sm-5">
 																		<input type="text" class="col-xs-12 col-sm-12"
-                                                                               value="<s2:property value="options.facebook.value"/>"
+                                                                               value="<s2:property value="options.facebook"/>"
                                                                                id="form-field-facebook"
                                                                                style="margin-left: -12px;">
 																		<i class="icon-facebook blue"></i>
@@ -205,7 +205,7 @@
                     <div class="col-sm-9">
 																	<span class="input-icon col-xs-12 col-sm-5">
 																		<input type="text" class="col-xs-12 col-sm-12"
-                                                                               value="<s2:property value="options.twitter.value"/>"
+                                                                               value="<s2:property value="options.twitter"/>"
                                                                                id="form-field-twitter"
                                                                                style="margin-left: -12px;">
 																		<i class="icon-twitter light-blue"></i>
@@ -218,7 +218,7 @@
                     <div class="col-sm-9">
 																	<span class="input-icon col-xs-12 col-sm-5">
 																		<input class="col-xs-12 col-sm-12" type="text"
-                                                                               value="<s2:property value="options.googleplus.value"/>"
+                                                                               value="<s2:property value="options.googleplus"/>"
                                                                                id="form-field-googleplus"
                                                                                style="margin-left: -12px;">
 																		<i class="icon-google-plus red"></i>
@@ -231,7 +231,7 @@
                     <div class="col-sm-9">
 																	<span class="input-icon col-xs-12 col-sm-5">
 																		<input class="col-xs-12 col-sm-12" type="text"
-                                                                               value="<s2:property value="options.weibo.value"/>"
+                                                                               value="<s2:property value="options.weibo"/>"
                                                                                id="form-field-weibo"
                                                                                style="margin-left: -12px;">
 																		<i class="icon-weibo red"></i>
@@ -244,13 +244,14 @@
                     <div class="col-sm-9">
 																	<span class="input-icon col-xs-12 col-sm-5">
 																		<input class="col-xs-12 col-sm-12" type="text"
-                                                                               value="<s2:property value="options.tqq.value"/>"
+                                                                               value="<s2:property value="options.tqq"/>"
                                                                                id="form-field-github"
                                                                                style="margin-left: -12px;">
 																		<i class="icon-github black"></i>
 																	</span>
                     </div>
                 </div>
+
             </div>
             <div id="edit-settings" class="tab-pane">
                 <div class="space-10"></div>
@@ -261,7 +262,7 @@
                     <label class="inline">
                         <span class="space-2 block"></span>
                         <input type="text" class="input-mini" id="form-field-pagenumber" maxlength="2"
-                               value="<s2:property value="options.pagenumber.value"/>">
+                               value="<s2:property value="options.pagenumber"/>">
                     </label>
                 </div>
             </div>

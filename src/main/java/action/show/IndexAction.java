@@ -1,14 +1,13 @@
 package action.show;
 
+import com.opensymphony.xwork2.ActionSupport;
 import com.sqzr.rssutil.Author;
 import com.sqzr.rssutil.Entry;
 import com.sqzr.rssutil.Feed;
-import model.Comment;
-import org.apache.struts2.ServletActionContext;
-import other.Page;
-import com.opensymphony.xwork2.ActionSupport;
 import model.Article;
+import org.apache.struts2.ServletActionContext;
 import org.markdown4j.Markdown4jProcessor;
+import other.Page;
 import service.ArticleService;
 import service.OptionService;
 
@@ -29,14 +28,16 @@ public class IndexAction extends ActionSupport {
     private List<Article> articles;
     private Page<Article> articlePage;
     private Article article;
-    private Map<String, Object> options = new HashMap<String, Object>();
+    private Map<String, String> options = new HashMap<String, String>();
     private String uri;
     private int page;
 
+    public IndexAction() {
+//        this.options = optionService.getAllOption();
+    }
     public String index() throws Exception {
         this.options = optionService.getAllOption();
-        Map<String, String> numberMap = (HashMap<String,String>) this.options.get("pagenumber");
-        this.articlePage = articleService.list(this.page, Integer.parseInt(numberMap.get("value")),false);
+        this.articlePage = articleService.list(this.page, Integer.parseInt(this.options.get("pagenumber")), false);
         return "success";
     }
 
@@ -60,10 +61,10 @@ public class IndexAction extends ActionSupport {
 
     public String atom() throws Exception {
         this.options = optionService.getAllOption();
-        String option_title = ((HashMap<String, String>) this.options.get("title")).get("value");
-        String option_url = ((HashMap<String, String>) this.options.get("url")).get("value");
-        String option_author_name = ((HashMap<String, String>) this.options.get("authorname")).get("value");
-        String option_author_email = ((HashMap<String, String>) this.options.get("authoremail")).get("value");
+        String option_title = this.options.get("title");
+        String option_url = this.options.get("url");
+        String option_author_name = this.options.get("authorname");
+        String option_author_email = this.options.get("authoremail");
         Feed feed = new Feed();
         feed.setXMLEncoding("UTF-8");
         feed.setTitle(option_title);
@@ -136,11 +137,11 @@ public class IndexAction extends ActionSupport {
         this.optionService = optionService;
     }
 
-    public Map<String, Object> getOptions() {
+    public Map<String, String> getOptions() {
         return options;
     }
 
-    public void setOptions(Map<String, Object> options) {
+    public void setOptions(Map<String, String> options) {
         this.options = options;
     }
 

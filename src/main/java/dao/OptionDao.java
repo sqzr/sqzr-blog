@@ -12,7 +12,7 @@ public interface OptionDao {
      * 返回所有设置
      * @return
      */
-    public Map<String,Object> getAllOption();
+    public Map<String, String> getAllOption();
 
     public int update(Option option);
 }

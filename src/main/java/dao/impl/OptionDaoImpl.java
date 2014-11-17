@@ -1,6 +1,7 @@
 package dao.impl;
 
 import dao.OptionDao;
+import handler.MapResultHandler;
 import model.Option;
 import org.apache.ibatis.session.SqlSession;
 
@@ -13,8 +14,11 @@ public class OptionDaoImpl implements OptionDao {
     private SqlSession sqlSession;
 
     @Override
-    public Map<String, Object> getAllOption() {
-        return sqlSession.selectMap("model.Option.getAllOption",null,"name");
+    public Map<String, String> getAllOption() {
+        MapResultHandler mapResultHandler = new MapResultHandler();
+        sqlSession.select("model.Option.getAllOption", mapResultHandler);
+        return mapResultHandler.getMappedResults();
+//        return sqlSession.selectMap("model.Option.getAllOption", null, "name");
     }
 
     @Override

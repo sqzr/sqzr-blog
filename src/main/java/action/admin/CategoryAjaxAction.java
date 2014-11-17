@@ -2,8 +2,8 @@ package action.admin;
 
 import com.opensymphony.xwork2.ActionSupport;
 import model.Category;
-import service.ArticleService;
 import service.CategoryService;
+import util.JsonInfoUtil;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -97,11 +97,9 @@ public class CategoryAjaxAction extends ActionSupport {
 
     public String setdefault() throws Exception {
         if (categoryService.setDefaultCategory(this.id)) {
-            this.jsonInfo.put("status", true);
-            this.jsonInfo.put("tips", "设置默认分类成功");
+            this.jsonInfo = JsonInfoUtil.generate("设置默认分类成功", true);
         } else {
-            this.jsonInfo.put("status", false);
-            this.jsonInfo.put("tips", "设置默认分类失败");
+            this.jsonInfo = JsonInfoUtil.generate("设置默认分类失败", false);
         }
         return "json";
     }

@@ -7,6 +7,9 @@ public class Option {
     private String name;
     private String value;
 
+    public Option() {
+    }
+
     public Option(String name, String value) {
         this.name = name;
         this.value = value;

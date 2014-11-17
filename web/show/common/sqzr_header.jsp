@@ -4,18 +4,19 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title><s2:property value="options.title.value"/></title>
-    <meta name="author" content="<s2:property value="options.author.value"/>">
-    <meta name="description" content="<s2:property value="options.htmldescription.value"/>">
+    <title><s2:property value="options.title"/></title>
+    <meta name="author" content="<s2:property value="options.author"/>">
+    <meta name="description" content="<s2:property value="options.htmldescription"/>">
     <!-- http://t.co/dKP3o1e -->
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="<s2:property value="options.url.value"/>/atom.xml" rel="alternate" title="sqzr's blog" type="application/atom+xml">
-    <link href="<s2:property value="options.url.value"/>/favicon.ico" rel="shortcut icon">
+    <link href="<s2:property value="options.url"/>/atom.xml" rel="alternate" title="sqzr's blog"
+          type="application/atom+xml">
+    <link href="<s2:property value="options.url"/>/favicon.ico" rel="shortcut icon">
     <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet"
           type="text/css">
-    <link rel="canonical" href="<s2:property value="options.url.value"/>">
+    <link rel="canonical" href="<s2:property value="options.url"/>">
     <!--[if IE]>
     <script src="//dn-sqzr.qbox.me/javascript/html5.js"></script>
     < ![endif]-->

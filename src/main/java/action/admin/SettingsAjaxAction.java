@@ -8,6 +8,7 @@ import org.apache.struts2.ServletActionContext;
 import service.OptionService;
 import service.UserService;
 import util.FileNameToProcess;
+import util.JsonInfoUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -75,26 +76,22 @@ public class SettingsAjaxAction extends ActionSupport {
             options.add(new Option("weibo",weibo));
             options.add(new Option("github",github));
             optionService.update(options);
-            this.jsonInfo.put("status", true);
-            this.jsonInfo.put("info", "更新成功");
+            this.jsonInfo = JsonInfoUtil.generate("更新成功", true);
             return "json";
         }
 
         if ("passwordTab".equals(type)) {
             //更新密码
             if (!this.newPassword.equals(this.reqNewPassword)) {
-                this.jsonInfo.put("status", false);
-                this.jsonInfo.put("info", "密码修改失败,两次密码输入不相符");
+                this.jsonInfo = JsonInfoUtil.generate("密码修改失败,两次密码输入不相符", false);
                 return "json";
             }
             //用户id
             int userId = ((User) this.session.getAttribute("user")).getId();
             if (userService.updatePassword(this.newPassword, this.oldPassword, userId)) {
-                this.jsonInfo.put("status", true);
-                this.jsonInfo.put("info", "密码修改成功");
+                this.jsonInfo = JsonInfoUtil.generate("密码修改成功", true);
             } else {
-                this.jsonInfo.put("status", false);
-                this.jsonInfo.put("info", "密码修改失败,旧密码错误");
+                this.jsonInfo = JsonInfoUtil.generate("密码修改失败,旧密码错误", false);
             }
             return "json";
         }
@@ -102,8 +99,7 @@ public class SettingsAjaxAction extends ActionSupport {
         if ("settingsTab".equals(type)) {
             options.add(new Option("pagenumber", pagenumber));
             optionService.update(options);
-            this.jsonInfo.put("status", true);
-            this.jsonInfo.put("info", "更新成功");
+            this.jsonInfo = JsonInfoUtil.generate("更新成功", true);
             return "json";
         }
         return "json";
@@ -112,8 +108,7 @@ public class SettingsAjaxAction extends ActionSupport {
     public String avatar_update() throws Exception {
         if (!FileNameToProcess.checkFileNameIsImage(this.uploadFileFileName)) {
             // 后缀名异常,不为图片
-            this.jsonInfo.put("status", "false");
-            this.jsonInfo.put("tips", "只能上传图片");
+            this.jsonInfo = JsonInfoUtil.generate("只能上传图片", false);
             return "json";
         }
         // 存放文件夹
@@ -124,8 +119,7 @@ public class SettingsAjaxAction extends ActionSupport {
         FileUtils.copyFile(this.uploadFile, new File(new File(realpath), this.uploadFileFileName));
         // 更新数据库头像路径
         optionService.update(new Option("avatar", folder + "/" + this.uploadFileFileName));
-        this.jsonInfo.put("status", true);
-        this.jsonInfo.put("link", folder + "/" + this.uploadFileFileName);
+        this.jsonInfo = JsonInfoUtil.generate("status", true, "link", folder + "/" + this.uploadFileFileName);
         return "json";
     }
     // ---

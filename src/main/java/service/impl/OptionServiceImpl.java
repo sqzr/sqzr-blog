@@ -14,7 +14,7 @@ public class OptionServiceImpl implements OptionService {
     private OptionDao optionDao;
 
     @Override
-    public Map<String,Object> getAllOption() {
+    public Map<String, String> getAllOption() {
         return optionDao.getAllOption();
     }
 

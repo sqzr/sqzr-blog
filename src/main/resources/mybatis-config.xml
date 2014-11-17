@@ -17,6 +17,7 @@
         <typeAlias type="model.Category" alias="Category"/>
         <typeAlias type="model.Option" alias="Option"/>
         <typeAlias type="model.Comment" alias="Comment"/>
+        <!--<typeAlias type="other.MapParam" alias="MapParam"/>-->
     </typeAliases>
     <typeHandlers>
         <typeHandler handler="handler.BooleanTypeHandler"
@@ -30,6 +31,7 @@
             <property name="rowBoundsWithCount" value="true"/>
             <property name="reasonable" value="true"/>
         </plugin>
+        <!--<plugin interceptor="Interceptors.MapInterceptor"/>-->
     </plugins>
 
     <environments default="development">

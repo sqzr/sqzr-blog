@@ -13,7 +13,7 @@ public interface OptionService {
      * 获取所有设置
      * @return
      */
-    public Map<String,Object> getAllOption();
+    public Map<String, String> getAllOption();
 
     public void update(List<Option> options);
 

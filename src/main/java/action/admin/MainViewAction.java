@@ -21,7 +21,7 @@ import java.util.Map;
  */
 public class MainViewAction extends ActionSupport {
     private Map<String, Object> info = new HashMap<String, Object>();
-    private Map<String, Object> options = new HashMap<String, Object>();
+    private Map<String, String> options = new HashMap<String, String>();
     private List<Article> articles;
     private List<Category> categories;
     private Page<Comment> comments;
@@ -177,11 +177,11 @@ public class MainViewAction extends ActionSupport {
         this.articlePage = articlePage;
     }
 
-    public Map<String, Object> getOptions() {
+    public Map<String, String> getOptions() {
         return options;
     }
 
-    public void setOptions(Map<String, Object> options) {
+    public void setOptions(Map<String, String> options) {
         this.options = options;
     }
 

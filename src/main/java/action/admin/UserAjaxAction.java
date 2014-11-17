@@ -5,6 +5,7 @@ import model.User;
 import org.apache.struts2.ServletActionContext;
 import service.UserService;
 import util.CookieUtil;
+import util.JsonInfoUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -40,19 +41,16 @@ public class UserAjaxAction extends ActionSupport {
     public String login() throws Exception {
         User user = userService.login(username, password);
         if (username == null || password == null) {
-            jsonInfo.put("status", false);
-            jsonInfo.put("tips", "用户名或密码不能为空");
+            this.jsonInfo = JsonInfoUtil.generate("用户名或密码不能为空", false);
         }
         if (user == null) {
-            jsonInfo.put("status", false);
-            jsonInfo.put("tips", "用户名或密码错误");
+            this.jsonInfo = JsonInfoUtil.generate("用户名或密码错误", false);
         } else {
             String keeplogin = userService.updateKeeplogin(user.getId());
             if (this.keepMeLoggedInd == true) {
                 CookieUtil.setCookie(this.response, "keeplogin", keeplogin, Integer.MAX_VALUE);
             }
-            jsonInfo.put("status", true);
-            jsonInfo.put("tips", "登陆成功,跳转中");
+            this.jsonInfo = JsonInfoUtil.generate("登陆成功,跳转中", true);
         }
         session.setAttribute("user", user);
         return "json";
