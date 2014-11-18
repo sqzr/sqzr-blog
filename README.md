@@ -65,9 +65,12 @@
 
 ## 程序截图
 
-![文章列表](http://dn-sqzr.qbox.me/coding/sqzrblog_1.png)
-![分类列表](http://dn-sqzr.qbox.me/coding/sqzrblog_2.png)
-![设置页面](http://dn-sqzr.qbox.me/coding/sqzrblog_4.png)
+![主界面](http://dn-sqzr.qbox.me/main.png)
+![文章列表](http://dn-sqzr.qbox.me/article_list.png)
+![文章添加](http://dn-sqzr.qbox.me/article_add.png)
+![分类列表](http://dn-sqzr.qbox.me/category.png)
+![评论列表](http://dn-sqzr.qbox.me/comment.png)
+![设置页面](http://dn-sqzr.qbox.me/settings.png)
 ![前台](http://dn-sqzr.qbox.me/coding/sqzrblog_3.png)
 
 
